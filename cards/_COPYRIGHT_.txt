@@ -1,0 +1,117 @@
+
+*** aisleriot ***
+adapted from gnome-games 0.27 (aisleriot)
+Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
+Copyright (C) 1998 Markus F.X.J. Oberhumer <markus.oberhumer@jk.uni-linz.ac.at>
+
+
+*** dondorf-whist-b ***
+Copyright (C) 2000 T. Kirk <grania@mailcity.com>
+This card set uses the court and Ace images from a deck published
+by Dondorf and Co. of Frankfurt in 1896.  The cards are double ended
+and have different images on each end.  Two card sets were produced.
+
+
+*** greywyvern ***
+Cards Image set by GreyWyvern.
+http://www.greywyvern.com/webslavent?msg=183
+
+
+*** hard-a-port ***
+Copyright (C) 2000 T. Kirk <grania@mailcity.com>
+This transformation card set uses images from a set of trade
+cards produced in the late 19th century in the United States
+of America.  Cards of this type were given away as premiums
+with the purchase of various products.  Each of the cards
+has a different image.
+
+
+*** jacoby ***
+adapted from dontspace 1.2.
+Copyright (C) 1993 John Heidemann <johnh@isi.edu>
+Copyright (C) 1999 Markus F.X.J. Oberhumer <markus.oberhumer@jk.uni-linz.ac.at>
+
+
+*** konqi-modern ***
+adapted from kpat 2.0.
+Modern Konqi - play the family carddeck
+Design: Laura Layland <l_layland@hotmail.com>
+Katie by Agnieszka Czajkowska <agnieszka@imagegalaxy.de>
+Konqi by Stefan Spatz <stefan.spatz@stud-mail.uni-wuerzburg.de>
+
+
+*** lhombre ***
+Copyright 2001 by T. Kirk
+The court cards and Aces in this card set were published by
+B. Dondorf of Frankfurt Germany in 1890.  The proper name for
+the deck is l'Hombre but it is also known as the Sphinx deck.
+The deck was published with the blue and rust colored backs.
+The third back in this reproduction is actually one of the
+boxes the pack was sold in.
+
+
+*** melange ***
+Copyright (C) 1999 T. Kirk <grania@mailcity.com>
+This card set was produced using court and ace images from
+several different decks of playing cards.  All of the decks
+were originally published during the early to late 19th century.
+
+
+*** nickel-ante ***
+Copyright (C) 2000 T. Kirk <grania@mailcity.com>
+The court cards in this set were taken from a set of "trade
+cards" produced in the United States of America in the late
+19th century.  Trade cards were popular during this period
+as premiums given away with the purchase of various products.
+This set of cards was a transformation deck with images on
+the pip cards as well as the courts.  Not all the cards were
+available so only the twelve courts have images.
+
+
+*** nicu-ornamental ***
+adapted from Nicu's Playing Cards.
+See http://www.nicubunu.ro/cards/ for Nicu Buculei's other works.
+Copyright (C) 2005 Nicu Buculei.
+Copyright (C) 2007 Skomoroh.
+
+
+*** seminole-war ***
+Copyright 2001 by T. Kirk
+The court cards in this card set were originally published in 1819
+by card maker J.Y. Humphreys of Philadelphia.  This is the earliest
+known U. S. made "No Revoke" deck which means that each of the suits
+has a different color.  In the original deck the Native American
+chiefs were the Jacks.  But they were here first weren't they?  The
+original back for this pack was unavailable.  The back chosen is a
+late 19th century photograph of Chief White Buffalo.
+
+
+*** sn-dietsche ***
+Copyright 2001 by T. Kirk
+The courts and Aces of this card set were first published by
+Nederlandsche Speelkaartenfabriek in 1909.
+
+
+*** tksol ***
+adapted from TkSol 1.0.
+http://www.cs.umd.edu/users/bao/tksol.html
+Copyright (C) 1992 Joseph L. Traub <jtraub@zso.dec.com>
+Copyright (C) 1994 Bao Trinh <bao@cs.umd.edu>
+Copyright (C) 1998 Markus F.X.J. Oberhumer <markus.oberhumer@jk.uni-linz.ac.at>
+*  These cards are provided free of charge to any and all who wish to use   *
+*  in any of their works.  They can be freely copied and redistributed in   *
+*  any piece of software, either commercial or public, however the cards    *
+*  themselves MUST remain in the public domain and this notice must         *
+*  accompany these bitmaps.  If you make any changes to the bitmaps please  *
+*  let me know so that there might remain a very good set of public domain  *
+*  bitmaps for a deck of cards.  Enjoy.                                     *
+
+
+*** ukiyoe-fuji ***
+Copyright (C) 2000 T. Kirk <grania@mailcity.com>
+This card set uses Japanese Ukiyo E wood block prints as the
+trumps and courts.  Prints of this type were produced until
+around the middle of the 19th century.  The trumps are views
+of Mount Fuji by various artists.  The courts were also created
+by various artists.
+
