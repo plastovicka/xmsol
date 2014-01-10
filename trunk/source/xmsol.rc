@@ -1,0 +1,458 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winresrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Czech resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
+#ifdef _WIN32
+LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#include ""winresrc.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,5,0,2
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040504b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", " \0"
+            VALUE "FileDescription", "XM Solitaire\0"
+            VALUE "FileVersion", "1, 5, 0, 2\0"
+            VALUE "InternalName", "\0"
+            VALUE "LegalCopyright", "© 2005-2013 Petr Lastovicka\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "xmsol.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "\0"
+            VALUE "ProductVersion", "\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x405, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "K",            ID_NEXT_BACK,           VIRTKEY, CONTROL, NOINVERT
+    "K",            ID_PREV_BACK,           VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "B",            ID_NEXT_BKGND,          VIRTKEY, CONTROL, NOINVERT
+    "B",            ID_PREV_BKGND,          VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "N",            ID_NEXT_CARD,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_PREV_CARD,           VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_DELETE,      ID_UNDO,                VIRTKEY, NOINVERT
+    VK_DOWN,        ID_INCR_SEQ,            VIRTKEY, ALT, NOINVERT
+    VK_END,         ID_REDO_ALL,            VIRTKEY, NOINVERT
+    VK_F1,          ID_HELP_RULES,          VIRTKEY, NOINVERT
+    VK_F2,          ID_NEWGAME,             VIRTKEY, NOINVERT
+    VK_F3,          ID_LIST,                VIRTKEY, NOINVERT
+    VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    VK_F7,          ID_RELOADGAME,          VIRTKEY, NOINVERT
+    VK_F8,          ID_LASTGAME,            VIRTKEY, NOINVERT
+    VK_HOME,        ID_UNDO_ALL,            VIRTKEY, NOINVERT
+    VK_INSERT,      ID_REDO,                VIRTKEY, NOINVERT
+    VK_UP,          ID_DECR_SEQ,            VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&Game"
+    BEGIN
+        MENUITEM "&Select game...",             ID_LIST
+        MENUITEM "&New game",                   ID_NEWGAME
+        MENUITEM "New game n&umber...",         ID_GAME_NUMBER
+        MENUITEM "&Random game",                ID_RANDOM_GAME
+        MENUITEM SEPARATOR
+        MENUITEM "Change &player...",           ID_PLAYER
+        MENUITEM "S&tatistics...",              ID_STATISTIC
+        MENUITEM SEPARATOR
+        POPUP "&Language"
+        BEGIN
+            MENUITEM ".",                           29999
+        END
+        MENUITEM "&Customize toolbar",          ID_TOOLBAR
+        MENUITEM "&Keyboard shortcuts",         ID_KEYS
+        MENUITEM "&Options...",                 ID_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Delete settings",             ID_DELINI
+        MENUITEM "E&xit",                       ID_EXIT
+    END
+    POPUP "&Move"
+    BEGIN
+        MENUITEM "&Undo",                       ID_UNDO
+        MENUITEM "&Redo",                       ID_REDO
+        MENUITEM "Undo &all",                   ID_UNDO_ALL
+        MENUITEM "Redo a&ll",                   ID_REDO_ALL
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Mirror &left/right",          ID_MIRROR_LR
+        MENUITEM "Mirror &up/down",             ID_MIRROR_UD
+        MENUITEM SEPARATOR
+        MENUITEM "&Increase distance",          ID_INCR_SEQ
+        MENUITEM "&Decrease distance",          ID_DECR_SEQ
+        MENUITEM SEPARATOR
+        MENUITEM "&Show toolbar",               ID_SHOWTOOLBAR
+        MENUITEM "&Refresh",                    ID_REFRESH
+    END
+    POPUP "&Cards"
+    BEGIN
+        MENUITEM "&Next",                       ID_NEXT_CARD
+        MENUITEM "&Previous",                   ID_PREV_CARD
+        MENUITEM SEPARATOR
+        MENUITEM ".",                           ID_CARDS
+    END
+    POPUP "C&ell"
+    BEGIN
+        MENUITEM ".",                           ID_CELL
+    END
+    POPUP "Card bac&k"
+    BEGIN
+        MENUITEM "&Next",                       ID_NEXT_BACK
+        MENUITEM "&Previous",                   ID_PREV_BACK
+        MENUITEM SEPARATOR
+        MENUITEM ".",                           ID_BACK
+    END
+    POPUP "&Background"
+    BEGIN
+        MENUITEM "&Next",                       ID_NEXT_BKGND
+        MENUITEM "&Previous",                   ID_PREV_BKGND
+        MENUITEM SEPARATOR
+        MENUITEM ".",                           ID_BKGND
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help",                       ID_HELP_CONTENT
+        MENUITEM "&Rules",                      ID_HELP_RULES
+        MENUITEM "&About...",                   ID_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_KEYS DIALOG DISCARDABLE  0, 0, 234, 54
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Keyboard accelerators"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Command:",512,7,9,51,8
+    EDITTEXT        IDC_KEYCMD,61,7,144,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    PUSHBUTTON      ". . .",IDC_MENUDROP,208,7,19,14
+    LTEXT           "Key:",513,7,33,51,8
+    EDITTEXT        IDC_KEY,61,30,144,14,ES_AUTOHSCROLL
+END
+
+IDD_ABOUT DIALOG DISCARDABLE  52, 18, 113, 113
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 11, "MS Shell Dlg"
+BEGIN
+    CTEXT           "(C) 2005-2011  Petr Lastovicka",510,4,57,105,10
+    CTEXT           "Version",511,30,23,30,9
+    CTEXT           "XM Solitaire",IDC_STATIC,23,5,65,11,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    ICON            IDI_MAINICON,IDC_STATIC,15,20,20,20
+    PUSHBUTTON      "OK",IDOK,40,92,32,13
+    ICON            IDI_MAINICON,IDC_STATIC,85,20,20,20
+    PUSHBUTTON      "http://petr.lastovicka.sweb.cz",123,4,71,105,12
+    LTEXT           " ",101,65,23,15,8
+    RTEXT           "Games count:",IDL_TOTAL,1,40,62,9
+    LTEXT           "",IDC_TOTAL,68,40,22,9
+END
+
+OPTIONS_ANIMATION DIALOG DISCARDABLE  0, 0, 205, 180
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "&Enable autoplay",IDC_AUTOPLAY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,12,186,10
+    CONTROL         "&Autoplay animation",IDC_ANIM_AUTOPLAY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,48,144,10
+    EDITTEXT        IDC_AUTODELAY,155,45,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "&Undo, redo animation",IDC_ANIM_UNDO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,79,144,10
+    EDITTEXT        IDC_UNDODELAY,155,76,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "&Right click animation",IDC_ANIM_RIGHTCLICK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,110,144,10
+    EDITTEXT        IDC_RIGHTCLICKDELAY,155,107,26,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    CONTROL         "&Deal from a stock animation",IDC_ANIM_STOCK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,141,144,10
+    EDITTEXT        IDC_STOCKDELAY,155,138,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "ms",IDC_STATIC,185,48,15,8
+    LTEXT           "ms",IDC_STATIC,185,79,15,8
+    LTEXT           "ms",IDC_STATIC,185,110,15,8
+    LTEXT           "ms",IDC_STATIC,185,141,15,8
+END
+
+OPTIONS_DISPLAY DIALOG DISCARDABLE  0, 0, 205, 180
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CTEXT           "&Rounded card corners:",IDL_CORNERS,7,8,101,8
+    EDITTEXT        IDC_CORNERS,112,6,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Use hal&ftone mode to stretch cards bitmap",
+                    IDC_HALFTONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,28,
+                    197,10
+    GROUPBOX        "Window borders",IDL_BORDER,7,49,186,36
+    CTEXT           "&left/right",IDL_LR,12,65,52,8
+    EDITTEXT        IDC_BORDER_LR,69,63,21,14,ES_AUTOHSCROLL | ES_NUMBER
+    CTEXT           "&up/down",IDL_UD,95,65,54,8
+    EDITTEXT        IDC_BORDER_UD,154,63,21,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "Distance between cards in a tableau",IDL_SEQ_DIST,7,95,
+                    186,77
+    CTEXT           "face side",IDL_CARD_VIS,38,114,69,8
+    CTEXT           "back side",IDL_CARD_HIDDEN,111,114,68,8
+    LTEXT           "&vertical",IDL_VERTICAL,14,132,44,8
+    EDITTEXT        IDC_SEQDIST_Y,64,129,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_SEQDIST_HY,129,129,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&horizontal",IDL_HORIZ,14,153,44,8
+    EDITTEXT        IDC_SEQDIST_X,64,150,26,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_SEQDIST_HX,129,150,26,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_GAMELIST DIALOG DISCARDABLE  0, 0, 315, 279
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Game list"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "List1",IDC_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,7,7,298,183
+    DEFPUSHBUTTON   "OK",IDOK,249,205,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,249,232,50,14
+    PUSHBUTTON      "&Rules",IDC_SHOWRULES,155,205,60,14
+    CONTROL         "",IDC_PREVIEW,"Button",BS_OWNERDRAW,7,194,121,82
+    PUSHBUTTON      "&Best scores",IDC_BEST_SCORES,155,232,60,14
+END
+
+OPTIONS_SCORE DIALOG DISCARDABLE  0, 0, 205, 180
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 9, "MS Shell Dlg"
+BEGIN
+    LTEXT           "&Move to a foundation:",IDL_MOVE_FOUNDATION,7,12,123,8
+    EDITTEXT        IDC_SCORE_FOUNDATION,146,9,30,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "Un&hide a reversed card:",IDL_UNHIDE,7,35,123,8
+    EDITTEXT        IDC_SCORE_UNHIDE,146,32,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Bonus for a win:",IDL_BONUS,7,58,123,8
+    EDITTEXT        IDC_SCORE_BONUS,146,55,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Undo:",IDL_UNDO,7,87,123,8
+    EDITTEXT        IDC_SCORE_UNDO,146,84,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Wrong right-click move:",IDL_WRONG_MOVE,7,112,123,8
+    EDITTEXT        IDC_SCORE_WRONG_MOVE,146,109,30,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "&Redeal:",IDL_REDEAL,7,136,123,8
+    EDITTEXT        IDC_SCORE_REDEAL,146,133,30,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    CTEXT           "-",IDC_STATIC,135,86,8,8
+    CTEXT           "-",IDC_STATIC,135,111,8,8
+    CTEXT           "-",IDC_STATIC,135,135,8,8
+    LTEXT           "&Time:",IDL_TIME,7,160,123,8
+    EDITTEXT        IDC_SCORE_TIME,146,157,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    CTEXT           "-",IDC_STATIC,135,159,8,8
+END
+
+IDD_RULES DIALOG DISCARDABLE  0, 0, 253, 220
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_RULES,"RICHEDIT",ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_READONLY | WS_BORDER | WS_VSCROLL | 
+                    WS_TABSTOP,7,7,239,206
+END
+
+IDD_NUMBER DIALOG DISCARDABLE  0, 0, 187, 56
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "New game"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Number from 1 to 4294967295:",IDL_GAMENUMBER,7,10,109,8
+    EDITTEXT        IDC_GAMENUMBER,123,7,57,14,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "OK",IDOK,31,35,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,105,35,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAINICON            ICON    DISCARDABLE     "xmsol.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBAR             BITMAP  MOVEABLE PURE   "soltool.bmp"
+IDB_ASCDESC             BITMAP  MOVEABLE PURE   "ascdesc.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSORMOVE          CURSOR  DISCARDABLE     "CRU.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO MOVEABLE PURE 
+BEGIN
+    IDD_ABOUT, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 104
+    END
+
+    OPTIONS_ANIMATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    OPTIONS_DISPLAY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_GAMELIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 308
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
+
+    OPTIONS_SCORE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_RULES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 246
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 213
+    END
+
+    IDD_NUMBER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 49
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Czech resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

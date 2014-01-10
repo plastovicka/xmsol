@@ -1,0 +1,251 @@
+;menu
+400=&Jeu
+203=&Choisir un jeu...
+202=&Nouveau
+226=Nouveau numéro...
+227=&Jeu au hasard
+207=Changer joueur...
+228=Statistics...
+407=&Langue
+204=&Customiser toolbar
+205=&Raccourcis clavier
+206=&Options...
+208=Supprimer settings
+201=Exit
+
+401=&Mouvements
+209=&Défaire
+210=&Refaire
+211=Défaire tout
+212=Refaire tout
+
+406=&Vue
+213=Mirroir &gzuche/droite
+214=Mirroir &haut/bas
+218=&Augmenter distance
+219=&Diminuer distance
+221=&Voir toolbar
+220=&Refresh
+
+402=&Cartes
+229=&Suivant
+230=&Précédant
+
+408=Cellules
+
+403=Dos de carfes
+222=&Suivant
+223=&Précédant
+
+404=&Fond
+224=&Suivant
+225=&Précédant
+
+405=&Aide
+215=&Aide
+216=&Règles
+217=&A propos...
+
+;dialog boxes
+19=Keyboard accelerators
+512=Commande:
+513=Touche:
+
+11=A propos
+511=Version
+524=Games count:
+1=OK
+2=Annuler
+
+12=Liste de jeux
+515=&Règles
+537=&Meilleurs scores
+528=&Déplacer sur une fondation:
+529=Montrer une carte retournée:
+539=&Bonus pour victoire:
+525=&Défaire:
+526=&Mauvais click droit mouvement:
+527=&Redistribuer:
+535=&Temps:
+
+22=Nouveau jeu
+536=Nombre de 1 à 4294967295:
+
+;options
+14=Animation
+514=&Permettre autoplay
+530=&Autoplay animation
+531=&Défaire, Refaire animation
+532=&Animation click droit
+533=&Animation de distribution d'un stock
+15=Affichage
+534=&Coins de carte arrondis:
+540=Utiliser le mode demi-teinte pour tendre le bitmap des cartes
+516=bords de fenêtre
+517=&gauche/droite
+518=&haut/bas
+519=Distance entre les cartes du tableau
+522=côté face
+523=côté dos
+520=&vertical
+521=&horizontal
+16=Score
+
+;statistics
+960=Jeux joués
+961=Jeux gagnés
+962=Jeux perdus
+963=Pourcentage gagné
+964=Temps total en heures
+965=Temps par jeu
+966=Total mouvements
+967=Mouvements par jeu
+
+;status bar
+680=Temps
+681=Score
+683=Mouvements
+682=Done
+
+97=Ctrl+
+98=Shift+
+99=Alt+
+21=Règles
+501=Joueur (*.xol)\0*.xol\0All files\0*.*\0
+20=Options
+538=Score\tTime\tDate
+735=Impossible d'écrire dans la fenêtre registre
+733=Impossible de créer fichier %s
+730=Impossible d'ouvrir fichier %s
+731=Mauvais format du fichier %s
+734=Erreur d'écriture du fichier %s
+755=Erreur dans %s\nLine %d
+756=Erreur dans %s\nMessage number %d est trop gros
+757=Erreur dans %s\nDuplicated number %d
+753=Le fichier %s est trop long
+754=Erreur de lecture fichier %s
+
+;Colone de liste de jeux
+650=Nom du jeu
+651=Joué
+652=Gagné
+653=Pourcentage
+654=Score
+655=Temps
+656=Mouvements
+657=Carte
+658=Stocks
+659=Règles d'ordre
+660=Règles de couleur
+661=Pairs
+662=Nomdu jeu
+663=Dernier joué
+664=Scoresgagnés
+665=Temps gagnés
+666=Mouvements gagnés
+667=Perdu
+668=Déplacer groupe
+
+;règle
+900=Pairs
+901=Decks
+913=Couleur
+914=Rang
+915=Distribution
+902=Redistribution
+903=illimité
+904=Cartes maximum par pile
+921=La corbeille doit être vide
+916=Règles de décharge
+919=Règles pout les mouvements entre cellules du même type
+920=Règles pour une cellule précédente
+905=Lespace ne peut pas être rempli
+906=Rang de la première carte
+907=Couleur de la première carte
+908=Pas de construction
+909=Ordre
+910=toujours
+911=Ordre des couleurs
+912=Déplacer un groupe de cartes
+917=Déplacement seulement venant de 
+918=Déplacement seulement vers
+
+1000=peu importe
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=non
+1015=base aléatoire
+1016=base aléatoire +1
+1017=même base
+1018=en premier tous les rois et après les autres cartes
+1019=A ou 
+
+1031=coeurs
+1032=carreaux
+1033=trèfles
+1034=piques
+1035=rouges
+1036=noirs
+
+1051=identique
+1052=different
+1053=même couleur
+1054=alterner couleur
+
+1061=non
+1062=descendant
+1063=ascendant
+1064=haut ou bas
+1065=descendant pairs/impairs
+1066=ascendants pairs/impairs
+1067=haut ou bas pairs/impairs
+1068=même ran
+1069=haut ou bas ou identique
+1070=L pile précédente a une carte identique à celle déplacée
+1071=La pile précédente est complétée
+1072=plus haut
+1073=plus bas
+1074=haut ou identique
+1075=bas ou identique
+
+1080=oui
+1081=non
+1082=pas toutes les cartes
+1083-n'importe quel ordre
+1084=toutes les 13 cartes
+1085=vers une cellule vide
+1086=n'importe quel ordre quand cellule vide
+1087=Pile entière indépendamment de lordre
+
+1100=cellule
+1101=fondation
+1102=tableau
+1103=réserve
+1104=stock
+1105=corbeille
+
+1120=même couleur
+1121=même rang
+1122=même couleur et rang
+
+;boutons toolbar
+1203=Choisir un jeu
+1202=Nouveau jeu
+1207=Changer joueur
+1212=Tout défaire
+1209=Défaire
+1210=Refaire
+1211=Tout refaire
+1206=Options
+1216=Règles

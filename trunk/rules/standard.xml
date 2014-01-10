@@ -1,0 +1,1402 @@
+<!-- Don't modify this file !!!
+     Create a new file for your games. -->
+
+<xmsol>
+
+<game name="Freecell">
+<foundation repeat="4" x="590"/>
+<tableau repeat="8">alter</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Up or Down" decks="2" autoplay="0">
+<foundation x="200" repeat="5" count="5">updown cont anysuit anyrank<out>noempty</out></foundation>
+<tableau x="200" repeat="5" count="95" hide="-1">updown cont group</tableau>
+<stock/><waste y="320"/>
+</game>
+
+<game name="Carpet" autoplay="0">
+<foundation x="225" y="333" w="750" h="333" repeat="4" lines="2" count="4"/>
+<cell x="350" w="500" repeat="20" lines="4" count="20"/>
+<stock/><waste x="120" fill="1"/>
+</game>
+
+<game name="Forty Thieves 1" decks="2">
+<foundation x="240" repeat="8"/>
+<tableau repeat="10" count="40">suit</tableau>
+<stock redeal="1"/><waste x="120"/>
+</game>
+
+<game name="La Belle Lucie">
+<foundation x="200" repeat="4"/>
+<tableau dir="right" y="300" w="860" repeat="18" lines="4">suit no</tableau>
+<stock redeal="2" deal="52" shuffle="rand"/>
+</game>
+
+<game name="Spider Two Suits" decks="4" suit="hs">
+<foundation x="240" repeat="8">k all down</foundation>
+<tableau repeat="10" count="44" hide="-1">group<out>suit</out></tableau>
+<stock deal="10"/>
+</game>
+
+<game name="Royal Rendezvous" decks="2" autoplay="0">
+<foundation x="286" w="429" repeat="4" count="4"/>
+<foundation w="143" y="320" repeat="2" count="2">up2 2 hdcs</foundation>
+<foundation x="286" y="320" w="429" repeat="4" count="4">up2</foundation>
+<foundation x="857" y="320" count="1">up2 2 c</foundation>
+<foundation x="1000" y="320" count="1">up2 2 s</foundation>
+<cell repeat="16" lines="2" x="20" y="680" w="960" h="320" count="16"/>
+<stock/><waste x="120"/>
+</game>
+
+<game name="Four Seasons">
+<foundation x="300" w="400" h="900" repeat="4" lines="2" count="1">cont rand</foundation>
+<cell x="300" y="450" w="400" repeat="3" count="3">anysuit down cont</cell>
+<cell x="500" h="900" lines="2" count="2">anysuit down cont</cell>
+<stock/><waste y="320"/>
+</game>
+
+<game name="Easthaven">
+<foundation x="500" repeat="4"/>
+<tableau repeat="7" count="21" hide="-1">alter group</tableau>
+<stock deal="7"/>
+</game>
+
+<game name="Avenue">
+<foundation x="600" lines="4" count="4"/>
+<tableau x="150" y="0" w="600" repeat="8" lines="4" dir="right">alter</tableau>
+<cell lines="4"/>
+</game>
+
+<game name="Baker's Game">
+<foundation repeat="4" x="590"/>
+<tableau repeat="8">k suit</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Baker's Spider">
+<foundation repeat="4" x="590">all down k</foundation>
+<tableau repeat="8">group<out>suit</out></tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Bastion">
+<foundation repeat="4" x="333" w="333"/>
+<cell repeat="2" w="111" count="2"/>
+<tableau repeat="10">updown suit</tableau>
+</game>
+
+<game name="Cascade">
+<foundation repeat="4" x="571">alter</foundation>
+<cell repeat="2" x="150" w="142"/>
+<tableau repeat="7" x="150" count="35">alter</tableau>
+<stock y="320"/><waste y="650"/>
+</game>
+
+<game name="Color Cell">
+<foundation repeat="4" x="590"/>
+<tableau repeat="8">color</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Double Baker's Spider" decks="2">
+<foundation repeat="4" x="680">all down cont k</foundation>
+<tableau repeat="10" count="104">group<out>suit</out></tableau>
+<cell repeat="6" w="556"/>
+</game>
+
+<game name="Double Cascade" decks="2">
+<foundation repeat="8" x="250" count="8">alter</foundation>
+<cell y="320" repeat="8"/>
+<tableau y="640" repeat="10" count="40" hide="-1">alter</tableau>
+<stock/><waste x="120"/>
+</game>
+
+<game name="Double Majesty" decks="2">
+<foundation repeat="8" x="250" count="8"/>
+<cell y="0" w="120" repeat="2"/>
+<tableau x="120" repeat="9" count="40" hide="-1" shape="incr">alter</tableau>
+<stock y="320"/><waste y="640"/>
+</game>
+
+<game name="Double Spidercells" decks="2">
+<foundation repeat="4" x="680" max="26">all down cont k alter</foundation>
+<tableau repeat="10" count="104">alter group</tableau>
+<cell repeat="6" w="556"/>
+</game>
+
+<game name="Dream Fan">
+<foundation x="600" repeat="4" count="4"/>
+<tableau w="750" repeat="12" lines="4" dir="right" hide="-1">alter</tableau>
+<cell x="40" w="370" repeat="4"/>
+</game>
+
+<game name="Eight Off">
+<foundation x="1000" lines="4"/>
+<cell y="1000" w="800" repeat="8" count="4"/>
+<tableau y="0" w="800" repeat="8" count="48">k suit</tableau>
+</game>
+
+<game name="Forecell">
+<foundation repeat="4" x="590"/>
+<cell repeat="4" w="400" count="4"/>
+<tableau repeat="8">alter</tableau>
+</game>
+
+<game name="Four Colors">
+<foundation lines="4" x="1000"/>
+<cell repeat="4" w="400"/>
+<tableau w="400" repeat="4">alter<init>hsdc suit</init></tableau>
+<tableau repeat="3" x="534" w="267">alter</tableau>
+</game>
+
+<game name="Freecell AK">
+<foundation x="590" count="1">h</foundation>
+<foundation x="727" count="1">s</foundation>
+<foundation x="863" count="1">down k d</foundation>
+<foundation x="1000" count="1">down k c</foundation>
+<tableau repeat="8">alter</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Klondike Freecell">
+<foundation x="622" repeat="4"/>
+<tableau x="120" repeat="8" count="36" shape="incr">alter</tableau>
+<stock y="320"/><waste y="650"/>
+<cell x="120" repeat="2" w="126"/>
+</game>
+
+<game name="Milligan Cell" decks="2">
+<foundation x="150" repeat="8"/>
+<tableau x="150" repeat="8" count="8">k alter</tableau>
+<cell y="320" lines="3"/>
+<stock deal="8"/>
+</game>
+
+<game name="Oasis">
+<foundation x="500" repeat="4"/>
+<tableau repeat="8" count="32">alter</tableau>
+<cell x="160" w="120" repeat="2"/>
+<reserve count="20"/>
+</game>
+
+<game name="Opera">
+<foundation repeat="4" x="590">alter</foundation>
+<tableau repeat="8" hide="-1">alter</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Petal">
+<foundation x="590" repeat="4" count="4">rand cont hsdc</foundation>
+<cell repeat="4" w="400" count="4"/>
+<tableau repeat="8">cont alter</tableau>
+</game>
+
+<game name="Sea Towers">
+<foundation w="111" repeat="2"/>
+<foundation x="888" w="111" repeat="2"/>
+<cell repeat="4" x="333" w="333" count="2" shape="center"/>
+<tableau repeat="10">suit</tableau>
+</game>
+
+<game name="Seven By Four">
+<foundation repeat="4" x="590"/>
+<tableau repeat="7">alter</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Stalactites" autoplay="0">
+<foundation x="590" repeat="4" count="4">hsdc anyrank anysuit<out>noempty</out></foundation>
+<tableau repeat="8">no noseq</tableau>
+<cell repeat="2" w="143"/>
+</game>
+
+<game name="Stripped Freecell" suit="hs">
+<foundation repeat="2" x="740" w="160"/>
+<tableau repeat="6" x="100" w="800">alter</tableau>
+<cell repeat="2" x="100" w="160"/>
+</game>
+
+<game name="Tuxedo">
+<foundation x="1000" lines="4"/>
+<cell y="1000" w="800" repeat="7"/>
+<tableau y="0" w="800" repeat="7">k suit</tableau>
+</game>
+
+<game name="Vertical Freecell">
+<foundation x="1000" lines="4" count="4"/>
+<tableau x="250" y="0" lines="4" dir="right">alter</tableau>
+<cell repeat="8" lines="4" w="120"/>
+</game>
+
+<game name="Zodiac" decks="2">
+<foundation repeat="8" x="111" w="777"/>
+<tableau repeat="8" x="111" w="777">alter</tableau>
+<cell repeat="8" lines="4" y="50" h="900"/>
+</game>
+
+<game name="Penguin">
+<foundation x="1000" lines="4" count="3">rand+1 cont</foundation>
+<cell y="1000" w="800" repeat="7"/>
+<tableau y="0" count="7">rand cont suit<init>rand+1</init></tableau>
+<tableau y="0" x="133" w="667" repeat="6">rand cont suit</tableau>
+</game>
+
+<game name="Magic Freecell">
+<foundation x="1000" lines="4"/>
+<cell lines="4" count="3"/>
+<tableau x="150" y="0" w="350" repeat="4" hide="3" count="28">rank anygroup</tableau>
+<tableau x="617" y="0" w="233" repeat="3">rank anygroup</tableau>
+</game>
+
+<game name="Spidercells">
+<foundation repeat="4" x="590">alter all down k</foundation>
+<tableau repeat="8">group alter</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Little Gazette">
+<foundation x="1000" lines="4">color</foundation>
+<tableau x="111" y="0" w="777" repeat="8" hide="-3">alter</tableau>
+<cell lines="4"/>
+</game>
+
+<game name="Alternations" decks="2">
+<foundation x="140" repeat="8"/>
+<tableau x="160" w="750" repeat="7" count="49" hide="even">k group</tableau>
+<waste y="330" count="1"/><stock/>
+</game>
+
+<game name="Archway" decks="2" autoplay="0">
+<foundation y="666" w="125" repeat="4" lines="2" count="4">anysuit<out>noempty</out></foundation>
+<foundation x="875" y="666" w="125" repeat="4" lines="2" count="4">k down anysuit<out>noempty</out></foundation>
+<tableau x="333" w="333" repeat="4" count="48">no noseq</tableau>
+<cell y="333" count="8"><init>a rank</init></cell>
+<cell x="125" y="333" count="8"><init>2 rank</init></cell>
+<cell count="8"><init>3 rank</init></cell>
+<cell x="125" count="8"><init>4 rank</init></cell>
+<cell x="250" count="8"><init>5 rank</init></cell>
+<cell x="375" count="8"><init>6 rank</init></cell>
+<cell x="500" count="8"><init>7 rank</init></cell>
+<cell x="625" count="8"><init>8 rank</init></cell>
+<cell x="750" count="8"><init>9 rank</init></cell>
+<cell x="875" count="8"><init>10 rank</init></cell>
+<cell x="1000" count="8"><init>j rank</init></cell>
+<cell x="875" y="333" count="8"><init>q rank</init></cell>
+<cell x="1000" y="333" count="8"><init>k rank</init></cell>
+</game>
+
+<game name="Baker's Dozen">
+<foundation x="1000" lines="4"/>
+<tableau y="0" x="667" w="133" h="700" repeat="4" lines="2" count="16">no<init>k</init></tableau>
+<tableau y="0" w="533" repeat="5" count="20">no</tableau>
+<tableau y="700" x="133" w="400" repeat="4">no</tableau>
+</game>
+
+<game name="Black Spider">
+<cell w="111" repeat="2" count="1"/>
+<cell x="889" repeat="2" count="1" shape="right"/>
+<foundation repeat="4" x="333" w="333">k down</foundation>
+<tableau repeat="10" hide="even">group<out>suit</out></tableau>
+</game>
+
+<game name="George V">
+<cell repeat="3" w="286" count="3"/>
+<foundation repeat="4" x="571"/>
+<tableau x="143" w="714" repeat="6" count="6">group k alter</tableau>
+<stock x="429" deal="6"/>
+</game>
+
+<game name="Good Measure">
+<foundation repeat="4" x="333" w="333" count="2"/>
+<tableau x="333" w="333" repeat="4" count="20">no<init>k</init></tableau>
+<tableau repeat="3" w="222" count="15">no</tableau>
+<tableau x="778" repeat="3">no</tableau>
+</game>
+
+<game name="Klondike 3">
+<foundation x="500" repeat="4"/>
+<tableau repeat="7" shape="incr" count="28" hide="-1">k group alter</tableau>
+<stock redeal="inf" deal="3"/><waste x="120"/>
+</game>
+
+<game name="Limited" decks="2">
+<foundation x="150" repeat="8" lines="4"/>
+<tableau y="0" h="667" repeat="12" lines="2" count="36" x="293" w="536">suit</tableau>
+<stock y="1000"/><waste y="667"/>
+</game>
+
+<game name="Klondike">
+<foundation x="500" repeat="4"/>
+<tableau repeat="7" shape="incr" count="28" hide="-1">k group alter</tableau>
+<stock redeal="2"/><waste x="120"/>
+</game>
+
+<game name="Fan Nine">
+<tableau y="100" x="125" w="750" repeat="4" max="13">up suit anygroup</tableau>
+<tableau y="100" repeat="5" max="13">up suit anygroup</tableau>
+</game>
+
+<game name="Yukon">
+<foundation x="500" repeat="4"/>
+<tableau repeat="7" shape="incr" hide="-5">k anygroup alter</tableau>
+</game>
+
+<game name="Fourteen Out" pair="14">
+<foundation x="1000" y="430"/>
+<tableau repeat="12" lines="2" y="0" h="700" w="850">no noseq</tableau>
+</game>
+
+<game name="Add Up Tens" pair="10" rank="a23456789">
+<foundation x="1000"/>
+<tableau repeat="9" count="9" lines="3" y="0" x="250" w="500">noseq</tableau>
+<stock deal="fill"/>
+</game>
+
+<game name="Affinity" pair="suit">
+<foundation x="500" max="48"/>
+<tableau repeat="4" count="4" x="250" w="500">no noseq</tableau>
+<stock x="500" y="1000" deal="4"/>
+</game>
+
+<game name="Double Fourteens" decks="2" pair="14">
+<foundation x="1000" y="430"/>
+<tableau repeat="18" lines="2" y="0" h="700" w="889">no noseq</tableau>
+</game>
+
+<game name="Nestor" pair="rank">
+<foundation x="500" y="700"/>
+<tableau repeat="4" count="4" x="72" y="1000" w="857">no noseq</tableau>
+<tableau repeat="8" y="0">no noseq</tableau>
+</game>
+
+<game name="Arizona">
+<foundation x="320" w="360" repeat="4"/>
+<reserve y="320" h="500" repeat="16" lines="8" count="16"/>
+<tableau repeat="6" x="200" w="600">group</tableau>
+</game>
+
+<game name="Canfield">
+<foundation x="400" repeat="4" count="1">rand cont</foundation>
+<tableau x="400" repeat="4" count="4">cont group alter</tableau>
+<reserve fill="1" x="120" y="320" dir="down" hide="-1" count="13"><out>tableau</out></reserve>
+<waste x="120" count="3"/><stock deal="3" redeal="inf"/>
+</game>
+
+<game name="Fan">
+<foundation x="210" w="552" repeat="4"/>
+<tableau w="930" dir="right" repeat="18" lines="3" shape="last">k suit</tableau>
+</game>
+
+<game name="Fanny 6" decks="2">
+<foundation repeat="8"/>
+<reserve y="320" count="92" hide="-1"/>
+<tableau x="143" count="12">no noseq</tableau>
+<tableau x="286" repeat="6">anyseq reserve</tableau>
+</game>
+
+<game name="Fortunes Favor">
+<foundation x="550" repeat="4" count="4"/>
+<tableau x="250" repeat="12" count="12" lines="2" h="460">suit</tableau>
+<stock y="320"/><waste y="650" fill="1"/>
+</game>
+
+<game name="Golf" autoplay="0">
+<tableau repeat="7" count="35">no noseq</tableau>
+<foundation x="167" y="850" count="1" dir="right" spacing="60">updown anysuit</foundation>
+<stock y="850"><out>foundation</out></stock>
+</game>
+
+<game name="La Cabane">
+<foundation x="1000" lines="4"/>
+<cell x="71" y="333">anyseq waste</cell>
+<cell repeat="2" y="666" w="143">anyseq waste</cell>
+<stock y="1000" deal="fill" count="31"/>
+<waste x="143" y="1000" fill="1" count="1"/>
+<reserve x="571" count="1">anyrank stock</reserve>
+<reserve x="429" y="83" repeat="2" w="286" count="2">anyrank stock</reserve>
+<reserve x="286" y="166" repeat="2" w="571" count="2">anyrank stock</reserve>
+<stock x="571" y="333" count="10" deal="fill"><out>reserve</out></stock>
+<tableau count="2" repeat="2" x="428" y="667" w="286" dir="no">suit</tableau>
+<tableau count="3" repeat="3" x="428" y="1000" w="286" dir="no">suit</tableau>
+</game>
+
+<game name="Reserved Thirteens" pair="13" decks="2">
+<foundation x="400"/>
+<foundation x="600">k rank anysuit</foundation>
+<reserve repeat="2" count="30" dir="down"/>
+<tableau repeat="5" x="200" y="500" w="600" count="5">no noseq</tableau>
+<waste x="600" y="1000" fill="1" count="1"/>
+<stock x="400" y="1000"/>
+</game>
+
+<game name="Russian Solitaire">
+<foundation x="500" repeat="4"/>
+<tableau repeat="7" shape="incr" hide="-5">k suit anygroup</tableau>
+</game>
+
+<game name="Scorpion II">
+<foundation repeat="4" x="590">k all down</foundation>
+<stock count="3" deal="3" dir="right"/>
+<tableau w="333" repeat="3" hide="3" count="21">k anygroup suit</tableau>
+<tableau x="500" repeat="4">k anygroup suit</tableau>
+</game>
+
+<game name="Simple Alternations">
+<foundation x="400" repeat="4"/>
+<tableau w="800" repeat="3" count="9" hide="even">k group</tableau>
+<tableau x="200" repeat="3" count="15" hide="even">k group</tableau>
+<stock/><waste x="200"/>
+</game>
+
+<game name="Simple Spark">
+<stock y="500" deal="4"><out>reserve</out></stock>
+<reserve x="166" y="250"/>
+<reserve x="166" y="750"/>
+<foundation x="400" y="250" h="500" repeat="4" lines="2">k down</foundation>
+<tableau y="0" x="600" w="200" repeat="8" lines="4" dir="no" count="8">up suit</tableau>
+</game>
+
+<game name="Sir Tommy">
+<foundation x="300" w="600" repeat="4">anysuit</foundation>
+<waste y="320" count="1"/><stock deal="fill"/>
+<tableau x="300" w="600" repeat="4">anyseq waste</tableau>
+</game>
+
+<game name="Pyramid" pair="13">
+<foundation x="1000"/>
+<foundation x="1000" y="320">k rank anysuit</foundation>
+<reserve shape="pyramid" x="125" w="750" repeat="28" count="28" lines="7"/>
+<stock hide="-1" redeal="2"/>
+<waste y="320"/>
+</game>
+
+<game name="All In A Row" autoplay="0">
+<foundation x="500" y="1000">anyrank updown cont anysuit</foundation>
+<tableau y="0" repeat="7" count="28">no noseq</tableau>
+<tableau y="550" x="83" w="833" repeat="6" count="24">no noseq</tableau>
+</game>
+
+<game name="Baker's Fan">
+<foundation x="1000" lines="4" count="3"/>
+<tableau y="0" count="3">no suit<same>down suit nogroup</same><init>a</init></tableau>
+<tableau x="142" y="0" w="708" repeat="6" count="18">no suit<same>down suit nogroup</same></tableau>
+<cell y="600" w="850" repeat="7" shape="incr" dir="down" count="28">down alter</cell>
+</game>
+
+<game name="Bisley">
+<foundation lines="4" count="4"/>
+<foundation x="1000" lines="4">k down</foundation>
+<tableau x="142" y="0" w="700" h="600" repeat="12" lines="2">updown suit no</tableau>
+</game>
+
+<game name="Black Holes" decks="2" autoplay="0">
+<foundation x="375" y="1000" count="1">a updown cont anysuit tableau</foundation>
+<foundation x="625" y="1000" count="1">k updown cont anysuit tableau</foundation>
+<tableau x="125" y="0" w="750" h="500" repeat="8" lines="2" count="48">no noseq</tableau>
+<tableau y="150" repeat="5" count="30">no noseq</tableau>
+<tableau y="750" w="250" repeat="2" count="12">no noseq</tableau>
+<tableau x="750" y="750" repeat="2" count="12">no noseq</tableau>
+</game>
+
+<game name="Brigade">
+<foundation x="600" repeat="4" count="4"/>
+<reserve y="320" h="650" lines="13" count="13"/>
+<tableau repeat="7" x="200"/>
+</game>
+
+<game name="California" decks="2">
+<foundation x="111" w="778" repeat="8"/>
+<reserve repeat="52" lines="26" count="52" autoplay="0"/>
+<tableau repeat="8" x="111" w="778" shape="incr" hide="-1">k cont alter group</tableau>
+</game>
+
+<game name="Castles End">
+<reserve repeat="2" count="2"/>
+<foundation repeat="4" x="333" w="333">base cont</foundation>
+<tableau repeat="10">updown alter</tableau>
+</game>
+
+<game name="Cicely" decks="2">
+<foundation x="56" w="333" repeat="4">hdcs</foundation>
+<foundation x="611" w="333" repeat="4">hdcs k down</foundation>
+<cell y="255" repeat="8" lines="4"/>
+<tableau x="111" w="778" repeat="8" count="32">updown suit no</tableau>
+<stock x="500" deal="32"/>
+</game>
+
+<game name="Courtyard" decks="2">
+<foundation repeat="8" lines="4"/>
+<tableau y="0" repeat="6" lines="2" x="125" w="250" h="650" count="6">suit group</tableau>
+<tableau y="0" repeat="6" lines="2" x="625" w="250" h="650" count="6">suit group</tableau>
+<stock x="500" y="10"/>
+<waste x="500" y="333" fill="1"/>
+</game>
+
+<game name="Double Bisley" decks="2">
+<foundation x="111" y="500" w="333" repeat="4" count="4"/>
+<foundation x="556" y="500" w="333" repeat="4" count="4">k down</foundation>
+<tableau x="0" y="250" repeat="10" count="48" dir="up" shape="center">updown suit no</tableau>
+<tableau x="0" y="730" repeat="10" count="48" shape="center">updown suit no</tableau>
+</game>
+
+<game name="Double Freecell" decks="2">
+<foundation repeat="4" x="667" count="4">cont</foundation>
+<tableau repeat="10">alter</tableau>
+<cell repeat="6" w="555"/>
+</game>
+
+<game name="Double Line 8" decks="2">
+<foundation x="111" repeat="4" w="333">hdcs</foundation>
+<foundation x="556" w="333" repeat="4">hdcs k down</foundation>
+<tableau repeat="16" lines="2" h="335" max="2" count="16">anyseq waste</tableau>
+<stock x="444" y="1000"/>
+<waste x="556" y="1000" fill="1"/>
+</game>
+
+<game name="Double Scorpion" decks="2">
+<foundation repeat="8" x="111">k all down</foundation>
+<tableau w="333" repeat="4" hide="4" count="44">k anygroup suit</tableau>
+<tableau x="444" repeat="6">k anygroup suit</tableau>
+</game>
+
+<game name="Fan Fifteen">
+<tableau y="0" w="220" repeat="6" count="24" lines="3" max="4" dir="right">rank</tableau>
+<tableau x="660" y="0" w="220" repeat="6" count="24" lines="3" max="4" dir="right">rank</tableau>
+<tableau x="440" y="500" max="4" dir="right">rank</tableau>
+<tableau x="440" y="0" lines="2" max="4" dir="right">rank</tableau>
+</game>
+
+<game name="Flower Garden">
+<foundation x="520" repeat="4"/>
+<reserve lines="16" count="16"/>
+<tableau repeat="6" x="200">fillempty</tableau>
+</game>
+
+<game name="Four Leaf Clovers" autoplay="0">
+<foundation x="500">anysuit cont anyrank<out>no</out></foundation>
+<tableau repeat="3" count="12" y="0" w="333">updown cont no</tableau>
+<tableau x="667" repeat="3" count="12" y="0">updown cont no</tableau>
+<tableau repeat="7" y="600">updown cont no</tableau>
+</game>
+
+<game name="Yukon Freecell">
+<foundation repeat="4" x="590"/>
+<cell y="320" w="400" repeat="4" count="24" dir="down">k down suit anygroup</cell>
+<tableau x="590" repeat="4">anygroup alter<same>nogroup down alter</same></tableau>
+</game>
+
+<game name="Grandmother's Clock">
+<tableau x="627" y="100" count="4" dir="right">a updownequ cont</tableau>
+<tableau x="798" y="240" count="4" dir="right">2 updownequ cont</tableau>
+<tableau x="910" y="500" count="4" dir="right">3 updownequ cont</tableau>
+<tableau x="798" y="760" count="4" dir="right">4 updownequ cont</tableau>
+<tableau x="627" y="900" count="4" dir="right">5 updownequ cont</tableau>
+<tableau x="455" y="1000" count="4" dir="right">6 updownequ cont</tableau>
+<tableau x="283" y="900" count="4" dir="right">7 updownequ cont</tableau>
+<tableau x="112" y="760" count="4" dir="right">8 updownequ cont</tableau>
+<tableau         y="500" count="4" dir="right">9 updownequ cont</tableau>
+<tableau x="112" y="240" count="4" dir="right">10 updownequ cont</tableau>
+<tableau x="283" y="100" count="4" dir="right">j updownequ cont</tableau>
+<tableau x="455" y="0" count="4" dir="right">q updownequ cont</tableau>
+<tableau x="455" y="500" count="4" dir="right">k updownequ cont</tableau>
+</game>
+
+<game name="King Albert">
+<foundation repeat="4" x="625"/>
+<reserve x="250" y="1000" repeat="7" count="7"/>
+<tableau repeat="9" shape="incr">fillempty alter</tableau>
+</game>
+
+<game name="La Double Entente" decks="2">
+<foundation repeat="4" x="222" w="333"/>
+<foundation repeat="4" x="667">k down all<out>no</out></foundation>
+<tableau repeat="10" shape="incr" count="55" hide="-1">k group<out>suit</out></tableau>
+<stock y="1000" redeal="3"/><waste x="111" y="1000"/>
+</game>
+
+<game name="Montreal">
+<foundation repeat="4" x="275" w="450"/>
+<reserve h="300" repeat="10" lines="5" count="10"/>
+<reserve y="650" repeat="2" count="14" dir="down"><out>nogroup</out></reserve>
+<tableau repeat="7" x="125" w="750" shape="incr">group alter</tableau>
+</game>
+
+<game name="Mrs Mop" decks="2">
+<foundation repeat="8">k all down</foundation>
+<tableau repeat="13">group<out>suit</out></tableau>
+</game>
+
+<game name="Napoleon's Guards" decks="2">
+<foundation repeat="8" lines="4" x="888"/>
+<stock y="300" count="56"/><waste y="700"/>
+<tableau y="0" h="640" repeat="12" lines="2" x="140" w="600">k</tableau>
+</game>
+
+<game name="Needle 15">
+<foundation x="250" repeat="2" w="125"/>
+<foundation x="625" repeat="2" w="125"/>
+<cell x="500" max="15" dir="down" count="8">anyseq</cell>
+<tableau repeat="2" count="16">alter</tableau>
+<tableau x="125" repeat="2" w="750" count="16">alter</tableau>
+<tableau x="250" repeat="2" w="500" count="8">alter</tableau>
+<tableau x="375" repeat="2" w="250">alter</tableau>
+</game>
+
+<game name="New York" decks="2">
+<foundation count="1" repeat="8">rand cont<out>noempty</out></foundation>
+<tableau repeat="8" count="8">cont alter<same>no down alter cont nogroup</same></tableau>
+<cell repeat="3" x="571" y="1000" w="286">anyseq waste</cell>
+<waste y="1000" x="286" count="1"/>
+<stock y="1000" x="143" deal="fill"/>
+</game>
+
+<game name="Open Spider" decks="2">
+<foundation repeat="8" x="140" w="720">k down all</foundation>
+<cell repeat="10" lines="5" shape="side" count="4"/>
+<tableau repeat="10" x="110" w="780">group cont<out>suit</out></tableau>
+</game>
+
+<game name="Royal Family">
+<foundation count="4" x="1000" lines="4">k down<out>noempty</out></foundation>
+<tableau repeat="12" lines="2" h="640" y="0" x="80" w="700">updown alter</tableau>
+</game>
+
+<game name="Sea Spider">
+<foundation repeat="4" x="500">k down all</foundation>
+<tableau repeat="7" count="24">group<out>suit</out></tableau>
+<cell x="167">anyseq</cell>
+<stock deal="7"/>
+</game>
+
+<game name="Shamrocks">
+<foundation x="210" w="552" repeat="4"/>
+<tableau dir="right" w="920" repeat="18" lines="3" max="3" shape="last">updown</tableau>
+</game>
+
+<game name="Tarantula">
+<foundation repeat="4" x="400" w="500">k down anysuit all</foundation>
+<tableau x="400" w="500" repeat="4" count="4">group</tableau>
+<cell x="100" y="320" max="3">anyseq</cell>
+<stock x="100" deal="4"/>
+</game>
+
+<game name="Triple Dispute" autoplay="0">
+<foundation repeat="4" w="375" max="3">anysuit anyrank cont<out>no</out></foundation>
+<foundation repeat="5" x="500" max="3" count="1" hide="1">anysuit anyrank cont<out>no</out></foundation>
+<foundation repeat="9" y="280" max="3">anysuit anyrank cont<out>no</out></foundation>
+<tableau repeat="8" x="62" y="580" w="875" count="24">no noseq</tableau>
+<tableau repeat="9" y="900">no noseq</tableau>
+</game>
+
+<game name="Two Ways 3" decks="2">
+<foundation count="5" repeat="3" x="400" w="400">anyrank updown anysuit cont<out>noempty</out></foundation>
+<tableau repeat="5" x="200" hide="odd" count="70">updown group cont</tableau>
+<waste y="320"/><stock/>
+</game>
+
+<game name="Versailles">
+<foundation repeat="4" x="500"/>
+<tableau repeat="4" x="500" count="4"/>
+<cell y="320">k</cell>
+<cell y="320" x="150">q</cell>
+<cell y="320" x="300">j</cell>
+<waste x="225"/><stock x="75"/>
+</game>
+
+<game name="Wasp Baby" decks="2">
+<foundation x="222" repeat="8">k down all</foundation>
+<tableau repeat="3" count="6" shape="incr" hide="-1" x="111" w="222">group</tableau>
+<tableau repeat="6" count="39" shape="incr" hide="-1" x="444">k group</tableau>
+<reserve lines="14" count="14" y="270" h="700"/>
+<stock deal="9"/>
+</game>
+
+<game name="Wave Motion">
+<foundation repeat="4" lines="2">k down all</foundation>
+<reserve repeat="8" x="111" w="778" dir="down" count="52"><out>nogroup</out></reserve>
+<tableau repeat="8" x="111" y="520" w="778">group suit</tableau>
+</game>
+
+<game name="Wolfpack" autoplay="0">
+<foundation repeat="8">updown anysuit cont anyrank<out>no</out></foundation>
+<tableau repeat="4" x="285" w="429">no noseq</tableau>
+</game>
+
+<game name="Smart Osmosis" autoplay="0">
+<foundation lines="4" x="250" prev="up" dir="right">base anyseq<prev>osmosis</prev></foundation>
+<reserve dir="right" lines="4" count="32" hide="-1"/>
+<stock x="1000" y="333" redeal="inf"/>
+<waste x="1000" y="666"/>
+</game>
+
+<game name="Double Antartica" decks="2">
+<foundation repeat="8" x="111" w="778"><prev>osmosis</prev></foundation>
+<tableau repeat="10" shape="incr" hide="-6">k anygroup diffsuit</tableau>
+</game>
+
+<game name="Ordered Suits">
+<foundation repeat="4" x="286" w="428">anyrank cont<prev>synch</prev></foundation>
+<tableau repeat="8">updown cont</tableau>
+</game>
+
+<game name="Block Ten" pair="10">
+<tableau y="100" h="450" count="10" repeat="10" lines="2" x="100" w="800">noseq</tableau>
+<stock x="500" y="1000" deal="fill"/>
+<foundation x="850" y="1000" max="48"/>
+<foundation y="1000" x="1000">10 rank anysuit<prev>synch</prev></foundation>
+</game>
+
+<game name="Gaps">
+<foundation y="1000" deal="start">rank anysuit</foundation>
+<cell lines="4" h="750" count="4">2<init>suit</init></cell>
+<cell repeat="48" count="48" x="83" h="750" lines="4"><prev>no suit up</prev></cell>
+<stock y="1000" x="500" redeal="3" deal="gaps" shuffle="rand"/>
+</game>
+
+<game name="Mini Gaps" rank="a78910jqk">
+<foundation y="1000" deal="start">rank anysuit</foundation>
+<cell lines="4" h="750" count="4">7<init>suit</init></cell>
+<cell repeat="28" count="28" x="143" h="750" lines="4"><prev>no suit up</prev></cell>
+<stock y="1000" x="500" redeal="1" deal="gaps" shuffle="rand"/>
+</game>
+
+<game name="Gaps Alter">
+<foundation y="1000" deal="start">rank anysuit</foundation>
+<cell lines="4" h="750" count="4">2<init>suit</init></cell>
+<cell repeat="48" count="48" x="83" h="750" lines="4"><prev>no alter up</prev></cell>
+<stock y="1000" x="500" redeal="1" deal="gaps" shuffle="rand"/>
+</game>
+
+<game name="Gaps Diff">
+<foundation y="1000" deal="start">rank anysuit</foundation>
+<cell lines="4" h="750" count="4">2<init>suit</init></cell>
+<cell repeat="48" count="48" x="83" h="750" lines="4"><prev>no diffsuit up</prev></cell>
+<stock y="1000" x="500" redeal="1" deal="gaps" shuffle="rand"/>
+</game>
+
+<game name="Crescent" decks="2">
+<foundation repeat="4" count="4" w="375"/>
+<foundation repeat="4" count="4" x="625">k down</foundation>
+<stock x="500" count="0" redeal="3" deal="bottomtotop"/>
+<tableau y="250" repeat="16" lines="4" w="800" dir="right">suit updown cont no</tableau>
+</game>
+
+<game name="Rainbow Fan" decks="2">
+<foundation lines="4" count="4" y="250"/>
+<foundation lines="4" count="4" x="1000" y="250">k down</foundation>
+<tableau repeat="20" lines="5" x="111" y="0" w="670" dir="right" count="60">suit updown no</tableau>
+<stock deal="fill" fill="3"/><stock redeal="3" deal="bottomtotop" x="1000"/>
+</game>
+
+<game name="Pair Freecell" pair="rankcolor">
+<foundation x="1000"/>
+<tableau repeat="6">alter</tableau>
+<cell repeat="4" w="600"/>
+</game>
+
+<game name="Algerian Patience" decks="2">
+<foundation repeat="4" count="4" w="428"><out>noempty</out></foundation>
+<foundation repeat="4" x="571">k down</foundation>
+<tableau repeat="8" count="8">updown cont suit</tableau>
+<cell repeat="3" count="18" w="285" y="1000"/>
+<cell repeat="3" count="18" x="714" y="1000"/>
+<stock y="1000" x="500" deal="12"><out>cell</out></stock>
+</game>
+
+<game name="Alhambra" decks="2">
+<foundation repeat="4" count="4" w="428"/>
+<foundation repeat="4" count="4" x="571">k down</foundation>
+<tableau repeat="8" count="32">no noseq</tableau>
+<waste x="571" y="850" count="1">updown cont suit tableau foundation</waste>
+<stock x="428" y="850" redeal="2"/>
+</game>
+
+<game name="British Constitution" decks="2" rank="a2345678910j" autoplay="0">
+<foundation repeat="8" x="120" count="8">tableau</foundation>
+<tableau repeat="8" x="120" y="333" dir="no" count="8">alter reserve</tableau>
+<reserve repeat="8" x="120" y="667" count="8">anyrank down alter cell</reserve>
+<cell repeat="8" x="120" y="1000" count="8">down alter stock</cell>
+<stock y="500" deal="fill"><out>cell</out></stock>
+</game>
+
+<game name="Club" decks="2">
+<foundation repeat="8"/>
+<cell dir="right" y="250" repeat="3" x="140" w="534" hide="1" count="9">down alter<out>foundation cell</out></cell>
+<waste x="680" y="1000"/>
+<tableau dir="right" y="500" h="250" w="800" repeat="8" lines="2" count="24" hide="1">alter</tableau>
+<stock x="400" y="1000"/>
+</game>
+
+<game name="Eagle Wing">
+<foundation repeat="2" x="370" w="250" y="150" max="13">rand up cont</foundation>
+<foundation lines="2" x="500" h="280" max="13" count="1">rand up cont</foundation>
+<tableau w="333" y="600" repeat="4" count="4" max="3">suit cont</tableau>
+<tableau x="667" y="600" repeat="4" count="4" max="3">suit cont</tableau>
+<reserve x="500" y="600" count="13" fill="1" hide="-1"/>
+<stock y="1000" x="420" redeal="1"><out>cell</out></stock>
+<cell y="1000" x="580">stock</cell>
+</game>
+
+<game name="Falcon Wing">
+<foundation repeat="2" x="370" w="250" y="150" max="13">rand up cont</foundation>
+<foundation lines="2" x="500" h="280" max="13" count="1">rand up cont</foundation>
+<tableau y="380" repeat="2" count="2" max="6">group suit cont</tableau>
+<tableau w="770" x="115" y="450" repeat="2" count="2" max="6">group suit cont</tableau>
+<tableau w="540" x="230" y="520" repeat="2" count="2" max="6">group suit cont</tableau>
+<tableau w="320" x="345" y="590" repeat="2" count="2" max="6">group suit cont</tableau>
+<reserve x="500" y="600" count="15" fill="1" hide="-1"/>
+<stock y="1000" x="430"><out>cell</out></stock>
+<cell y="1000" x="570">stock</cell>
+</game>
+
+<game name="Kingsdown Heights" decks="2">
+<foundation repeat="8" lines="4" y="250" w="110"/>
+<tableau repeat="8" y="0" count="8" x="222">alter</tableau>
+<reserve dir="down" repeat="8" count="32" x="222" y="580"/>
+<stock deal="32"><out>reserve</out></stock>
+</game>
+
+<game name="Trusty Twelve">
+<foundation repeat="12" lines="4" x="300" w="500" count="12">down anyrank anysuit</foundation>
+<stock deal="fill" y="500"><out>foundation</out></stock>
+</game>
+
+<game name="Trusty Twenty" decks="2">
+<foundation repeat="20" lines="4" x="200" count="20">down anyrank anysuit</foundation>
+<stock deal="fill" y="500"><out>foundation</out></stock>
+</game>
+
+<game name="Mont Olympus" decks="2">
+<foundation repeat="8" count="8" x="125">up2</foundation>
+<foundation y="300" count="8" repeat="8" x="125">2 up2</foundation>
+<tableau y="600" repeat="9" count="9">down2 suit group</tableau>
+<stock deal="9" y="300" fill="1"/>
+</game>
+
+<game name="Presidium" decks="2" autoplay="0">
+<foundation x="500">black anyrank cont color tableau</foundation>
+<foundation x="625">red anyrank cont color tableau</foundation>
+<tableau repeat="4" x="375" w="375" y="333" dir="no" count="4">alter reserve</tableau>
+<reserve repeat="6" x="250" w="625" y="667" count="6">anyrank down alter cell</reserve>
+<cell repeat="8" x="125" y="1000" count="8">down alter waste</cell>
+<waste y="667" fill="1"><out>cell</out></waste>
+<stock y="333" redeal="2" fill="1"/>
+</game>
+
+<game name="Rouge Et Noir" decks="2">
+<foundation x="222" w="333" repeat="4">hdcs color</foundation>
+<foundation x="667" repeat="4">k down all alter</foundation>
+<tableau repeat="8" count="36" w="778" shape="decr" hide="-1">k alter group</tableau>
+<tableau x="889" repeat="2" count="1">k alter group</tableau>
+<stock deal="10"/>
+</game>
+
+<game name="Royal Cotillion" decks="2" autoplay="0">
+<foundation w="428" repeat="4" count="4" max="13">up2 cont</foundation>
+<foundation x="571" repeat="4" count="4" max="13">2 up2 cont</foundation>
+<tableau repeat="16" count="16" lines="2" h="300">noseq</tableau>
+<reserve repeat="2" w="143" y="920" count="6" dir="down" spacing="60"/>
+<reserve repeat="2" x="857" y="920" count="6" dir="down" spacing="60"/>
+<waste x="571" y="980" fill="1" count="1"/>
+<stock x="428" y="980"/>
+</game>
+
+<game name="Sly Fox" decks="2">
+<foundation x="160" lines="4" count="4" under="waste"/>
+<foundation x="1000" lines="4" count="4" under="waste">k down</foundation>
+<tableau y="0" repeat="20" count="20" lines="4" x="325" w="500" dir="no">updown suit</tableau>
+<waste y="666"/>
+<stock y="1000" deal="20"/>
+</game>
+
+<game name="Desert Fox">
+<foundation x="300" y="300" w="600" h="400" repeat="4" lines="2" under="waste"/>
+<tableau y="100" h="800" repeat="12" count="12" lines="3" x="420" w="360" dir="no">color</tableau>
+<waste y="500" x="125"/>
+<stock y="500" deal="10"/>
+</game>
+
+<game name="Step By Step" decks="2">
+<foundation repeat="8" count="8" x="150"/>
+<cell repeat="8" count="7" x="150" y="300" shape="right">tableau<out>foundation</out></cell>
+<tableau repeat="8" count="8" x="150" y="600">alter</tableau>
+<stock y="300"/>
+<waste y="600"/>
+</game>
+
+<game name="Tournament 3" decks="2">
+<foundation repeat="4" w="375">hdcs</foundation>
+<foundation repeat="4" x="625">hdcs k down</foundation>
+<tableau repeat="6" x="188" w="625" count="24">no noseq</tableau>
+<cell repeat="8" lines="4" y="250"/>
+<stock x="500" deal="24" fill="4" redeal="3"/>
+</game>
+
+<game name="Thieves Of Egypt" decks="2">
+<foundation repeat="8" x="111" w="778"/>
+<tableau repeat="5" shape="incr2" count="25" w="444">alter</tableau>
+<tableau repeat="5" shape="decr2" count="30" x="556">alter</tableau>
+<waste y="1000" x="112"/>
+<stock y="1000" redeal="1"/>
+</game>
+
+<game name="Sept Piles 0" pair="14">
+<tableau repeat="5" count="5" x="100" w="800" y="30" spacing="55">no noseq</tableau>
+<cell repeat="2" x="400" w="200" count="2" y="600"/>
+<stock deal="5" x="500" y="1000"/>
+<foundation y="1000"/>
+</game>
+
+<game name="Giza" pair="13">
+<foundation y="1000"/>
+<foundation y="1000" x="120">k rank anysuit</foundation>
+<reserve shape="pyramid" w="556" h="360" repeat="21" count="21" lines="6"/>
+<reserve shape="pyramid" x="875" y="100" h="100" repeat="3" count="3" lines="2"/>
+<reserve shape="pyramid" x="333" w="666" y="570" repeat="28" count="28" lines="7"/>
+</game>
+
+<game name="Simple Simon">
+<tableau repeat="2" w="111" count="16" y="0">group anysuit<out>suit</out></tableau>
+<tableau repeat="8" x="222" y="0" shape="decr">group anysuit<out>suit</out></tableau>
+</game>
+
+<game name="Triple Freecell" decks="3">
+<foundation repeat="12"/>
+<tableau repeat="13" y="500" spacing="90">alter</tableau>
+<cell repeat="10" y="250"/>
+</game>
+
+<game name="Ten By One">
+<foundation x="333" w="333" repeat="4"/>
+<tableau repeat="10">alter</tableau>
+<cell/>
+</game>
+
+<game name="Four By Ten">
+<foundation x="1000" lines="4"/>
+<tableau repeat="4" w="429" y="0">alter</tableau>
+<cell repeat="8" lines="4" x="571" w="143"/>
+<cell lines="2" x="857" y="250" h="500"/>
+</game>
+
+<game name="Challenge Freecell">
+<foundation repeat="4" x="590"/>
+<tableau repeat="4" w="429" count="28">alter<init>2</init></tableau>
+<tableau repeat="4" x="571">alter<init>a</init></tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Inverted Freecell">
+<foundation repeat="4" x="590">k down</foundation>
+<tableau repeat="8">up alter</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Osmotic Freecell">
+<foundation x="590"/>
+<foundation repeat="3" x="727"><prev>osmosis</prev></foundation>
+<tableau repeat="8">alter</tableau>
+<cell repeat="4" w="400"/>
+</game>
+
+<game name="Scorpion Towers">
+<cell repeat="4" x="333" w="334" count="2" shape="center"/>
+<tableau repeat="10">king4 suit anygroupfreecell</tableau>
+</game>
+
+<game name="Strategy 7">
+<foundation x="286" repeat="4" w="429" count="4" under="waste"/>
+<waste count="48"/>
+<tableau repeat="7">anyseq waste</tableau>
+</game>
+
+<game name="Triple Scorpion II" decks="3">
+<tableau w="333" y="0" repeat="5" hide="5" count="60">k anygroup suit</tableau>
+<tableau x="417" y="0" repeat="8">k anygroup suit</tableau>
+</game>
+
+<game name="Tower of Hanoi" rank="a23456789" suit="h">
+<tableau repeat="3" x="300" w="400">lower</tableau>
+</game>
+
+<game name="Ace of Hearts">
+<foundation x="333">h anysuit cont</foundation>
+<tableau repeat="7" shape="incr" count="28">k anygroup suit</tableau>
+<stock deal="7"/>
+</game>
+
+<game name="Agnes Bernauer">
+<foundation repeat="4" x="500" count="1">rand+1 cont</foundation>
+<reserve repeat="7" y="1000" count="7"/>
+<tableau repeat="7" shape="incr" count="28">rand alter group cont</tableau>
+<stock deal="7"><out>reserve</out></stock>
+</game>
+
+<game name="Agnes Three" decks="3">
+<stock deal="13" count="51"><out>reserve</out></stock>
+<foundation repeat="12" x="83" count="1">rand+1 cont</foundation>
+<tableau y="230" spacing="75" repeat="13" shape="incr" count="91">rand alter group cont</tableau>
+<reserve repeat="13" y="1000" count="13"/>
+</game>
+
+<game name="Antares">
+<foundation repeat="4" x="590"/>
+<reserve y="320" w="400" repeat="4" count="24" dir="down"><same>k down suit anygroup</same>k down suit anygroupfreecell</reserve>
+<tableau x="590" repeat="4"><same>down alter nogroup</same>anygroup alter<out>down alter</out></tableau>
+<cell repeat="4" w="429"/>
+</game>
+
+<game name="Double Antares" decks="2">
+<foundation repeat="4" x="590">cont hdcs</foundation>
+<reserve y="320" w="272" repeat="4" count="48" dir="down"><same>k down suit anygroup</same>k down suit anygroupfreecell</reserve>
+<tableau x="364" repeat="8"><same>down alter nogroup</same>anygroup alter<out>down alter</out></tableau>
+<cell repeat="4" w="429"/>
+</game>
+
+<game name="Clover Leaf">
+<foundation lines="2" h="333" count="2">red</foundation>
+<foundation y="667" lines="2" count="2">k down black</foundation>
+<tableau x="120" dir="right" y="0" repeat="16" lines="4" w="750">ak updown suit</tableau>
+</game>
+
+<game name="Bath">
+<foundation repeat="4" x="667"/>
+<tableau repeat="2" x="889" count="16">k alter</tableau>
+<tableau repeat="8" w="778" shape="incr">k alter</tableau>
+<cell repeat="2" w="111"/>
+</game>
+
+<game name="Backbone" decks="2">
+<foundation repeat="4" w="333"/>
+<foundation repeat="4" x="667"/>
+<tableau repeat="4" w="333" count="4">suit</tableau>
+<tableau repeat="4" x="667" count="4">suit</tableau>
+<reserve x="444" w="111" repeat="2" count="22" under="next" dir="down"/>
+<reserve x="500" y="500" count="1"/>
+<waste x="556" y="1000" count="1"/>
+<stock x="444" y="1000"/>
+</game>
+
+<game name="Double Arctica" decks="2">
+<foundation repeat="4" w="333"/>
+<foundation repeat="4" x="667"/>
+<reserve repeat="22" lines="15" x="444" w="111" count="22" shape="braid"/>
+<tableau repeat="4" w="333" count="41" hide="-6" spacing="90">k anygroup</tableau>
+<tableau repeat="4" x="667" hide="-6" shape="right" spacing="90">k anygroup</tableau>
+</game>
+
+<game name="Napoleon At Waterloo" decks="2">
+<foundation repeat="4" w="333"/>
+<foundation repeat="4" x="667"/>
+<reserve repeat="16" lines="11" x="444" w="111" h="720" count="16" shape="braid"/>
+<tableau repeat="4" w="333" count="28" hide="even">k diffsuit group</tableau>
+<tableau repeat="4" x="667" count="28" hide="even">k diffsuit group</tableau>
+<waste x="556" y="1000" count="1"/>
+<stock x="444" y="1000" redeal="1"/>
+</game>
+
+<game name="Napoleon At Iena" decks="2">
+<foundation repeat="4" w="333"/>
+<foundation repeat="4" x="667"/>
+<reserve repeat="16" lines="11" x="444" w="111" h="720" count="16" shape="braid"/>
+<tableau repeat="4" w="333" count="20">k alter group</tableau>
+<tableau repeat="4" x="667" count="20">k alter group</tableau>
+<waste x="556" y="1000" count="1"/>
+<stock x="444" y="1000" redeal="2"/>
+</game>
+
+<game name="Napoleon At Friedland" decks="2">
+<foundation repeat="4" w="333"/>
+<foundation repeat="4" x="667"/>
+<reserve repeat="13" lines="9" x="444" w="111" h="720" count="13" shape="braid"/>
+<tableau repeat="4" w="333" count="20">k suit group</tableau>
+<tableau repeat="4" x="667" count="20">k suit group</tableau>
+<waste x="556" y="1000" count="1"/>
+<stock x="444" y="1000" redeal="3"/>
+</game>
+
+<game name="Carcassonne" decks="2">
+<foundation lines="4" x="350" y="71" h="857" count="4" deal="start"/>
+<foundation lines="4" x="650" y="71" h="857" count="4" deal="start">k down</foundation>
+<tableau x="250" y="71" h="857" lines="4" dir="left" count="37" spacing="85">updown no<init>k</init></tableau>
+<tableau x="750" y="71" h="857" lines="4" dir="right" count="37" spacing="85">updown no<init>a</init></tableau>
+<reserve repeat="22" lines="15" x="450" w="100" count="22" shape="braid"/>
+</game>
+
+<game name="Citadel">
+<foundation lines="4" count="4" x="500" deal="start"/>
+<tableau lines="4" y="0" dir="left" x="380" count="24"/>
+<tableau lines="4" y="0" dir="right" x="620"/>
+</game>
+
+<game name="Kings" decks="2">
+<foundation repeat="8" count="8" deal="start_col">anysuit</foundation>
+<tableau repeat="8">updown</tableau>
+</game>
+
+<game name="Nationale" decks="2">
+<foundation lines="4" count="4" deal="start"/>
+<foundation x="1000" lines="4" count="4" deal="start">k down</foundation>
+<tableau repeat="12" lines="2" x="187" w="626" h="600" y="0">updown cont suit</tableau>
+</game>
+
+<game name="Capricieuse" decks="2">
+<foundation x="110" lines="4" count="4" deal="start"/>
+<foundation x="1000" lines="4" count="4" deal="start">k down</foundation>
+<tableau repeat="12" lines="2" x="263" w="571" h="600" y="0">updown suit</tableau>
+<stock redeal="2" deal="104"/>
+</game>
+
+<game name="Binding" decks="2" autoplay="0">
+<foundation repeat="8" x="130" count="1">anysuit cont rand</foundation>
+<tableau repeat="5" x="379" count="5" w="497">no noseq</tableau>
+<reserve repeat="20" lines="20" count="20" shape="bind" y="320" w="60"/>
+<reserve dir="down" x="200" y="320" count="10" hide="-1"/>
+<stock redeal="3" deal="5"/>
+</game>
+
+<game name="Doubt">
+<foundation repeat="4" x="300" w="525"/>
+<tableau x="300" y="640" repeat="5" count="5" spacing="40">suit</tableau>
+<reserve fill="1" count="15" dir="right" hide="-1" x="300" y="320"/>
+<cell x="140">stock</cell>
+<stock redeal="2"><out>cell</out></stock>
+</game>
+
+<game name="In a Frame" decks="2">
+<foundation repeat="8" lines="2" x="440" w="420" y="400" h="320">2 cont</foundation>
+<tableau repeat="4" count="4" x="440" w="420" y="0" dir="no">suit cont</tableau>
+<tableau repeat="8" count="8" lines="4" x="300" y="50" dir="no">suit cont</tableau>
+<waste x="143"/>
+<stock/>
+</game>
+
+<game name="Pairs 2" decks="2" pair="rank">
+<foundation x="1000" y="900"/>
+<tableau y="0" repeat="9" count="45" max="5">noseq</tableau>
+<stock deal="max" y="900"/>
+</game>
+
+<game name="Short Solitaire">
+<foundation x="500" repeat="4" count="1">rand+1 anysuit cont</foundation>
+<tableau repeat="6" x="200" count="24">cont rand</tableau>
+<waste x="200"/>
+<stock deal="3" redeal="inf"/>
+</game>
+
+<game name="Troika II">
+<foundation repeat="4" w="500" deal="start1"/>
+<tableau dir="right" w="920" repeat="12" lines="2" y="333" h="333" max="3" count="36" autoplay="base">no rank</tableau>
+<tableau dir="right" w="920" repeat="6" y="1000" max="3" shape="last">rank</tableau>
+</game>
+
+<game name="Windmill" decks="2" autoplay="0">
+<foundation x="664" y="500" count="1">anysuit cont</foundation>
+<foundation repeat="4" lines="2" x="521" w="286" y="250" h="500">k down anysuit</foundation>
+<cell repeat="2" x="379" y="500" w="143" count="2"/>
+<cell repeat="2" x="807" y="500" w="143" count="2"/>
+<cell lines="2" x="664" h="250" count="2"/>
+<cell lines="2" x="664" y="750" count="2"/>
+<waste x="143" y="500" fill="1"/>
+<stock fill="1" y="500"/>
+</game>
+
+<game name="Bavarian Patience" decks="2">
+<tableau repeat="10" y="0" count="8" max="13">up anysuit cont</tableau>
+<waste x="111" y="1000"/>
+<stock y="1000"/>
+</game>
+
+<game name="Bedeviled" decks="2">
+<foundation x="222" w="333" repeat="4">hdcs color</foundation>
+<foundation x="667" repeat="4">k down all alter</foundation>
+<tableau repeat="9" count="45" shape="decr" hide="-1">k alter group</tableau>
+<stock redeal="1"/>
+<waste x="111"/>
+</game>
+
+<game name="Beetle" decks="2">
+<foundation x="240" repeat="8">k all down</foundation>
+<tableau repeat="10" y="300" count="44">group<out>suit</out></tableau>
+<stock deal="10"/>
+</game>
+
+<game name="Big Dozen" decks="3">
+<foundation repeat="12"/>
+<cell y="250" repeat="12" count="72">down alter</cell>
+<tableau y="500" repeat="12" hide="-1" spacing="90">alter</tableau>
+</game>
+
+<game name="Big Harp 3" decks="2">
+<foundation x="250" repeat="8"/>
+<tableau repeat="10" shape="incr" count="55">k group alter</tableau>
+<waste x="120" count="1"/>
+<stock redeal="3" deal="3"/>
+</game>
+
+<game name="Big Spider" decks="3">
+<foundation repeat="4" x="500">k down all cont</foundation>
+<tableau y="250" repeat="13" count="78" hide="-1">group<out>suit</out></tableau>
+<stock deal="13"/>
+</game>
+
+<game name="Black Hole" autoplay="0">
+<foundation x="500" y="500" count="1">a s updown cont anysuit</foundation>
+<reserve w="230" h="667" repeat="6" lines="3" count="18" dir="right"/>
+<reserve x="730" w="200" h="667" repeat="6" lines="3" count="18" dir="right"/>
+<reserve x="470" count="3" dir="right"/>
+<reserve y="1000" x="100" w="750" repeat="4" count="12" dir="right"/>
+</game>
+
+<game name="Box Fan">
+<foundation lines="4" count="4"/>
+<tableau dir="right" repeat="16" lines="4" y="0" x="125" w="750">k alter</tableau>
+</game>
+
+<game name="Bristol">
+<foundation repeat="4">anysuit</foundation>
+<tableau dir="right" repeat="8" lines="2" y="333" h="333" w="850" count="24" autoplay="base">no</tableau>
+<stock y="1000" deal="3"/>
+<waste repeat="3" y="1000" x="333"/>
+</game>
+
+<game name="Canister">
+<foundation repeat="4" x="590"/>
+<tableau repeat="8">group</tableau>
+</game>
+
+<game name="Buffalo Bill" decks="2">
+<foundation repeat="4" w="429"/>
+<foundation repeat="4" x="571">k down</foundation>
+<tableau repeat="26" y="250" h="500" spacing="85" lines="3" dir="right" autoplay="0">no noseq</tableau>
+<cell repeat="8" y="1000"/>
+</game>
+
+<game name="Castile">
+<foundation repeat="4">anysuit</foundation>
+<tableau dir="right" repeat="8" lines="2" y="333" h="333" w="850" count="24" autoplay="base">k</tableau>
+<reserve repeat="4" y="1000" count="28" dir="right" w="830"/>
+</game>
+
+<game name="Castle of Indolence" decks="2" autoplay="0">
+<foundation repeat="8" lines="4" x="450" w="100" h="750">anysuit</foundation>
+<reserve repeat="4" y="1000" count="52" x="100" w="800"/>
+<tableau lines="4" repeat="8" y="0" dir="right" w="670" h="750"/>
+</game>
+
+<game name="Cell 11" decks="3">
+<foundation repeat="12"/>
+<tableau y="500" hide="-1" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="91" hide="-2" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="182" hide="-3" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="273" hide="-4" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="364" hide="-5" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="455" hide="-5" count="12" spacing="90">alter</tableau>
+<tableau y="500" x="545" hide="-5" count="12" spacing="90">alter</tableau>
+<tableau y="500" x="636" hide="-5" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="727" hide="-4" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="818" hide="-3" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="909" hide="-2" count="13" spacing="90">alter</tableau>
+<tableau y="500" x="1000" hide="-1" count="13" spacing="90">alter</tableau>
+<cell repeat="11" y="250" shape="side" count="2"/>
+</game>
+
+<game name="Circle Nine" autoplay="0">
+<foundation x="500" y="500" count="1">anysuit anyrank cont</foundation>
+<cell repeat="4" count="4" x="300" y="100" w="400">reserve anyseq</cell>
+<cell repeat="2" count="2" x="200" y="500" w="600">reserve anyseq</cell>
+<cell repeat="3" count="3" x="350" y="900" w="300">reserve anyseq</cell>
+<reserve count="42" y="100" fill="1"/>
+</game>
+
+<game name="Cornelius" decks="2">
+<foundation x="240" repeat="8"/>
+<tableau repeat="10" count="40">k anygroup suit</tableau>
+<stock redeal="1"/><waste x="120"/>
+</game>
+
+<game name="Demon" decks="2">
+<foundation x="222" repeat="8" count="1" max="13">rand cont</foundation>
+<tableau x="222" repeat="8" count="8">cont group alter</tableau>
+<reserve fill="1" y="320" count="40"><out>tableau foundation</out></reserve>
+<waste x="111" count="3"/><stock deal="3" redeal="inf"/>
+</game>
+
+<game name="Demon Fan">
+<foundation h="750" y="250" lines="4"/>
+<tableau x="111" dir="right" y="0" w="750" hide="-1" repeat="18" lines="5">alter no</tableau>
+<stock redeal="6" deal="52" shuffle="rand"/>
+</game>
+
+<game name="Blind Patience 1" decks="2">
+<foundation x="222" repeat="8"/>
+<tableau repeat="10" count="40" hide="all" onhid="any">alter</tableau>
+<waste x="111" count="1"/>
+<stock redeal="1"/>
+</game>
+
+<game name="Demons and Thieves" decks="2">
+<foundation repeat="8" x="222" count="1">cont rand<out>noempty</out></foundation>
+<tableau repeat="4" x="111" w="325" count="4">alter cont anygroup<out>down cont alter</out></tableau>
+<tableau repeat="5" x="560" count="40">suit cont anygroup<out>down cont suit</out></tableau>
+<reserve y="320" dir="down" count="13" hide="-1"/>
+<waste x="111" count="1"/>
+<stock redeal="2"/>
+</game>
+
+<game name="Deuces and Queens" decks="2">
+<foundation y="320" repeat="4" w="429" max="13">2 anysuit cont</foundation>
+<foundation x="571" y="320" repeat="4" max="13">q down anysuit cont</foundation>
+<tableau x="571" y="640" repeat="4" count="4">no updown anysuit cont</tableau>
+<waste fill="1" count="1" x="143" y="640"/>
+<reserve count="39" repeat="3" dir="right" w="750" spacing="80"/>
+<stock y="640" fill="1"/>
+</game>
+
+<game name="Triple Easthaven" decks="3">
+<foundation x="100" repeat="12"/>
+<tableau repeat="12" count="36" hide="-1">alter group</tableau>
+<stock deal="12"/>
+</game>
+
+<game name="Double Russian" decks="2">
+<foundation x="111" w="778" repeat="8"/>
+<tableau y="250" spacing="85" repeat="10" shape="incr" hide="-6">k suit anygroup</tableau>
+</game>
+
+<game name="Double Sea Towers" decks="2">
+<foundation repeat="8" lines="4"/>
+<cell repeat="9" x="150" w="700" count="5" shape="center"/>
+<tableau repeat="11" y="250" x="85" w="830">suit</tableau>
+</game>
+
+<game name="Double Yukon" decks="2">
+<foundation x="111" w="778" repeat="8"/>
+<tableau y="250" spacing="85" repeat="10" shape="incr" hide="-6">k alter anygroup</tableau>
+</game>
+
+<game name="Doublet Cell 5" pair="rankcolor">
+<foundation x="1000"/>
+<tableau repeat="8">no noseq<init>h</init></tableau>
+<cell repeat="5" w="571"/>
+</game>
+
+<game name="Dumfries Cell">
+<foundation repeat="4" x="571"/>
+<reserve count="44"/>
+<tableau repeat="8" count="8">alter downequ pilegroup</tableau>
+<cell x="200"/>
+</game>
+
+<game name="Dutch Solitaire" decks="2">
+<foundation x="470" y="500" count="1" dir="right" spacing="10">updown cont anysuit c</foundation>
+<foundation x="310" y="250" h="500" w="340" repeat="4" lines="2" count="4" dir="right" spacing="10">updown cont anysuit cdhs</foundation>
+<tableau w="167" y="500" repeat="2" count="20" dir="right" spacing="10">updown cont anysuit</tableau>
+<tableau x="810" w="167" y="500" repeat="2" count="20" dir="right" spacing="10">updown cont anysuit</tableau>
+<tableau x="500" y="0" lines="2" count="20" dir="right" spacing="10">updown cont anysuit</tableau>
+<waste x="167" count="1"/>
+<stock/>
+</game>
+
+</xmsol>

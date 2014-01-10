@@ -1,0 +1,253 @@
+13=en.chm
+
+;menu
+400=&Game
+203=&Select game...
+202=&New game
+226=New game n&umber...
+227=&Random game
+207=Change &player...
+228=S&tatistics...
+407=&Language
+204=&Customize toolbar
+205=&Keyboard shortcuts
+206=&Options...
+208=Delete settings
+201=E&xit
+
+401=&Move
+209=&Undo
+210=&Redo
+211=Undo &all
+212=Redo a&ll
+
+406=&View
+213=Mirror &left/right
+214=Mirror &up/down
+218=&Increase distance
+219=&Decrease distance
+221=&Show toolbar
+220=&Refresh
+
+402=&Cards
+229=&Next
+230=&Previous
+
+408=C&ell
+
+403=Card bac&k
+222=&Next
+223=&Previous
+
+404=&Background
+224=&Next
+225=&Previous
+
+405=&Help
+215=&Help
+216=&Rules
+217=&About...
+
+;dialog boxes
+19=Keyboard accelerators
+512=Command:
+513=Key:
+
+11=About
+511=Version
+524=Games count:
+1=OK
+2=Cancel
+
+12=Game list
+515=&Rules
+537=&Best scores
+528=&Move to a foundation:
+529=Un&hide a reversed card:
+539=&Bonus for a win:
+525=&Undo:
+526=&Wrong right-click move:
+527=&Redeal:
+535=&Time:
+
+22=New game
+536=Number from 1 to 4294967295:
+
+;options
+14=Animation
+514=&Enable autoplay
+530=&Autoplay animation
+531=&Undo, redo animation
+532=&Right click animation
+533=&Deal from a stock animation
+15=Display
+534=&Rounded card corners:
+540=Use hal&ftone mode to stretch cards bitmap
+516=Window borders
+517=&left/right
+518=&up/down
+519=Distance between cards in a tableau
+522=face side
+523=back side
+520=&vertical
+521=&horizontal
+16=Score
+
+;statistics
+960=Games played
+961=Games won
+962=Games lost
+963=Winning percentage
+964=Total time in hours
+965=Time per game
+966=Total moves
+967=Moves per game
+
+;status bar
+680=Time
+681=Score
+683=Moves
+682=Done
+
+97=Ctrl+
+98=Shift+
+99=Alt+
+21=Rules
+501=Player (*.xol)\0*.xol\0All files\0*.*\0
+20=Options
+538=Score\tTime\tDate
+735=Cannot write to Windows registry
+733=Cannot create file %s
+730=Cannot open file %s
+731=Bad format of file %s
+734=Error writing file %s
+755=Error in %s\nLine %d
+756=Error in %s\nMessage number %d is too big
+757=Error in %s\nDuplicated number %d
+753=File %s is too long
+754=Error reading file %s
+
+;games listbox columns
+650=Game name
+651=Played
+652=Won
+653=Percent
+654=Score
+655=Time
+656=Moves
+657=Cards
+658=Stocks
+659=Sequence rule
+660=Suit rule
+661=Pair
+662=Game name
+663=Last play
+664=Score won
+665=Time won
+666=Moves won
+667=Lost
+668=Group moves
+
+;rules
+900=Pairs
+901=Decks
+913=Suits
+914=Ranks
+915=Deal
+902=Redeals
+903=unlimited
+904=Maximum cards per pile
+921=Waste must be empty
+916=Outgoing rules
+919=Rules for moves between cells of the same type
+920=Rules for a previous cell
+905=Spaces cannot be filled
+906=The first card rank
+907=The first card suit
+908=No building
+909=Sequence rank:
+910=continual
+911=Sequence suit
+912=Moving group of cards:
+917=Move only from
+918=Move only to
+
+1000=any
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=no
+1015=random base
+1016=random base + 1
+1017=same base
+1018=at first all kings and then any card
+1019=A or K
+
+1031=hearts
+1032=diamonds
+1033=clubs
+1034=spades
+1035=red
+1036=black
+
+1051=same
+1052=different
+1053=same color
+1054=alternating color
+
+1061=no
+1062=descending
+1063=ascending
+1064=up or down
+1065=descending odd/even
+1066=ascending odd/even
+1067=up or down odd/even
+1068=same rank
+1069=up or down or same
+1070=previous pile has a card of the same rank as the moved card
+1071=previous pile is fully completed
+1072=higher
+1073=lower
+1074=up or same
+1075=down or same
+
+1080=yes
+1081=no
+1082=not all cards
+1083=any sequence
+1084=all 13 cards
+1085=to empty cell
+1086=any sequence when free cells
+1087=entire pile regardless of sequence
+
+1100=cell
+1101=foundation
+1102=tableau
+1103=reserve
+1104=stock
+1105=waste
+
+1120=same suit
+1121=same rank
+1122=same color and rank
+
+;toolbar buttons
+1203=Select game
+1202=New game
+1207=Change player
+1212=Undo all
+1209=Undo
+1210=Redo
+1211=Redo all
+1206=Options
+1216=Rules
