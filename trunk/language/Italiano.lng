@@ -1,0 +1,253 @@
+13=IT.chm
+
+;menu
+400=&Gioco
+203=&Seleziona gioco...
+202=&Nuovo gioco
+226=Numero nuovo gioco...
+227=&Gioco casuale
+207=Cambia &lettore...
+228=S&tatistiche...
+407=&Lingua
+204=&Personalizza barra strumenti
+205=&Scorciatoie da tastiera
+206=&Opzioni...
+208=Elimina impostazioni
+201=E&sci
+
+401=&Sposta
+209=&Annulla
+210=&Ripeti
+211=Annulla &tutto
+212=Ripeti t&utto
+
+406=&Visualizza
+213=Capovolgi &sinistro/destro
+214=Capovolgi &su/giù
+218=&Aumenta distanza
+219=&Diminuisci distanza
+221=&Mostra barra strumenti
+220=&Aggiorna
+
+402=&Carte
+229=&Successivo
+230=&Precedente
+
+408=C&ella
+
+403=Carta indietr&o
+222=&Successivo
+223=&Precedente
+
+404=&Sfondo
+224=&Successivo
+225=&Precedente
+
+405=&Aiuto
+215=&Guida
+216=&Regole
+217=&Info...
+
+;dialog boxes
+19=Acceleratore tastiera
+512=Comando:
+513=Chiave:
+
+11=Info
+511=Versione
+524=Numero giochi:
+1=OK
+2=Annulla
+
+12=Lista giochi
+515=&Regole
+537=&Punteggi migliori
+528=&Sposta alla base:
+529=Mo&stra carte rovesciate:
+539=&Bonus per la vittoria:
+525=&Annulla:
+526=&Mosse sbagliate, destro del mouse:
+527=&Ridistribuzione:
+535=&Tempo:
+
+22=Nuovo gioco
+536=Numero da 1 a 4294967295:
+
+;options
+14=Animazione
+514=&Abilita autoplay
+530=&Animazione autoplay
+531=&Annulla, ripeti animazione
+532=&Animazione clic destro
+533=&Distribuzione dall'animazione base
+15=Visualizza
+534=&Angoli carta arrotondati:
+540=Usa mod&alità mezzitoni per allungare le carte bitmap
+516=Bordi finestra
+517=&sinistra/destra
+518=&su/giù
+519=Distanza tra le carte del quadro
+522=lato faccia
+523=retro
+520=&verticale
+521=&orizzontale
+16=Punteggio
+
+;statistics
+960=Partite giocate
+961=Partite vinte
+962=Partite perse
+963=Percentuale vittorie
+964=Tempo totale in ore
+965=Tempo per partita
+966=Mosse totali
+967=Mosse per partita
+
+;status bar
+680=Tempo
+681=Punteggio
+683=Mosse
+682=Fine
+
+97=Ctrl+
+98=Shift+
+99=Alt+
+21=Regole
+501=Lettore (*.xol)\0*.xol\0Tutti i file\0*.*\0
+20=Opzioni
+538=Punteggio\tTempo\tData
+735=Impossibile scrivere sul Registro di Windows
+733=Impossibile creare il file %s
+730=Impossibile aprire il file %s
+731=Formato file non valido %s
+734=Errore di scrittura file %s
+755=Errore in %s\nRiga %d
+756=Errore in %s\nNumero messaggio %d è troppo grande
+757=Errore in %s\nNumero Duplicato %d
+753=Il file %s è troppo lungo
+754=Errore lettura file %s
+
+;games listbox columns
+650=Nome gioco
+651=Giocate
+652=Vinte
+653=Percentuale
+654=Punteggio
+655=Tempo
+656=Mosse
+657=Carte
+658=Azioni
+659=Sequenza regola
+660=Regola scoperta
+661=Coppia
+662=Nome gioco
+663=Ultimo gioco
+664=Punteggio ottenuto
+665=Tempo ottenuto
+666=Mosse ottenute
+667=Perso
+668=Gruppo mosse
+
+;rules
+900=Coppie
+901=Mazzi
+913=Semi
+914=Gradi
+915=Distribuzione
+902=Ridistribuzioni
+903=illimitato
+904=Massimo carte per pila
+921=Lo scarto deve essere vuoto
+916=Regole in uscita
+919=Regole per spostamenti tra celle dello stesso tipo
+920=Regole per la cella precedente
+905=Gli spazi non possono essere riempiti
+906=Valore della prima carta
+907=Seme della prima carta
+908=Nessuna costruzione
+909=Sequenza valore:
+910=continuo
+911=Sequenza seme
+912=Spostamento gruppo di carte:
+917=Sposta solo da
+918=Sposta solo in
+
+1000=qualsiasi
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=nessuno
+1015=base casuale
+1016=base + 1 casuale
+1017=stessa base
+1018=tutti i re e poi qualsiasi carta
+1019=A o K
+
+1031=cuori
+1032=quadri
+1033=fiori
+1034=picche
+1035=rosso
+1036=nero
+
+1051=uguale
+1052=diverso
+1053=colore uguale
+1054=colore diverso
+
+1061=nessuno
+1062=discendente
+1063=ascendente
+1064=su o giù
+1065=discendente dispari/pari
+1066=ascendente dispari/pari
+1067=su o giù dispari/pari
+1068=stesso valore
+1069=su o giù o uguale
+1070=la pila precedente ha una carta dello stesso valore come la carta spostata
+1071=la pila precedente è completa
+1072=maggiore
+1073=minore
+1074=su o uguale
+1075=giù o uguale
+
+1080=si
+1081=no
+1082=no a tutte le carte
+1083=qualsiasi sequenza
+1084=tutte e 13 le carte
+1085=nella cella vuota
+1086=ogni sequenza con celle libere
+1087=pila intera indipendentemente dalla sequenza
+
+1100=cella
+1101=base
+1102=quadro
+1103=riserva
+1104=azione
+1105=scarto
+
+1120=stesso seme
+1121=stesso valore
+1122=stesso colore e valore
+
+;toolbar buttons
+1203=Seleziona gioco
+1202=Nuovo gioco
+1207=Cambia lettore
+1212=Annulla tutto
+1209=Annulla
+1210=Ripeti
+1211=Ripeti tutto
+1206=Opzioni
+1216=Regole

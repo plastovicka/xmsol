@@ -1,5 +1,5 @@
 /*
-  (C) 2004-2011  Petr Lastovicka
+  (C) 2004-2014  Petr Lastovicka
 
  This program is free software; you can redistribute it and/or 
  modify it under the terms of the GNU General Public License.
@@ -362,15 +362,20 @@ int setLang(int cmd)
 //---------------------------------------------------------------------------
 void initLang()
 {
- scanLangDir();
- if(!lang[0]){
-   //language autodetection
-   lstrcpy(lang,TEXT("English"));
-   WORD id= (WORD) PRIMARYLANGID(GetUserDefaultLangID());
-   if(id==0x05) lstrcpy(lang,TEXT("Èesky"));
-   if(id==0x0C) lstrcpy(lang,TEXT("French"));
-   if(id==0x15) strcpy(lang,"Polski");
- }
- loadLang();
+	scanLangDir();
+	if(!lang[0]){
+		//language detection
+		const char* s;
+		switch(PRIMARYLANGID(GetUserDefaultLangID()))
+		{
+			case LANG_CZECH: s="Èesky"; break;
+			case LANG_FRENCH: s="French"; break;
+			case LANG_POLISH: s="Polski"; break;
+			case LANG_ITALIAN: s= "Italiano"; break;
+			default: s="English"; break;
+		}
+		strcpy(lang, s);
+	}
+	loadLang();
 }
 //---------------------------------------------------------------------------
