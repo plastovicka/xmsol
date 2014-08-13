@@ -1,0 +1,251 @@
+;menu
+400=&Joc
+203=&Seleccionar joc...
+202=Joc &nou
+226=Joc nou n&umero...
+227=Joc &aleatori
+207=Canviar &jugador...
+228=Es&tdistiques...
+407=&Llenguatge
+204=&Personalitzar la barra d'eines
+205=&Dreceres de teclat
+206=&Opcions...
+208=Esborrar configuracio
+201=&Sortir
+
+401=&Moure
+209=&Desfer
+210=&Refer
+211=Desfer &tot
+212=Refer t&ot
+
+406=&Veure
+213=Mirall &esquerra/dreta
+214=Mirall &amunt/avall
+218=&Incrementar distancia
+219=&decrementar distancia
+221=&Mostrar la barra d'eines
+220=&Refrescar
+
+402=&Cartes
+229=&Propera
+230=&Anterior
+
+408=C&el.la
+
+403=Carta enre&ra
+222=&Propera
+223=&Anterior
+
+404=&Background
+224=&Propera
+225=&Anterior
+
+405=&Ajuda
+215=&Ajuda
+216=&Regles
+217=&Sobre...
+
+;caixes de dialeg
+19=acceleradors de teclat
+512=Comandament:
+513=Tecla:
+
+11=Sobre
+511=Versio
+524=Jocs count:
+1=OK
+2=Cancel.lar
+
+12=Joc llista
+515=&Regles
+537=&Millors marcadors
+528=&Moure a una fundacio:
+529=Mostrar una carta girada:
+539=&Bonus per una victoria:
+525=&Desfer:
+526=&Mal moviment del click dret:
+527=&Barrejar de nou:
+535=&Temps:
+
+22=Nou Joc
+536=Numero de 1 a 4294967295:
+
+;opcions
+14=Animacio
+514=&Activar autojugar
+530=animacio de &Autojugar 
+531=&Desfer, refer animacio
+532=&animacio del boto dret
+533=animacio de &barrejar d'una pila 
+15=Mostrar
+534=&cantonades arrodonides de les cartes:
+540=Usar el mode hal&ftone per a estirar el bitmap de les cartas
+516=Bordes de les finestres
+517=&esquerra/dreta
+518=&amunt/avall
+519=Distancia entre les cartas al taulell
+522=cara frontal
+523=cara del revers
+520=&vertical
+521=&horitzontal
+16=puntuacio
+
+;estadistiques
+960=Jocs played
+961=Jocs guanyats
+962=Jocs perduts
+963=percentatge de guanyats
+964=Total de temps en hores
+965=Temps per Joc
+966=Total moviments
+967=moviments per Joc
+
+;barra d'estat
+680=Temps
+681=puntuacio
+683=moviments
+682=Fet
+
+97=Ctrl+
+98=Shift+
+99=Alt+
+21=Regles
+501=Jugador (*.xol)\0*.xol\0All files\0*.*\0
+20=Opcions
+538=puntuacio\tTemps\tData
+735=No es pot escriure le registre de Windows
+733=No es pot crear el fitxer %s
+730=No es pot obrir el fitxer %s
+731=Format del fitxer malament %s
+734=Error escrivint el fitxer %s
+755=Error a la %s\nLiia %d
+756=Error al %s\nMissatge numero %d es massa gran
+757=Error de %s\nnumero duplicat %d
+753=El fitxer %s es massa gran
+754=Error llegint el fitxer %s
+
+;Jocs llistabox columnes
+650=Joc nom
+651=Jugat
+652=guanyat
+653=Tant per cent
+654=puntuacio
+655=Temps
+656=moviments
+657=cartes
+658=Stocks
+659=regla sequencia
+660=regla pal
+661=Parell
+662=nom del joc 
+663=Ultima jugada
+664=puntuacio guanyat
+665=Temps guanyat
+666=moviments guanyat
+667=Perduts
+668=moviments de grup
+
+;Regles
+900=Parells
+901=baralla
+913=Pals
+914=numero de la carta
+915=Barrejar
+902=Barrejar de nou
+903=il.limitat
+904=Maxim cartas per pila
+921=La paperera ha d'estar buida
+916=Regles sortints
+919=Regles per a moviments entre del.les del mateix tipus
+920=Regles per a la cel.la anterior
+905=Els espais no es poden omplir
+906=La primera carta del numero de la carta
+907=Pal de la primera carta
+908=No contruir
+909=sequencia del numero de la carta :
+910=continu
+911=Sequencia dels pals
+912=Moure un grup de cartes:
+917=Moure nomes des de
+918=Moure nomes a
+
+1000=qualsevol
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=no
+1015=base aleatoria
+1016=base aleatoria + 1
+1017=la mateixa base
+1018=al inici tots els reis despres qualsevol carta
+1019=A o K
+
+1031=cors
+1032=diamants
+1033=trevol
+1034=piques
+1035=vermelles
+1036=negres
+
+1051=igual
+1052=diferent
+1053=el mateix color
+1054=color alternat
+
+1061=no
+1062=descendent
+1063=ascendent
+1064=amunt o avall
+1065=descendent parells/imparells
+1066=ascendent parells/imparells
+1067=up or down parells/imparells
+1068=el mateix numero de la carta
+1069=amunt o avall o igual
+1070=Anterior pila te una carta del mateix numero de la carta que el de la carta moguda
+1071=Anterior pila s'ha completat del tot
+1072=Més alt
+1073=Més baix
+1074=Amunt o igual
+1075=Avall o igual
+
+1080=si
+1081=no
+1082=no totes les cartes
+1083=qualsevol sequencia
+1084=totes les 13 cartes
+1085=a una cel.la buida
+1086=qualsevol sequencia quan cel.les lliures
+1087=la pila sencera sense importar la sequencia
+
+1100=cel.la
+1101=foundacio
+1102=tauler
+1103=reserva
+1104=stock
+1105=descartades
+
+1120=el mateix pal
+1121=el mateix numero de la carta
+1122=el mateix color i numero de la carta
+
+;butons de la barra d'eines
+1203=Seleccionar Joc
+1202=Nou Joc
+1207=Canviar Jugador
+1212=Desfer tot
+1209=Desfer
+1210=Refer
+1211=Refer tot
+1206=Opcions
+1216=Regles
