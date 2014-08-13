@@ -368,10 +368,11 @@ void initLang()
 		const char* s;
 		switch(PRIMARYLANGID(GetUserDefaultLangID()))
 		{
+			case LANG_CATALAN: s="Catalan"; break;
 			case LANG_CZECH: s="Èesky"; break;
 			case LANG_FRENCH: s="French"; break;
+			case LANG_ITALIAN: s="Italiano"; break;
 			case LANG_POLISH: s="Polski"; break;
-			case LANG_ITALIAN: s= "Italiano"; break;
 			default: s="English"; break;
 		}
 		strcpy(lang, s);
