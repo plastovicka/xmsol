@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_DEPRECATE 1
+#define _CRT_NON_CONFORMING_SWPRINTFS
 #ifndef _WIN32_IE
 #define _WIN32_IE 0x0400
 #endif
