@@ -56,6 +56,9 @@
 #define ID_STATISTIC                    228
 #define ID_NEXT_CARD                    229
 #define ID_PREV_CARD                    230
+#define ID_SHOWSTATUSBAR                231
+#define	ID_FAST_FORWARD                 232
+#define ID_TOGGLEREGISTERY              233
 #define IDC_SCMD                        510
 #define IDC_SKEY                        511
 #define IDC_AUTOPLAY                    514

@@ -18,9 +18,9 @@
 201=Kone&c
 202=&Nová hra
 203=&Zvolit hru...
-204=&Panel nástrojù
+204=Upravit &panel nástrojù
 205=&Klávesové zkratky
-206=&Možnosti
+206=&Možnosti...
 207=Zmìnit &hráèe...
 208=Odstranit nastavení
 209=&Zpìt
@@ -45,6 +45,9 @@
 228=&Statistiky...
 229=&Další
 230=&Pøedchozí
+231=S&tavový øádek
+232=&Rychle vpøed
+233=Ukládat nastavení do &INI souboru
 
 1202=Nová hra
 1203=Zvolit hru
@@ -55,6 +58,7 @@
 1211=Na zaèátek
 1212=Na konec
 1216=Pravidla
+1232=Rychle vpøed
 
 400=&Hra
 401=&Tah
@@ -124,6 +128,8 @@
 681=Skóre
 682=Hotovo
 683=Tahy
+684=Èíslo hry
+685=Hromádka
 
 ;pravidla
 900=Dvojice

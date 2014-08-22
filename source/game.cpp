@@ -1,5 +1,5 @@
 /*
-	(C) 2005  Petr Lastovicka
+	(C) 2005-2014  Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -1508,9 +1508,13 @@ int Tboard::autoBase(Tcell *t)
 	return 1;
 }
 
-void Tboard::autoPlay()
+//
+// This is the autoplay function, this routine "forces" every card to their right place
+//
+void Tboard::autoPlay(int once)	// ACC, added "once"
 {
 	int i, j, k, n, destType, f;
+	int	globalAutoplayCopy;
 	Tcell *c, *t;
 	bool disabled;
 	bool moved, moved1;
@@ -1523,7 +1527,12 @@ void Tboard::autoPlay()
 		if(cells[u->src].type==CELL_FOUNDATION && cells[u->dest].type!=CELL_FOUNDATION) disabled=true;
 	}
 	n=0;
-	do{
+
+	globalAutoplayCopy = globalAutoplay;
+	if(once) globalAutoplay = 1;
+
+	do
+	{
 		moved=false;
 		for(i=0; i<cells.len; i++){
 			c=&cells[i];
@@ -1575,6 +1584,7 @@ void Tboard::autoPlay()
 		}
 	} while(moved);
 	speedAccel=1;
+	globalAutoplay=globalAutoplayCopy;
 	finished=(this->*(game->checkFinish))();
 	calcDone();
 	if(finished){
@@ -1951,9 +1961,10 @@ void Tboard::newGame(Tgame *game)
 		statusTime();
 		invalidate();
 		static TCHAR buf[64];
-		_sntprintf(buf, sizeA(buf)-1, _T("%s - %u"), game->name, number);
+		_sntprintf(buf, sizeA(buf)-1, _T("XM Solitaire - %s"), game->name);	// ACC, moved the seed to the status bar.
 		SetWindowText(hWin, buf);
 		SetTimer(hWin, 128, 1000, 0);
+		statusSeed();	// ACC, the seed is no longer displayed in the window's title
 	}
 }
 
@@ -2192,12 +2203,5 @@ void generRules(Tgame *g)
 	l1:;
 	}
 	SetWindowText(w, t);
-	/*SendMessage(w,EM_SETSEL,1,1);
-	CHARFORMAT cf;
-	cf.cbSize=sizeof(CHARFORMAT);
-	cf.dwMask=CFM_BOLD;
-	cf.dwEffects=CFE_BOLD;
-	SendMessage(w,EM_SETCHARFORMAT,SCF_WORD|SCF_SELECTION,(LPARAM)&cf);
-	*/
 }
 //------------------------------------------------------------------

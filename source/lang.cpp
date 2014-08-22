@@ -85,7 +85,7 @@ TCHAR *cutPath(TCHAR *s)
 }
 
 //write working dir to fn and append string e
-void getExeDir(TCHAR *fn, TCHAR *e)
+void getExeDir(TCHAR *fn, const TCHAR *e)
 {
 	GetModuleFileName(0, fn, 192);
 	lstrcpy(cutPath(fn), e);

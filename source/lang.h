@@ -23,7 +23,7 @@ void loadMenu(HWND hwnd, TCHAR *name, int *subId);
 void changeDialog(HWND &wnd, int x, int y, LPCTSTR dlgTempl, DLGPROC dlgProc);
 void setDlgTexts(HWND hDlg);
 void setDlgTexts(HWND hDlg, int id);
-void getExeDir(TCHAR *fn, TCHAR *e);
+void getExeDir(TCHAR *fn, const TCHAR *e);
 TCHAR *cutPath(TCHAR *s);
 void printKey(TCHAR *s, ACCEL *a);
 
