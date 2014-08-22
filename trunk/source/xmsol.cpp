@@ -1,11 +1,13 @@
 /*
-	(C) 2005  Petr Lastovicka
+	(C) 2005-2014  Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
 	*/
 #include "hdr.h"
 #include "xmsol.h"
+
+//#include "C:\Program Files (x86)\Visual Leak Detector\include\vld.h"
 
 #pragma comment(lib, "version.lib")
 #pragma comment(lib, "comctl32.lib")
@@ -33,10 +35,11 @@ TgameMember colGame[Mcolumn]=
 char *toolNames[]={
 	"Select game", "New game", "Change player", "",
 	"Undo all", "Undo", "Redo", "Redo all", "",
+	"Fast forward", "",
 	"Options", "Rules"
 };
 
-const int Ntool=11;
+const int Ntool=13;
 TBBUTTON tbb[]={
 		{6, ID_LIST, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
 		{4, ID_NEWGAME, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
@@ -46,6 +49,8 @@ TBBUTTON tbb[]={
 		{1, ID_UNDO, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
 		{0, ID_REDO, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
 		{7, ID_REDO_ALL, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
+		{0, 0, 0, TBSTYLE_SEP, {0}, 0},
+		{9, ID_FAST_FORWARD, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
 		{0, 0, 0, TBSTYLE_SEP, {0}, 0},
 		{2, ID_OPTIONS, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
 		{5, ID_HELP_RULES, TBSTATE_ENABLED, TBSTYLE_BUTTON, {0}, 0},
@@ -104,7 +109,8 @@ corners=15,
 
 bool
 delreg=false,
- mustLoadRules=false;
+ mustLoadRules=false,
+ configToRegistery;
 
 unsigned seedGlobal;
 TCHAR gameName[128];
@@ -127,8 +133,9 @@ HBRUSH bkgndBrush;
 HBITMAP bmpCards, bmpBack, bmpBkgnd, bmpCell;
 HDC dcCards, dcBack, dcCell, dcStretch, dcBackStretch, dcCellStretch;
 
-TfileName fnCards, fnBack, fnBkgnd, fnCell, fnTmp;
+TfileName fnCards, fnBack, fnBkgnd, fnCell, fnTmp, fnIni;
 
+const TCHAR *iniFile=_T("xmsol.ini"), *iniSection=_T("xmsol");
 const TCHAR *subkey=_T("Software\\Petr Lastovicka\\xmsol");
 struct Treg { char *s; int *i; } regVal[]={
 		{"top", &mainTop},
@@ -166,6 +173,7 @@ struct Treg { char *s; int *i; } regVal[]={
 		{"gameNum", &gameNum},
 		{"corners", &corners},
 		{"halftone", &halftone},
+		{"Naccel", &Naccel},
 };
 
 struct Tregs { char *s; TCHAR *i; DWORD n; } regValS[]={
@@ -180,7 +188,7 @@ struct Tregs { char *s; TCHAR *i; DWORD n; } regValS[]={
 
 struct Tregb { char *s; void *i; DWORD n; } regValB[]={
 		{"keys", accel, sizeof(accel)}, //must be the first item of regValB
-		{"font", &font, sizeof(LOGFONT)},
+		//{"font", &font, sizeof(LOGFONT)},
 		{"colWidth", colWidth, sizeof(colWidth)},
 		{"colOrder", colOrder, sizeof(colOrder)},
 };
@@ -263,6 +271,7 @@ void msglng(int id, char *text, ...)
 	va_end(ap);
 }
 
+// Create a dialog box with the standard "OK" button
 void msg(char *text, ...)
 {
 	va_list ap;
@@ -283,6 +292,7 @@ void status(int i, TCHAR *txt, ...)
 	va_end(ap);
 }
 
+// Returns pointer to the extention of a file
 TCHAR *cutExt(TCHAR *fn)
 {
 	for(TCHAR *s= fn+lstrlen(fn); s>=fn; s--){
@@ -318,6 +328,9 @@ void openUser()
 	}
 }
 
+//
+// Fill "s" with a complete filename, based on an item name found in the specified menu
+//
 void getMenuItem(TCHAR *s, TCHAR *mask, int id)
 {
 	TCHAR buf[128];
@@ -475,6 +488,7 @@ void paintCardClip(HDC dc, int x, int y, Tcard card, HRGN rgnCard, HRGN rgnClip)
 			(CARD_RANK(card)-1)*stretchW,
 			CARD_SUIT(card)*stretchH, SRCCOPY);
 	}
+	// Draw rounded corners
 	if(cornersW) RoundRect(dc, x, y, x+cardW, y+cardH, cornersW, cornersW);
 
 	CombineRgn(rgnClip, rgnClip, rgnCard, RGN_DIFF);
@@ -930,6 +944,14 @@ void statusDone()
 	else status(STATUS_DONE, _T(""));
 }
 
+// Display THE CURRENT SEED in the status bar
+void statusSeed()
+{
+	if(board.number) status(STATUS_SEED, _T("%s: %u"), lng(684, "Shuffle"), board.number);
+	else status(STATUS_SEED, _T(""));
+}
+
+// Display CARDS IN THE STACK in the status bar
 void statusNcard()
 {
 	static int last;
@@ -937,13 +959,13 @@ void statusNcard()
 		int i= board.cells[currentPile].Ncards;
 		if(last!=i){
 			last=i;
-			status(STATUS_NCARD, _T("%d"), i);
+			status(STATUS_NCARD, _T("%s: %d"), lng(685, "Pile"), i);
 		}
 	}
 	else{
 		if(last!=-1){
 			last=-1;
-			status(STATUS_NCARD, _T(""));
+			status(STATUS_NCARD, _T("%s:"), lng(685, "Pile"));
 		}
 	}
 }
@@ -955,6 +977,7 @@ void updateStatus()
 	statusDone();
 	statusMoves();
 	statusNcard();
+	statusSeed();
 }
 
 //------------------------------------------------------------------
@@ -1207,12 +1230,24 @@ void saveBMP(TCHAR *fn, HBITMAP hBmp)
 }
 
 //---------------------------------------------------------------------------
-//delete registry settings
+/*
+ACC, some details here: by default, XMSol would save the config in the registery.
+I know that's the way Microsoft wants it to be, but I also know INI files and registery
+are not providing the same services and I also know it annoys some people to save stuff
+there without them being aware of it (especially for transportable applications, which
+doesn't have any install/uninstall process and could be run from an USB Stick).
+
+I added "configToRegistery", which is checked on startup: if the registery key exist,
+then we save there. If the key doesn't exist, we use an INI file. The trick is that we
+must erase the key and every subkey when we turn "configToRegistery" off.
+*/
+
+//delete settings
 void deleteini()
 {
+	//delete registry
 	HKEY key;
 	DWORD i;
-
 	if(RegDeleteKey(HKEY_CURRENT_USER, subkey)==ERROR_SUCCESS){
 		if(RegOpenKeyEx(HKEY_CURRENT_USER, _T("Software\\Petr Lastovicka"), 0, KEY_QUERY_VALUE, &key)==ERROR_SUCCESS){
 			i=1;
@@ -1223,46 +1258,77 @@ void deleteini()
 			}
 		}
 	}
+
+	//delete INI file
+	getExeDir(fnIni, iniFile);
+	_tremove(fnIni);
 }
 
-//save settings to the registry 
-void writeini1()
+//save settings
+void writeini()
 {
-	HKEY key;
-	if(RegCreateKey(HKEY_CURRENT_USER, subkey, &key)!=ERROR_SUCCESS)
-		msglng(735, "Cannot write to Windows registry");
-	else{
-		for(Treg *u=regVal; u<endA(regVal); u++){
-			RegSetValueExA(key, u->s, 0, REG_DWORD,
-				(BYTE *)u->i, sizeof(int));
-		}
-		for(Tregs *v=regValS; v<endA(regValS); v++){
-			convertA2T(v->s, t);
-			RegSetValueEx(key, t, 0, REG_SZ,
-				(BYTE *)v->i, (DWORD) sizeof(TCHAR)*(lstrlen(v->i)+1));
-		}
-		regValB[0].n=Naccel*sizeof(ACCEL);
-		for(Tregb *w=regValB; w<endA(regValB); w++){
-			RegSetValueExA(key, w->s, 0, REG_BINARY, (BYTE *)w->i, w->n);
-		}
+	regValB[0].n=Naccel*sizeof(ACCEL);
 
-		TBSAVEPARAMS sp;
-		sp.hkr=HKEY_CURRENT_USER;
-		sp.pszSubKey=subkey;
-		sp.pszValueName=_T("toolbar");
-		SendMessage(toolbar, TB_SAVERESTORE, TRUE, (LPARAM)&sp);
-		RegCloseKey(key);
+	if(configToRegistery)
+	{
+		HKEY key;
+		if(RegCreateKey(HKEY_CURRENT_USER, subkey, &key)!=ERROR_SUCCESS)
+			msglng(735, "Cannot write to Windows registry");
+		else{
+			// Write integers
+			for(Treg *u=regVal; u<endA(regVal); u++){
+				RegSetValueExA(key, u->s, 0, REG_DWORD,
+					(BYTE *)u->i, sizeof(int));
+			}
+			// Write strings
+			for(Tregs *v=regValS; v<endA(regValS); v++){
+				convertA2T(v->s, t);
+				RegSetValueEx(key, t, 0, REG_SZ,
+					(BYTE *)v->i, (DWORD) sizeof(TCHAR)*(lstrlen(v->i)+1));
+			}
+			// Write binary data
+			for(Tregb *w=regValB; w<endA(regValB); w++){
+				RegSetValueExA(key, w->s, 0, REG_BINARY, (BYTE *)w->i, w->n);
+			}
+			// Write toolbar
+			TBSAVEPARAMS sp;
+			sp.hkr=HKEY_CURRENT_USER;
+			sp.pszSubKey=subkey;
+			sp.pszValueName=_T("toolbar");
+			SendMessage(toolbar, TB_SAVERESTORE, TRUE, (LPARAM)&sp);
+			RegCloseKey(key);
+		}
+	}
+	else{
+		// Erase INI file and create a new one
+		getExeDir(fnIni, iniFile);
+		_tremove(fnIni);
+		WritePrivateProfileString(NULL, NULL, NULL, fnIni);
+
+		for(Treg *u = regVal; u < endA(regVal); u++)
+		{
+			TCHAR buf[33];
+			_itot(*(u->i), buf, 10);
+			convertA2T(u->s, t);
+			WritePrivateProfileString(iniSection, t, buf, fnIni);
+		}
+		for(Tregs *v = regValS; v < endA(regValS); v++)
+		{
+			convertA2T(v->s, t);
+			WritePrivateProfileString(iniSection, t, v->i, fnIni);
+		}
+		for(Tregb *w=regValB; w<endA(regValB); w++){
+			convertA2T(w->s, t);
+			WritePrivateProfileStruct(iniSection, t, w->i, w->n, fnIni);
+		}
 	}
 }
 
-void writeini()
-{
-	writeini1();
-}
-
-//read settings from the registry
+//read settings
 void readini()
 {
+	configToRegistery=true;
+
 	HKEY key;
 	DWORD d;
 	if(RegOpenKeyEx(HKEY_CURRENT_USER, subkey, 0, KEY_QUERY_VALUE, &key)==ERROR_SUCCESS){
@@ -1284,6 +1350,34 @@ void readini()
 				&& w==regValB) Naccel=d/sizeof(ACCEL);
 		}
 		RegCloseKey(key);
+	}
+	else{
+		getExeDir(fnIni, iniFile);
+		FILE* f = _tfopen(fnIni, _T("r")); // Test the IniFile
+		if(f){
+			fclose(f);
+			configToRegistery=false;
+
+			TCHAR buf[512];
+			for(Treg *u = regVal; u < endA(regVal); u++)
+			{
+				convertA2T(u->s, t);
+				if(GetPrivateProfileString(iniSection, t, 0, buf, sizeA(buf), fnIni) > 0)
+					*u->i = _ttoi(buf);
+			}
+			for(Tregs *v = regValS; v < endA(regValS); v++)
+			{
+				convertA2T(v->s, t);
+				if(GetPrivateProfileString(iniSection, t, 0, buf, sizeA(buf), fnIni) > 0)
+					lstrcpyn(v->i, buf, v->n);
+			}
+			aminmax(Naccel, 0, Maccel);
+			regValB[0].n=Naccel*sizeof(ACCEL);
+			for(Tregb *w=regValB; w<endA(regValB); w++){
+				convertA2T(w->s, t);
+				GetPrivateProfileStruct(iniSection, t, w->i, w->n, fnIni);
+			}
+		}
 	}
 }
 
@@ -1336,6 +1430,8 @@ void checkFlipMenu()
 	CheckMenuItem(m, ID_MIRROR_LR, flipx ? MF_BYCOMMAND|MF_CHECKED : MF_BYCOMMAND|MF_UNCHECKED);
 	CheckMenuItem(m, ID_MIRROR_UD, flipy ? MF_BYCOMMAND|MF_CHECKED : MF_BYCOMMAND|MF_UNCHECKED);
 	CheckMenuItem(m, ID_SHOWTOOLBAR, toolBarVisible ? MF_BYCOMMAND|MF_CHECKED : MF_BYCOMMAND|MF_UNCHECKED);
+	CheckMenuItem(m, ID_SHOWSTATUSBAR, statusBarVisible ? MF_BYCOMMAND|MF_CHECKED : MF_BYCOMMAND|MF_UNCHECKED);
+	CheckMenuItem(m, ID_TOGGLEREGISTERY, configToRegistery ? MF_BYCOMMAND|MF_UNCHECKED : MF_BYCOMMAND|MF_CHECKED);
 }
 
 void checkMenus()
@@ -1422,14 +1518,17 @@ void changeKey(HWND hDlg, UINT vkey)
 	else{
 		for(a=accel;; a++){
 			if(a==e){
+				//add new hotkey
 				*a=dlgKey;
 				Naccel++;
 				break;
 			}
 			if(a->cmd==dlgKey.cmd){
+				//change hotkey
 				a->fVirt=dlgKey.fVirt;
 				a->key=dlgKey.key;
 				if(vkey==0){
+					//delete hotkey
 					memcpy(a, a+1, (e-a-1)*sizeof(ACCEL));
 					Naccel--;
 				}
@@ -1526,7 +1625,7 @@ LRESULT CALLBACK NewGameNumberProc(HWND hWnd, UINT message, WPARAM wParam, LPARA
 					i=GetDlgItemInt(hWnd, IDC_GAMENUMBER, 0, FALSE);
 					if(i){
 						board.seed=i;
-						if(board.game) board.newGame(board.game);
+						board.newGame(board.game);
 					}
 					//!
 				case IDCANCEL:
@@ -1737,6 +1836,7 @@ void printDate(TCHAR *buf, int n, time_t date)
 	_tcsftime(buf, n, _T("%x %X"), localtime(&date));
 }
 
+// The following routine handles the game list.
 LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 {
 	int i, j, cmd, item, oldW, oldH, oldS, oldT, oldBW, oldBH;
@@ -1786,13 +1886,16 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 			lfi.flags=LVFI_STRING;
 			lfi.psz=gameName;
 			i=SendMessage(listBox, LVM_FINDITEM, (WPARAM)-1, (LPARAM)&lfi);
-			if(i>=0){
-				preview.newGame(board.game);
-				lvi.mask=LVIF_STATE;
-				lvi.state=lvi.stateMask=LVIS_SELECTED|LVIS_FOCUSED;
-				SendMessage(listBox, LVM_SETITEMSTATE, i, (LPARAM)&lvi);
-				SendMessage(listBox, LVM_ENSUREVISIBLE, i+3, 0);
-			}
+			if(i<0) i=0;
+			lvi.iItem=i;
+			lvi.iSubItem=0;
+			lvi.mask=LVIF_PARAM;
+			ListView_GetItem(listBox, &lvi);
+			preview.newGame(games[(int)lvi.lParam]);
+			lvi.mask=LVIF_STATE;
+			lvi.state=lvi.stateMask=LVIS_SELECTED|LVIS_FOCUSED;
+			SendMessage(listBox, LVM_SETITEMSTATE, i, (LPARAM)&lvi);
+			SendMessage(listBox, LVM_ENSUREVISIBLE, i+3, 0);
 			SetFocus(listBox);
 			InvalidateRect(GetDlgItem(hWnd, IDC_PREVIEW), 0, FALSE);
 			//scroll
@@ -1866,6 +1969,7 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 						generRules(games[item]);
 						preview.newGame(games[item]);
 						InvalidateRect(GetDlgItem(hWnd, IDC_PREVIEW), 0, FALSE);
+						EnableWindow(GetDlgItem(hWnd, IDC_BEST_SCORES), games[item]->stat->played>0);
 					}
 					break;
 				case LVN_GETDISPINFO:
@@ -2135,6 +2239,9 @@ static TcomboValue comboOpts[]={
 };
 */
 
+//
+// Initialize the correct page in the Options window
+//
 BOOL propPageInit(HWND hWnd, UINT mesg, WPARAM wP, LPARAM lP, int curPage)
 {
 	//int j;
@@ -2157,24 +2264,6 @@ BOOL propPageInit(HWND hWnd, UINT mesg, WPARAM wP, LPARAM lP, int curPage)
 			for(tb=boolOpts; tb<endA(boolOpts); tb++){
 				if(tb->dlgId==curPage) CheckDlgButton(hWnd, tb->id, *tb->value ? BST_CHECKED : BST_UNCHECKED);
 			}
-			/*for(ts=strOpts; ts<endA(strOpts); ts++){
-				if(ts->dlgId==curPage) SetDlgItemText(hWnd, ts->id, ts->value);
-				}
-				for(tg=groupOpts; tg<endA(groupOpts); tg++){
-				if(tg->dlgId==curPage) CheckRadioButton(hWnd,tg->first, tg->last, *tg->value+tg->first);
-				}
-				for(tc=comboOpts; tc<endA(comboOpts); tc++){
-				if(tc->dlgId==curPage){
-				combo= GetDlgItem(hWnd,tc->id);
-				for(j=0; j<tc->len; j++){
-				convertA2T(tc->strA[j],t);
-				SendMessage(combo,CB_ADDSTRING,0,
-				(LPARAM)lng(tc->lngId+j,t));
-				}
-				SendMessage(combo,CB_SETCURSEL,*tc->value,0);
-				}
-				}
-				*/
 			return TRUE;
 		case WM_COMMAND:
 			if(HIWORD(wP)==EN_CHANGE || HIWORD(wP)==BN_CLICKED || HIWORD(wP)==CBN_SELCHANGE){
@@ -2280,6 +2369,7 @@ void options()
 		p->pfnDlgProc = P[i];
 		p->pszTitle = lng(O[i], T[i]);
 	}
+	// Set the property sheet
 	psh.dwSize = sizeof(PROPSHEETHEADER);
 	psh.dwFlags = PSH_PROPSHEETPAGE;
 	psh.hwndParent = hWin;
@@ -2375,7 +2465,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 							ttt->szText[sizeA(ttt->szText)-1]=0;
 						}
 					}
-				}
+			}
 					break;
 #endif
 
@@ -2383,8 +2473,8 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					while(SendMessage(toolbar, TB_DELETEBUTTON, 0, 0));
 					SendMessage(toolbar, TB_ADDBUTTONS, Ntool, (LPARAM)tbb);
 					break;
-			}
 		}
+	}
 			break;
 
 		case WM_LBUTTONDOWN:
@@ -2516,18 +2606,6 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					mustLoadRules=true;
 					refresh();
 					break;
-
-					/*case ID_FONT:
-						{
-						static CHOOSEFONT f;
-						f.lStructSize=sizeof(CHOOSEFONT);
-						f.hwndOwner=hWin;
-						f.Flags=CF_SCREENFONTS|CF_INITTOLOGFONTSTRUCT|CF_SCRIPTSONLY|CF_ENABLEHOOK|CF_APPLY;
-						f.lpLogFont=&font;
-						f.lpfnHook=CFHookProc;
-						if(ChooseFont(&f)) setFont();
-						}
-						break;*/
 				case ID_TOOLBAR:
 					SendMessage(toolbar, TB_CUSTOMIZE, 0, 0);
 					break;
@@ -2542,6 +2620,18 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					ShowWindow(toolbar, toolBarVisible ? SW_SHOW : SW_HIDE);
 					checkFlipMenu();
 					invalidate();
+					break;
+				case ID_SHOWSTATUSBAR:	// ACC, it think the statusbar was meant to be toggled, so here it is.
+					statusBarVisible = !statusBarVisible;
+					ShowWindow(statusbar, statusBarVisible ? SW_SHOW : SW_HIDE);
+					checkFlipMenu();
+					invalidate();
+					break;
+				case ID_TOGGLEREGISTERY:	// ACC, toggle saving to registery/INI
+					deleteini();
+					configToRegistery = !configToRegistery;
+					writeini();
+					checkFlipMenu();
 					break;
 				case ID_DELINI:
 					delreg=true;
@@ -2583,7 +2673,9 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 				case ID_REDO_ALL:
 					board.redoAll();
 					break;
-
+				case ID_FAST_FORWARD:
+					board.autoPlay(1); // ACC, added "fast forward", so it's possible to disable the global autoplay and yet get a hint when asked.
+					break;
 				case ID_NEXT_CARD:
 					searchDirMenu(MENU_CARDS, 1);
 					break;
@@ -2608,7 +2700,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 
-	}
+}
 	return 0;
 }
 
@@ -2660,7 +2752,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		msg("RegisterClass failed");
 #endif
 		return 2;
-	}
+}
 	scrW= GetSystemMetrics(SM_CXSCREEN);
 	scrH= GetSystemMetrics(SM_CYSCREEN);
 	aminmax(mainLeft, 0, scrW-50);
@@ -2677,11 +2769,12 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	rulesWnd=CreateDialog(inst, MAKEINTRESOURCE(IDD_RULES), hWin, (DLGPROC)rulesProc);
 	SetWindowPos(rulesWnd, 0, scrW-550, mainTop+30, 0, 0, SWP_NOZORDER|SWP_NOSIZE);
 
+	// Initialize custom language
 	initLang();
 
-	//create status bar
+	// Create status bar
 	statusbar= CreateStatusWindow(WS_CHILD, 0, hWin, 1);
-	static int parts[]={100, 200, 350, 450, 490, -1};
+	static int parts[] ={100, 200, 350, 450, 540, 670, -1};
 	dc=GetDC(hWin);
 	for(i=0; i<sizeA(parts)-1; i++){
 		parts[i]=parts[i]*GetDeviceCaps(dc, LOGPIXELSX)/96;
@@ -2700,11 +2793,15 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		WS_CHILD|TBSTYLE_TOOLTIPS|0x800, 2, i,
 		inst, IDB_TOOLBAR, tbb, Ntool,
 		16, 16, 16, 16, sizeof(TBBUTTON));
-	TBSAVEPARAMS sp;
-	sp.hkr=HKEY_CURRENT_USER;
-	sp.pszSubKey=subkey;
-	sp.pszValueName=_T("toolbar");
-	SendMessage(toolbar, TB_SAVERESTORE, FALSE, (LPARAM)&sp);
+	if(configToRegistery)
+	{
+
+		TBSAVEPARAMS sp;
+		sp.hkr=HKEY_CURRENT_USER;
+		sp.pszSubKey=subkey;
+		sp.pszValueName=_T("toolbar");
+		SendMessage(toolbar, TB_SAVERESTORE, FALSE, (LPARAM)&sp);
+	}
 	GetClientRect(toolbar, &rc);
 	toolH= rc.bottom;
 	if(toolBarVisible) ShowWindow(toolbar, SW_SHOW);
@@ -2718,6 +2815,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	saveBMP(_T("C:\\a\\.bmp"),bmpCards);
 	return 0;*/
 
+	// Load rules, profile and previous game
 	refresh();
 	loadRules();
 	seedGlobal= time(0)+GetTickCount();
@@ -2727,7 +2825,8 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		playerFile.deletePosition(gameName, gameNum);
 		suspendTime=10;
 	}
-	if(!board.number) PostMessage(hWin, WM_COMMAND, ID_LIST, 0);
+	if(!board.number)
+		PostMessage(hWin, WM_COMMAND, ID_LIST, 0);		// No game loaded, let's list some
 	curMove=LoadCursor(inst, MAKEINTRESOURCE(IDC_CURSORMOVE));
 	ShowWindow(hWin, maximized && cmdShow==SW_SHOWNORMAL ? SW_SHOWMAXIMIZED : cmdShow);
 	UpdateWindow(hWin);

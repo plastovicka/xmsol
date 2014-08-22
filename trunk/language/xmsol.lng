@@ -6,12 +6,13 @@
 202=&New game
 226=New game n&umber...
 227=&Random game
-207=Change &player...
+207=Change &player profile...
 228=S&tatistics...
 407=&Language
 204=&Customize toolbar
 205=&Keyboard shortcuts
 206=&Options...
+233=Save settings to &INI file
 208=Delete settings
 201=E&xit
 
@@ -20,6 +21,7 @@
 210=&Redo
 211=Undo &all
 212=Redo a&ll
+232=&Fast forward
 
 406=&View
 213=Mirror &left/right
@@ -27,6 +29,7 @@
 218=&Increase distance
 219=&Decrease distance
 221=&Show toolbar
+231=Show status&bar
 220=&Refresh
 
 402=&Cards
@@ -108,6 +111,8 @@
 681=Score
 683=Moves
 682=Done
+684=Shuffle
+685=Pile
 
 97=Ctrl+
 98=Shift+
@@ -251,3 +256,4 @@
 1211=Redo all
 1206=Options
 1216=Rules
+1232=Fast forward

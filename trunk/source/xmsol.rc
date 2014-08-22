@@ -138,7 +138,7 @@ BEGIN
         MENUITEM "New game n&umber...",         ID_GAME_NUMBER
         MENUITEM "&Random game",                ID_RANDOM_GAME
         MENUITEM SEPARATOR
-        MENUITEM "Change &player...",           ID_PLAYER
+        MENUITEM "Change &player profile...",           ID_PLAYER
         MENUITEM "S&tatistics...",              ID_STATISTIC
         MENUITEM SEPARATOR
         POPUP "&Language"
@@ -149,7 +149,8 @@ BEGIN
         MENUITEM "&Keyboard shortcuts",         ID_KEYS
         MENUITEM "&Options...",                 ID_OPTIONS
         MENUITEM SEPARATOR
-        MENUITEM "Delete settings",             ID_DELINI
+				MENUITEM "Save settings to &INI file", ID_TOGGLEREGISTERY
+				MENUITEM "Delete settings", ID_DELINI
         MENUITEM "E&xit",                       ID_EXIT
     END
     POPUP "&Move"
@@ -158,7 +159,8 @@ BEGIN
         MENUITEM "&Redo",                       ID_REDO
         MENUITEM "Undo &all",                   ID_UNDO_ALL
         MENUITEM "Redo a&ll",                   ID_REDO_ALL
-    END
+				MENUITEM "&Fast forward",               ID_FAST_FORWARD
+		END
     POPUP "&View"
     BEGIN
         MENUITEM "Mirror &left/right",          ID_MIRROR_LR
@@ -168,7 +170,8 @@ BEGIN
         MENUITEM "&Decrease distance",          ID_DECR_SEQ
         MENUITEM SEPARATOR
         MENUITEM "&Show toolbar",               ID_SHOWTOOLBAR
-        MENUITEM "&Refresh",                    ID_REFRESH
+				MENUITEM "Show status&bar", ID_SHOWSTATUSBAR
+				MENUITEM "&Refresh", ID_REFRESH
     END
     POPUP "&Cards"
     BEGIN

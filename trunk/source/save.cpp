@@ -1,5 +1,5 @@
 /*
-	(C) 2005  Petr Lastovicka
+	(C) 2005-2014  Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -471,6 +471,9 @@ bool TplayerFile::create(TCHAR *fn)
 	return !error;
 }
 
+//
+// Load an existing XOL (player profile)
+//
 bool TplayerFile::open()
 {
 	if(!*name) return false;
