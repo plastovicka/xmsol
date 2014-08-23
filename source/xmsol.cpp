@@ -1177,6 +1177,7 @@ void refresh()
 	invalidate();
 }
 
+#ifndef NDEBUG
 void saveBMP(TCHAR *fn, HBITMAP hBmp)
 {
 	BITMAPINFOHEADER bmi;
@@ -1228,7 +1229,7 @@ void saveBMP(TCHAR *fn, HBITMAP hBmp)
 	delete[] bits;
 	DeleteDC(dcb);
 }
-
+#endif
 //---------------------------------------------------------------------------
 /*
 ACC, some details here: by default, XMSol would save the config in the registery.
@@ -1269,6 +1270,47 @@ void writeini()
 {
 	regValB[0].n=Naccel*sizeof(ACCEL);
 
+	if(!configToRegistery)
+	{
+		// Erase INI file and create a new one
+		getExeDir(fnIni, iniFile);
+		FILE* f=_tfopen(fnIni, _T("w"));
+		if(!f){
+			msglng(733, "Cannot create file %s", fnIni);
+			configToRegistery=true;
+		}
+		else{
+			fclose(f);
+			TCHAR buf[33];
+			for(Treg *u = regVal; u < endA(regVal); u++)
+			{
+				_itot(*(u->i), buf, 10);
+				convertA2T(u->s, t);
+				WritePrivateProfileString(iniSection, t, buf, fnIni);
+			}
+			for(Tregs *v = regValS; v < endA(regValS); v++)
+			{
+				convertA2T(v->s, t);
+				WritePrivateProfileString(iniSection, t, v->i, fnIni);
+			}
+			for(Tregb *w=regValB; w<endA(regValB); w++){
+				convertA2T(w->s, t);
+				WritePrivateProfileStruct(iniSection, t, w->i, w->n, fnIni);
+			}
+
+			//save toolbar
+			int n = SendMessage(toolbar, TB_BUTTONCOUNT, 0, 0);
+			TBBUTTON* buttons = new TBBUTTON[n];
+			for(int i = 0; i < n; i++)
+			{
+				SendMessage(toolbar, TB_GETBUTTON, i, (LPARAM)(buttons + i));
+			}
+			_itot(n, buf, 10);
+			WritePrivateProfileString(iniSection, _T("toolbarCount"), buf, fnIni);
+			WritePrivateProfileStruct(iniSection, _T("toolbar"), buttons, n*sizeof(TBBUTTON), fnIni);
+			delete[] buttons;
+		}
+	}
 	if(configToRegistery)
 	{
 		HKEY key;
@@ -1298,41 +1340,6 @@ void writeini()
 			SendMessage(toolbar, TB_SAVERESTORE, TRUE, (LPARAM)&sp);
 			RegCloseKey(key);
 		}
-	}
-	else{
-		// Erase INI file and create a new one
-		getExeDir(fnIni, iniFile);
-		_tremove(fnIni);
-		WritePrivateProfileString(NULL, NULL, NULL, fnIni);
-
-		TCHAR buf[33];
-		for(Treg *u = regVal; u < endA(regVal); u++)
-		{
-			_itot(*(u->i), buf, 10);
-			convertA2T(u->s, t);
-			WritePrivateProfileString(iniSection, t, buf, fnIni);
-		}
-		for(Tregs *v = regValS; v < endA(regValS); v++)
-		{
-			convertA2T(v->s, t);
-			WritePrivateProfileString(iniSection, t, v->i, fnIni);
-		}
-		for(Tregb *w=regValB; w<endA(regValB); w++){
-			convertA2T(w->s, t);
-			WritePrivateProfileStruct(iniSection, t, w->i, w->n, fnIni);
-		}
-
-		//save toolbar
-		int n = SendMessage(toolbar, TB_BUTTONCOUNT, 0, 0);
-		TBBUTTON* buttons = new TBBUTTON[n];
-		for(int i = 0; i < n; i++)
-		{
-			SendMessage(toolbar, TB_GETBUTTON, i, (LPARAM)(buttons + i));
-		}
-		_itot(n, buf, 10);
-		WritePrivateProfileString(iniSection, _T("toolbarCount"), buf, fnIni);
-		WritePrivateProfileStruct(iniSection, _T("toolbar"), buttons, n*sizeof(TBBUTTON), fnIni);
-		delete[] buttons;
 	}
 }
 
@@ -2445,7 +2452,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 							ttt->szText[sizeA(ttt->szText)-1]=0;
 						}
 					}
-			}
+				}
 					break;
 #endif
 
@@ -2453,8 +2460,8 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					while(SendMessage(toolbar, TB_DELETEBUTTON, 0, 0));
 					SendMessage(toolbar, TB_ADDBUTTONS, Ntool, (LPARAM)tbb);
 					break;
+			}
 		}
-	}
 			break;
 
 		case WM_LBUTTONDOWN:
@@ -2681,7 +2688,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
 
-}
+	}
 	return 0;
 }
 
@@ -2733,7 +2740,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		msg("RegisterClass failed");
 #endif
 		return 2;
-}
+	}
 	scrW= GetSystemMetrics(SM_CXSCREEN);
 	scrH= GetSystemMetrics(SM_CYSCREEN);
 	aminmax(mainLeft, 0, scrW-50);
