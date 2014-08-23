@@ -1305,9 +1305,9 @@ void writeini()
 		_tremove(fnIni);
 		WritePrivateProfileString(NULL, NULL, NULL, fnIni);
 
+		TCHAR buf[33];
 		for(Treg *u = regVal; u < endA(regVal); u++)
 		{
-			TCHAR buf[33];
 			_itot(*(u->i), buf, 10);
 			convertA2T(u->s, t);
 			WritePrivateProfileString(iniSection, t, buf, fnIni);
@@ -1321,6 +1321,18 @@ void writeini()
 			convertA2T(w->s, t);
 			WritePrivateProfileStruct(iniSection, t, w->i, w->n, fnIni);
 		}
+
+		//save toolbar
+		int n = SendMessage(toolbar, TB_BUTTONCOUNT, 0, 0);
+		TBBUTTON* buttons = new TBBUTTON[n];
+		for(int i = 0; i < n; i++)
+		{
+			SendMessage(toolbar, TB_GETBUTTON, i, (LPARAM)(buttons + i));
+		}
+		_itot(n, buf, 10);
+		WritePrivateProfileString(iniSection, _T("toolbarCount"), buf, fnIni);
+		WritePrivateProfileStruct(iniSection, _T("toolbar"), buttons, n*sizeof(TBBUTTON), fnIni);
+		delete[] buttons;
 	}
 }
 
@@ -2576,6 +2588,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					break;
 				case ID_TOOLBAR:
 					SendMessage(toolbar, TB_CUSTOMIZE, 0, 0);
+					writeini();
 					break;
 				case ID_KEYS:
 					DialogBox(inst, MAKEINTRESOURCE(IDD_KEYS), hWin, (DLGPROC)KeysDlgProc);
@@ -2752,6 +2765,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	GetClientRect(statusbar, &rc);
 	statusH= rc.bottom;
 	if(statusBarVisible) ShowWindow(statusbar, SW_SHOW);
+
 	//create tool bar
 	i=sizeA(tbb);
 	for(TBBUTTON *u=tbb; u<endA(tbb); u++){
@@ -2761,14 +2775,25 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		WS_CHILD|TBSTYLE_TOOLTIPS|0x800, 2, i,
 		inst, IDB_TOOLBAR, tbb, Ntool,
 		16, 16, 16, 16, sizeof(TBBUTTON));
+	//restore toolbar
 	if(configToRegistery)
 	{
-
 		TBSAVEPARAMS sp;
 		sp.hkr=HKEY_CURRENT_USER;
 		sp.pszSubKey=subkey;
 		sp.pszValueName=_T("toolbar");
 		SendMessage(toolbar, TB_SAVERESTORE, FALSE, (LPARAM)&sp);
+	}
+	else{
+		int n = GetPrivateProfileInt(iniSection, _T("toolbarCount"), 0, fnIni);
+		if(n>0 && n<100){
+			TBBUTTON* buttons = new TBBUTTON[n];
+			if(GetPrivateProfileStruct(iniSection, _T("toolbar"), buttons, n*sizeof(TBBUTTON), fnIni)){
+				while(SendMessage(toolbar, TB_DELETEBUTTON, 0, 0));
+				SendMessage(toolbar, TB_ADDBUTTONS, (WPARAM)n, (LPARAM)buttons);
+			}
+			delete[] buttons;
+		}
 	}
 	GetClientRect(toolbar, &rc);
 	toolH= rc.bottom;
