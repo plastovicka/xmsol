@@ -2225,33 +2225,12 @@ static TboolValue boolOpts[]={
 		{&halftone, IDC_HALFTONE, 1},
 };
 
-/*
-static TstrValue strOpts[]={
-{extensions,sizeA(extensions),IDC_EXTENSIONS,0},
-};
-
-static TgroupValue groupOpts[]={
-{&audioFilter,IDC_USEDEVICE,IDC_USEDS,3},
-};
-
-static TcomboValue comboOpts[]={
-{&priority,IDC_PRIORITYCOMBO,660,priorTab,sizeA(priorTab),0},
-};
-*/
-
-//
 // Initialize the correct page in the Options window
-//
 BOOL propPageInit(HWND hWnd, UINT mesg, WPARAM wP, LPARAM lP, int curPage)
 {
-	//int j;
 	HWND sheet;
-	//HWND combo;
 	TintValue *ti;
 	TboolValue *tb;
-	//TstrValue *ts;
-	// TgroupValue *tg;
-	//TcomboValue *tc;
 
 	switch(mesg){
 		case WM_INITDIALOG:
@@ -2279,17 +2258,6 @@ BOOL propPageInit(HWND hWnd, UINT mesg, WPARAM wP, LPARAM lP, int curPage)
 					for(tb=boolOpts; tb<endA(boolOpts); tb++){
 						if(tb->dlgId==curPage) *tb->value= IsDlgButtonChecked(hWnd, tb->id);
 					}
-					/*
-					for(ts=strOpts; ts<endA(strOpts); ts++){
-					if(ts->dlgId==curPage) GetDlgItemText(hWnd, ts->id, ts->value, ts->len);
-					}
-					for(tg=groupOpts; tg<endA(groupOpts); tg++){
-					if(tg->dlgId==curPage) *tg->value= getRadioButton(hWnd,tg->first, tg->last);
-					}
-					for(tc=comboOpts; tc<endA(comboOpts); tc++){
-					if(tc->dlgId==curPage) *tc->value= (int) SendMessage(GetDlgItem(hWnd,tc->id),CB_GETCURSEL,0,0);
-					}
-					*/
 					SetWindowLong(hWnd, DWL_MSGRESULT, FALSE);
 					return TRUE;
 				case PSN_SETACTIVE:
@@ -2851,5 +2819,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	DeleteObject(hFont);
 	DeleteObject(bkgndBrush);
 	deleteGames();
+	deleteDarray(menuCards); deleteDarray(menuBack); deleteDarray(menuBkgnd); deleteDarray(menuCell);
+	cleanLang();
 	return 0;
 }

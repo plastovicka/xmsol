@@ -218,6 +218,7 @@ public:
 	int totalPlayed, totalWon, totalTime, totalMoves;
 
 	TplayerFile(){ file=INVALID_HANDLE_VALUE; }
+	~TplayerFile();
 	bool open();
 	bool create(TCHAR *fn);
 	bool read(void *ptr, DWORD len);
@@ -229,6 +230,7 @@ public:
 	int getNameId(TCHAR *s);
 	BYTE *findPosition(BYTE *a, TCHAR *gameName, DWORD num);
 	void readNames();
+	void deleteNames();
 	bool readStat(int action);
 	bool readGameStat();
 	void readPosition(Tboard *b, TCHAR *s, DWORD num);
