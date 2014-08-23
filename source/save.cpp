@@ -13,18 +13,27 @@ TplayerFile playerFile;
 
 //------------------------------------------------------------------
 
+void TplayerFile::deleteNames()
+{
+	for(int j=0; j<gameNames.len; j++){
+		delete[] gameNames[j].name;
+	}
+	gameNames.reset();
+}
+
+TplayerFile::~TplayerFile()
+{
+	deleteNames();
+}
+
 void TplayerFile::readNames()
 {
 	DWORD n, i;
 	BYTE *a=0, *p;
 	TCHAR *s;
 	Tstat *g;
-	int j;
 
-	for(j=0; j<gameNames.len; j++){
-		delete[] gameNames[j].name;
-	}
-	gameNames.reset();
+	deleteNames();
 	if(error) return;
 	try{
 		a=p=new BYTE[pfh.nameLen];

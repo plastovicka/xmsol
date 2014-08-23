@@ -17,6 +17,7 @@ extern int Naccel;
 TCHAR *lng(int i, char *s);
 WCHAR *lng(int i, WCHAR *s);
 void initLang();
+void cleanLang();
 int setLang(int cmd);
 HMENU loadMenu(TCHAR *name, int *subId);
 void loadMenu(HWND hwnd, TCHAR *name, int *subId);

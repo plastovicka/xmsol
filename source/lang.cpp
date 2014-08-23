@@ -43,7 +43,8 @@ TCHAR lang[64];            //name of the current language
 
 static TCHAR *langFile;     //file content (\n are replaced by \0)
 static TCHAR *lngstr[MAXLNGSTR];//pointers to lines in the langFile
-static TCHAR *lngNames[MAXLANG+1];//names of all foundlanguages
+static TCHAR *lngNames[MAXLANG+1];//names of all found languages
+static TCHAR *recycl[MAXLNG_PARALLEL]; //temporary buffers for Unicode strings
 //-------------------------------------------------------------------------
 
 TCHAR *lng(int i, char *s)
@@ -51,7 +52,6 @@ TCHAR *lng(int i, char *s)
 	if(i>=0 && i<sizeA(lngstr) && lngstr[i]) return lngstr[i];
 #ifdef UNICODE
 	if(!s) return 0;
-	static TCHAR *recycl[MAXLNG_PARALLEL];
 	static int ind;
 	int len=strlen(s)+1;
 	TCHAR *w= new TCHAR[len];
@@ -393,5 +393,17 @@ void initLang()
 		lstrcpy(lang, s);
 	}
 	loadLang();
+}
+//---------------------------------------------------------------------------
+void cleanLang()
+{
+	delete[] langFile; langFile=0;
+	for(int i=1; lngNames[i]; i++) delete[] lngNames[i];
+	ZeroMemory(lngNames, sizeof(lngNames));
+
+#ifdef UNICODE
+	for(int j=0; j<MAXLNG_PARALLEL; j++) delete[] recycl[j];
+	ZeroMemory(recycl, sizeof(recycl));
+#endif
 }
 //---------------------------------------------------------------------------
