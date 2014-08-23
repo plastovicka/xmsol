@@ -7,7 +7,9 @@
 #include "hdr.h"
 #include "xmsol.h"
 
-//#include "C:\Program Files (x86)\Visual Leak Detector\include\vld.h"
+#if !defined(NDEBUG) && _MSC_VER==1700
+#include "C:\Program Files (x86)\Visual Leak Detector\include\vld.h"
+#endif
 
 #pragma comment(lib, "version.lib")
 #pragma comment(lib, "comctl32.lib")
@@ -328,16 +330,27 @@ void openUser()
 	}
 }
 
-//
-// Fill "s" with a complete filename, based on an item name found in the specified menu
-//
+// Fill "s" with a filename from folder "mask", based on an item name found in the menu
 void getMenuItem(TCHAR *s, TCHAR *mask, int id)
 {
-	TCHAR buf[128];
-	GetMenuString(GetMenu(hWin), id, buf, sizeA(buf), MF_BYCOMMAND);
+	//get file name from menu
 	_tcscpy(s, mask);
-	_tcscat(s, buf);
-	_tcscat(s, _T(".bmp"));
+	TCHAR* name = _tcschr(s, 0);
+	GetMenuString(GetMenu(hWin), id, name, 100, MF_BYCOMMAND);
+	TCHAR* ext = _tcschr(name, 0);
+	_tcscpy(ext, _T(".*"));
+
+	//find file extension
+	TfileName path;
+	getExeDir(path, s);
+	WIN32_FIND_DATA fd;
+	HANDLE h = FindFirstFile(path, &fd);
+	if(h!=INVALID_HANDLE_VALUE){
+		TCHAR *t=cutExt(fd.cFileName);
+		if(t) _tcscpy(ext, t);
+		FindClose(h);
+	}
+
 	invalidate();
 }
 
@@ -361,7 +374,7 @@ void menuFromDir(TCHAR *mask, int id, Darray<TCHAR*> &array)
 	h = FindFirstFile(buf, &fd);
 	if(h!=INVALID_HANDLE_VALUE){
 		do{
-			if(!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)){
+			if(!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && isImage(fd.cFileName)){
 				*array++= t= dupStr(fd.cFileName);
 				t=cutExt(t);
 				if(t) *t=0;
@@ -981,29 +994,6 @@ void updateStatus()
 }
 
 //------------------------------------------------------------------
-HBITMAP loadBMP(TCHAR *fn)
-{
-	TfileName path;
-	if(fn[0] && fn[1]!=':' && fn[0]!='\\' && (fn[0]!='.' || fn[1]!='.' && fn[1]!='\\'))
-	{
-		getExeDir(path, fn);
-		fn=path;
-	}
-	return (HBITMAP)LoadImage(0, fn, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-}
-
-HBITMAP readBMP(TCHAR *fn, HDC, int *pwidth, int *pheight)
-{
-	HBITMAP fbmp= loadBMP(fn);
-	if(fbmp){
-		BITMAP info;
-		GetObject(fbmp, sizeof(BITMAP), &info);
-		if(pwidth) *pwidth=info.bmWidth;
-		if(pheight) *pheight=info.bmHeight;
-	}
-	return fbmp;
-}
-
 void setBmpCards(HBITMAP h, HDC dc, int W, int H)
 {
 	if(!dcCards) dcCards=CreateCompatibleDC(dc);
@@ -1014,6 +1004,7 @@ void setBmpCards(HBITMAP h, HDC dc, int W, int H)
 	bmpCardH=H;
 }
 
+#ifndef NDEBUG
 void readCardsFromFiles(TCHAR *path)
 {
 	int r, s, w=0, h=0, w1, h1, err=0;
@@ -1051,6 +1042,7 @@ void readCardsFromFiles(TCHAR *path)
 	DeleteDC(dc1);
 	ReleaseDC(hWin, dc);
 }
+#endif
 
 void searchDirMenu(int which, int action)
 {
@@ -1467,10 +1459,10 @@ static int subId[]={405, 404, 403, 408, 402, 406, 401, 400, 407};
 void reloadMenu()
 {
 	loadMenu(hWin, MAKEINTRESOURCE(IDR_MENU), subId);
-	menuFromDir(_T("cards\\*.bmp"), ID_CARDS, menuCards);
-	menuFromDir(_T("back\\*.bmp"), ID_BACK, menuBack);
-	menuFromDir(_T("bkgnd\\*.bmp"), ID_BKGND, menuBkgnd);
-	menuFromDir(_T("cell\\*.bmp"), ID_CELL, menuCell);
+	menuFromDir(_T("cards\\*.*"), ID_CARDS, menuCards);
+	menuFromDir(_T("back\\*.*"), ID_BACK, menuBack);
+	menuFromDir(_T("bkgnd\\*.*"), ID_BKGND, menuBkgnd);
+	menuFromDir(_T("cell\\*.*"), ID_CELL, menuCell);
 	checkMenus();
 	DrawMenuBar(hWin);
 }
