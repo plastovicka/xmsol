@@ -333,8 +333,14 @@ void statusSeed();
 void updateStatus();
 int dtprintf(Darray<TCHAR> &buf, TCHAR *fmt, ...);
 void printDate(TCHAR *buf, int n, time_t date);
+TCHAR *cutExt(TCHAR *fn);
 
 //xml.cpp
 TCHAR *dupStr(TCHAR *s);
+
+//bitmap.cpp
+HBITMAP loadBMP(TCHAR *fn);
+HBITMAP readBMP(TCHAR *fn, HDC, int *pwidth, int *pheight);
+bool isImage(TCHAR *file);
 
 #endif
