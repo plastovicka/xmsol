@@ -7,8 +7,8 @@
 #include "hdr.h"
 #include "xmsol.h"
 
-#if !defined(NDEBUG) && _MSC_VER==1700
-#include "C:\Program Files (x86)\Visual Leak Detector\include\vld.h"
+#if defined(_DEBUG) && _MSC_VER==1700
+//#include "C:\Program Files (x86)\Visual Leak Detector\include\vld.h"
 #endif
 
 #pragma comment(lib, "version.lib")
@@ -65,7 +65,7 @@ corners=15,
  cornersW,
  globalAutoplay=1,
  optionsPage=0,
- halftone=0,
+ halftone=1,
  borderW=15,
  borderH=10,
  flipx=0,
@@ -107,7 +107,8 @@ corners=15,
  SCORE_FOUNDATION=100,
  SCORE_BONUS=5000,
  SCORE_TIME=4,
- RoundRectRgnExtra;
+ RoundRectRgnExtra,
+ Ntoolbar;
 
 bool
 delreg=false,
@@ -176,6 +177,7 @@ struct Treg { char *s; int *i; } regVal[]={
 		{"corners", &corners},
 		{"halftone", &halftone},
 		{"Naccel", &Naccel},
+		{"Ntoolbar", &Ntoolbar},
 };
 
 struct Tregs { char *s; TCHAR *i; DWORD n; } regValS[]={
@@ -318,7 +320,7 @@ void openUser()
 	userOfn.lpstrInitialDir=fnDir;
 	*userOfn.lpstrFile=0;
 	if(GetOpenFileName(&userOfn)){
-		if(GetFileAttributes(userOfn.lpstrFile)==0xFFFFFFFF){
+		if(GetFileAttributes(userOfn.lpstrFile)==INVALID_FILE_ATTRIBUTES){
 			playerFile.create(userOfn.lpstrFile);
 		}
 		else{
@@ -1261,6 +1263,7 @@ void deleteini()
 void writeini()
 {
 	regValB[0].n=Naccel*sizeof(ACCEL);
+	Ntoolbar = SendMessage(toolbar, TB_BUTTONCOUNT, 0, 0);
 
 	if(!configToRegistery)
 	{
@@ -1272,34 +1275,31 @@ void writeini()
 			configToRegistery=true;
 		}
 		else{
-			fclose(f);
-			TCHAR buf[33];
+			fputs("[xmsol]\n", f);
 			for(Treg *u = regVal; u < endA(regVal); u++)
 			{
-				_itot(*(u->i), buf, 10);
-				convertA2T(u->s, t);
-				WritePrivateProfileString(iniSection, t, buf, fnIni);
+				fprintf(f, "%s=%d\n", u->s, *(u->i));
 			}
 			for(Tregs *v = regValS; v < endA(regValS); v++)
 			{
-				convertA2T(v->s, t);
-				WritePrivateProfileString(iniSection, t, v->i, fnIni);
+				fputs(v->s, f);
+				fputc('=', f);
+				_fputts(v->i, f);
+				fputc('\n', f);
 			}
+			fclose(f);
 			for(Tregb *w=regValB; w<endA(regValB); w++){
 				convertA2T(w->s, t);
 				WritePrivateProfileStruct(iniSection, t, w->i, w->n, fnIni);
 			}
 
 			//save toolbar
-			int n = SendMessage(toolbar, TB_BUTTONCOUNT, 0, 0);
-			TBBUTTON* buttons = new TBBUTTON[n];
-			for(int i = 0; i < n; i++)
+			TBBUTTON* buttons = new TBBUTTON[Ntoolbar];
+			for(int i = 0; i < Ntoolbar; i++)
 			{
 				SendMessage(toolbar, TB_GETBUTTON, i, (LPARAM)(buttons + i));
 			}
-			_itot(n, buf, 10);
-			WritePrivateProfileString(iniSection, _T("toolbarCount"), buf, fnIni);
-			WritePrivateProfileStruct(iniSection, _T("toolbar"), buttons, n*sizeof(TBBUTTON), fnIni);
+			WritePrivateProfileStruct(iniSection, _T("toolbar"), buttons, Ntoolbar*sizeof(TBBUTTON), fnIni);
 			delete[] buttons;
 		}
 	}
@@ -2784,7 +2784,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		SendMessage(toolbar, TB_SAVERESTORE, FALSE, (LPARAM)&sp);
 	}
 	else{
-		int n = GetPrivateProfileInt(iniSection, _T("toolbarCount"), 0, fnIni);
+		int n = Ntoolbar;
 		if(n>0 && n<100){
 			TBBUTTON* buttons = new TBBUTTON[n];
 			if(GetPrivateProfileStruct(iniSection, _T("toolbar"), buttons, n*sizeof(TBBUTTON), fnIni)){
@@ -2807,11 +2807,27 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	saveBMP(_T("C:\\a\\.bmp"),bmpCards);
 	return 0;*/
 
-	// Load rules, profile and previous game
+	//load images and rules
 	refresh();
 	loadRules();
+
 	seedGlobal= time(0)+GetTickCount();
+
+	//create default player profile
+	if(!*playerFile.name){
+		getExeDir(playerFile.name, _T("Default.xol"));
+		if(GetFileAttributes(playerFile.name)==INVALID_FILE_ATTRIBUTES)
+			playerFile.create(playerFile.name);
+	}
+	//read player profile from installation folder
+	else if(GetFileAttributes(playerFile.name)==INVALID_FILE_ATTRIBUTES){
+		getExeDir(fnTmp, cutPath(playerFile.name));
+		if(GetFileAttributes(fnTmp)!=INVALID_FILE_ATTRIBUTES) 
+			_tcscpy(playerFile.name, fnTmp);
+	}
 	statusPlayer();
+
+	//load previous game
 	if(gameNum){
 		playerFile.readPosition(&board, gameName, gameNum);
 		playerFile.deletePosition(gameName, gameNum);
@@ -2819,6 +2835,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	}
 	if(!board.number)
 		PostMessage(hWin, WM_COMMAND, ID_LIST, 0);		// No game loaded, let's list some
+
 	curMove=LoadCursor(inst, MAKEINTRESOURCE(IDC_CURSORMOVE));
 	ShowWindow(hWin, maximized && cmdShow==SW_SHOWNORMAL ? SW_SHOWMAXIMIZED : cmdShow);
 	UpdateWindow(hWin);
