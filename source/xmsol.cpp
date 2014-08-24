@@ -203,6 +203,9 @@ OPENFILENAME userOfn={
 	0, 0, 0, 0, 0, 0, 0, _T("XOL"), 0, 0, 0
 };
 
+typedef WINUSERAPI BOOL(WINAPI *pIsHungAppWindow)(HWND hwnd);
+pIsHungAppWindow isHungAppWindow;
+
 //------------------------------------------------------------------
 
 //append formatted text to a buffer
@@ -740,8 +743,16 @@ void Tboard::animate(int dest, int src, int ind, int anim)
 	}
 	else{
 		tick=10;
-		k/=tick;
-		aminmax(k, 1, 500);
+		MSG mesg;
+		if(isHungAppWindow && isHungAppWindow(hWin) &&
+			(PeekMessage(&mesg, NULL, WM_LBUTTONDOWN, WM_LBUTTONDOWN, PM_NOREMOVE)
+			|| PeekMessage(&mesg, NULL, WM_NCLBUTTONDOWN, WM_NCLBUTTONDOWN, PM_NOREMOVE))){
+			k=1;
+		}
+		else{
+			k/=tick;
+			aminmax(k, 1, 500);
+		}
 		dragging=true;
 		dragCell=src;
 		dragInd=ind;
@@ -1860,6 +1871,7 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 	LV_COLUMN lvc;
 	LV_ITEM lvi;
 	LVFINDINFO lfi;
+	RECT rc;
 
 	switch(message){
 		case WM_INITDIALOG:
@@ -1971,6 +1983,17 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 			toolBarVisible=oldT; statusBarVisible=oldS;
 			borderH=oldBH; borderW=oldBW;
 			calcCardW();
+			break;
+		case WM_GETMINMAXINFO:
+			((MINMAXINFO*)lP)->ptMinTrackSize.x = 470;
+			((MINMAXINFO*)lP)->ptMinTrackSize.y = 488;
+			break;
+		case WM_SIZE:
+			//adjust controls positions inside window
+			GetWindowRect(listBox, &rc);
+			i=rc.bottom-rc.top;
+			GetClientRect(hWnd, &rc);
+			SetWindowPos(listBox, 0, 0, 0, rc.right, i, SWP_NOZORDER);
 			break;
 		case WM_NOTIFY:
 			switch(((LPNMHDR)lP)->code){
@@ -2744,6 +2767,8 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		msg("CreateWindow failed");
 		return 3;
 	}
+
+	isHungAppWindow = (pIsHungAppWindow)GetProcAddress(GetModuleHandle(_T("user32.dll")), "IsHungAppWindow");
 
 	HMODULE richLib=LoadLibrary(_T("riched32.dll"));
 	rulesWnd=CreateDialog(inst, MAKEINTRESOURCE(IDD_RULES), hWin, (DLGPROC)rulesProc);
