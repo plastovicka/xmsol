@@ -9,8 +9,8 @@
 207=Change &player profile...
 228=S&tatistics...
 407=&Language
-204=&Customize toolbar
-205=&Keyboard shortcuts
+204=&Customize toolbar...
+205=&Keyboard shortcuts...
 206=&Options...
 233=Save settings to &INI file
 208=Delete settings
@@ -26,9 +26,9 @@
 406=&View
 213=Mirror &left/right
 214=Mirror &up/down
-218=&Increase distance
-219=&Decrease distance
-221=&Show toolbar
+218=&Spread cards
+219=&Tighten cards
+221=Show t&oolbar
 231=Show status&bar
 220=&Refresh
 
