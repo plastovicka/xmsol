@@ -1437,10 +1437,11 @@ void setFont()///
 void accelChanged()
 {
 	DestroyAcceleratorTable(haccel);
-	if(Naccel>0){
+	haccel=0;
+	if(Naccel>0 && accel[0].cmd){
 		haccel= CreateAcceleratorTable(accel, Naccel);
 	}
-	else{
+	if(!haccel){
 		haccel= LoadAccelerators(inst, MAKEINTRESOURCE(IDR_ACCELERATOR));
 		Naccel= CopyAcceleratorTable(haccel, accel, sizeA(accel));
 	}
@@ -2690,6 +2691,12 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					break;
 				case ID_PREV_BACK:
 					searchDirMenu(MENU_BACK, 2);
+					break;
+				case ID_NEXT_CELL:
+					searchDirMenu(MENU_CELL, 1);
+					break;
+				case ID_PREV_CELL:
+					searchDirMenu(MENU_CELL, 2);
 					break;
 				case ID_NEXT_BKGND:
 					searchDirMenu(MENU_BKGND, 1);
