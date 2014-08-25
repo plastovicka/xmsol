@@ -108,7 +108,9 @@ corners=15,
  SCORE_BONUS=5000,
  SCORE_TIME=4,
  RoundRectRgnExtra,
- Ntoolbar;
+ Ntoolbar,
+ gameListX=150, gameListY=90, //game list dialog window size and position 
+ gameListW=550, gameListH=490; 
 
 bool
 delreg=false,
@@ -178,6 +180,10 @@ struct Treg { char *s; int *i; } regVal[]={
 		{"halftone", &halftone},
 		{"Naccel", &Naccel},
 		{"Ntoolbar", &Ntoolbar},
+		{"gameListX", &gameListX},
+		{"gameListY", &gameListY},
+		{"gameListW", &gameListW},
+		{"gameListH", &gameListH},
 };
 
 struct Tregs { char *s; TCHAR *i; DWORD n; } regValS[]={
@@ -1896,6 +1902,8 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 				lvc.pszText= lng(650+i, colNames[i]);
 				ListView_InsertColumn(listBox, i, &lvc);
 			}
+			//restore window position and size
+			MoveWindow(hWnd, gameListX, gameListY, gameListW, gameListH, FALSE);
 			//read statistics from player's file
 			for(j=0; j<games.len; j++){
 				static Tstat zeroStat;
@@ -1960,6 +1968,13 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 						colWidth[i]= (short)ListView_GetColumnWidth(listBox, i);
 					}
 					scrollPos=GetScrollPos(listBox, SB_HORZ);
+					//save window position and size
+					GetWindowRect(hWnd, &rc);
+					gameListX=rc.left;
+					gameListY=rc.top;
+					gameListW=rc.right-rc.left;
+					gameListH=rc.bottom-rc.top;
+					//close dialog window
 					dlgWin=0;
 					EndDialog(hWnd, cmd);
 					if(cmd==IDOK){
@@ -2765,8 +2780,10 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	}
 	scrW= GetSystemMetrics(SM_CXSCREEN);
 	scrH= GetSystemMetrics(SM_CYSCREEN);
-	aminmax(mainLeft, 0, scrW-50);
-	aminmax(mainTop, 0, scrH-50);
+	aminmax(mainLeft, 0, scrW-300);
+	aminmax(mainTop, 0, scrH-200);
+	aminmax(gameListX, 0, scrW-200);
+	aminmax(gameListY, 0, scrH-100);
 	hWin = CreateWindow(CLASSNAME, title,
 		WS_OVERLAPPEDWINDOW | WS_CAPTION | WS_CLIPCHILDREN,
 		mainLeft, mainTop, mainW, mainH, 0, 0, inst, 0);
