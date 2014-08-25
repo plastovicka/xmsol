@@ -59,6 +59,8 @@
 #define ID_SHOWSTATUSBAR                231
 #define	ID_FAST_FORWARD                 232
 #define ID_TOGGLEREGISTERY              233
+#define ID_NEXT_CELL                    234
+#define ID_PREV_CELL                    235
 #define IDC_SCMD                        510
 #define IDC_SKEY                        511
 #define IDC_AUTOPLAY                    514

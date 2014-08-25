@@ -109,6 +109,9 @@ BEGIN
     "N",            ID_NEXT_CARD,           VIRTKEY, CONTROL, NOINVERT
     "N",            ID_PREV_CARD,           VIRTKEY, SHIFT, CONTROL, 
                                                     NOINVERT
+    "L",            ID_NEXT_CELL,           VIRTKEY, CONTROL, NOINVERT
+    "L",            ID_PREV_CELL,           VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
     VK_DELETE,      ID_UNDO,                VIRTKEY, NOINVERT
     VK_DOWN,        ID_INCR_SEQ,            VIRTKEY, ALT, NOINVERT
     VK_END,         ID_REDO_ALL,            VIRTKEY, NOINVERT
@@ -180,10 +183,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM ".",                           ID_CARDS
     END
-    POPUP "C&ell"
-    BEGIN
-        MENUITEM ".",                           ID_CELL
-    END
     POPUP "Card bac&k"
     BEGIN
         MENUITEM "&Next",                       ID_NEXT_BACK
@@ -191,7 +190,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM ".",                           ID_BACK
     END
-    POPUP "&Background"
+		POPUP "C&ell"
+		BEGIN
+			MENUITEM "&Next", ID_NEXT_CELL
+			MENUITEM "&Previous", ID_PREV_CELL
+			MENUITEM SEPARATOR
+			MENUITEM ".", ID_CELL
+		END
+		POPUP "&Background"
     BEGIN
         MENUITEM "&Next",                       ID_NEXT_BKGND
         MENUITEM "&Previous",                   ID_PREV_BKGND
