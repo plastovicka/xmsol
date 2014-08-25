@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>MODS - Graphics</h1>
+		<p>Supported image formats are BMP, JPEG, PNG, GIF, TIFF on Windows XP or later. If you have Windows 2000 or older, you must convert all images to BMP format.</p>
+		<h2>Add your own background</h2>
+		<p>Backgrounds must be located in the "bkgnd" folder. This picture can be any size. It will be tiled in the background at its original scale.</p>
+		<h2>Add your own cells</h2>
+		<p>Images of placeholders for foundations, piles and stock must be located in the "cell" folder. The picture width (in pixels) must be a multiple of 16 as it contains 16 different elements: 13 foundations (one per card value: A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K), 1 empty tableau, and 2 stock pictures (the first is "empty" or "no more cards", the second is "redeal"). Note that cells are resized according to the length of the currently selected deck of card. </p>
+		<h2>Add your own deck</h2>
+		<p>The deck must be located in the "cards" folder. This picture stores the front of each card. The width (in pixels) must be a multiple of 13 and its height (in pixels) must be a multiple of 4. The deck is therefore organized in 13 columns (one column per value) and 4 rows (one row per suit). Columns are respectively (left to right): A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q and K. Rows are respectively (top to bottom): Hearts (red), Diamonds (usually red), Clubs (usually black) and Spades (black).</p>
+		<h2>Add your own card back</h2>
+		<p>This picture is the back of every card and it must be located in the "back" folder. Note that the back of cards is resized according to the front picture size.</p>
+	</body>
+</html>

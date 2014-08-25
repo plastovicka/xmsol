@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>Options</h1>
+		<h3>Animation</h3>
+		<dl>
+			<dt>Enable autoplay:</dt><dd>Cards will be automatically moved to foundation cells whenever game rules allow it.</dd>
+		</dl>
+<p>You can adjust duration of animations (moving a card from one pile to another). If you switch the animation off, cards will appear instantly on a destination pile.</p>
+		<h3>Display</h3>
+		<dl>
+			<dt>Rounded card corners:</dt><dd>radius in pixels of rounded corners. You can set this value to zero if you want rectangular cards or if you have very slow processor.</dd>
+			<dt>Use halftone mode to stretch cards bitmap:</dt><dd>smooth image scaling</dd>
+			<dt>Windows borders:</dt><dd>size of the empty space around the board</dd>
+			<dt>Distance between cards in a tableau:</dt><dd>If you set distances too big, some cards may get out of the window. If you set distances too small, card numbers will not be visible. Most games have vertical piles. Some games (e.g. Fan, Avenue) have horizontal piles.</dd>
+		</dl>
+		<h3>Score</h3>
+		<dl>
+			<dt>Move to a foundation:</dt><dd>score for every card that is placed on a foundation pile. Some games (e.g. Fan Nine) don't have any foundations. In such cases the score is calculated for every completed column. </dd>
+			<dt>Unhide a reversed card:</dt><dd>Some games (e.g. Klondike) have several cards face down at the beginning of a game. After you get to hidden cards, they will be turned face up and the score will be increased.</dd>
+			<dt>Bonus for a win:</dt><dd>Bonus is added to score if you successfully finish a game.</dd>
+			<dt>Undo:</dt><dd>Penalty for using Undo function. It is not important how many moves are undone (e.g. you can undo multiple moves at once or return to the start). The score is not changed if you redo moves just after they are undone. </dd>
+			<dt>Wrong right-click move:</dt><dd>Penalty for right-click on a card which cannot be moved.</dd>
+			<dt>Redeal:</dt><dd>Click on a "Redeal" button (when a stock is empty). Be careful especially when a stock has unlimited redeals because you can gain negative score. </dd>
+			<dt>Time:</dt><dd>Penalty for every second of gameplay. It is subtracted from bonus if you have won. You must play faster to achieve better score. </dd>
+		</dl>
+	</body>
+</html>
