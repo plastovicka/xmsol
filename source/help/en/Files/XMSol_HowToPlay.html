@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>How to play</h1>
+		<h2>Basic concepts</h2>
+		<h3>New Game</h3>
+		<p>The first time XMSolitaire is launched, the game rules window appears. Select a game in the list on the left then click OK to start a new game. Next time XMSolitaire is launched, the previously started game is automatically loaded. You can change the game type anytime in "Game &gt; Select Game..."</p>
+		<p>Don't forget to create a file for your high scores and statistics (use the menu command "Game" > "Change player profile"). </p>
+		<h3>Gameplay</h3>
+		<p>To complete a solitaire game, you must rearrange the cards in a specific sequence (Freecell) or pairing (Add Up Tens). Most of the time, the sequence must be built on top of a foundation using cards found in tableaux and stocks (Klondike). Other times, you can only use tableaux to rebuilt the sequence (Fan Nine). Before moving a card, you need to know where it's coming from, where it's going, how it interacts with other cards and if the destination will allow more cards in its stack, since each stack has its own set of rules. But that depends on the game, really (more about it in the next section).</p>
+		<dl>
+			<dt>Drag and drop:</dt><dd>Place the mouse pointer on a card, press the left mouse button, move the card to a new position and then release the mouse button. The mouse cursor is changed to an up arrow whenever it is allowed to drop the card on a pile.</dd>
+			<dt>Smart play:</dt><dd>When you right click on a card, the computer decides where to move that card. It is fast, but it does not work well for all games. The computer sometimes doesn't choose a destination you expected. If the card cannot be moved, your score will be decreased. Double-click a card to move it to a foundation or a cell. If you have free cells and moreover some tableau columns empty, the double-click moves the card to a free cell whereas right-click moves the card to an empty tableau column.</dd>
+			<dt>Stock pile:</dt><dd>You can click on a stock by left or right mouse button. One or more cards will be moved according to game rules. Cards can be moved to a waste or to tableau piles. Sometimes a Redeal text appears when a stock is empty. Just click on it and all cards will be returned to the stock or tableau piles will be shuffled, depending on the game rules.</dd>
+			<dt>Turn over a card:</dt><dd>click on a face down card and it will be turned to face up. The game Blind Patience uses this rule, however most games turn over cards automatically.</dd>
+		</dl>
+		<h2>Learning new rules</h2>
+		<h3>Rule sheet</h3>
+		<p>Go to "Help &gt; Rules..." (during gameplay) or "Game &gt; Select Game... &gt; Rules" (when picking a new game) to display the game rules. The rule sheet may look a bit confusing at first, but you'll get the hang of it. The sheet starts with the general game properties: how many decks of cards are required, what cards are used/rejected, the basic gameplay (pairing or sequence building) and so on. Then comes a list of every layout component: amount of stocks, wastes, cells, foundations, tableaux... and the properties of these components.</p>
+		<h3>Rules properties</h3>
+		<dl>
+			<dt>Pairs:</dt><dd>Paring rule (the two cards must add up to the specified value, or they must be from the same color/suit/rank).</dd>
+			<dt>Ranks:</dt><dd>Cards needed for the game (sometimes, some cards are taken out of the deck before the game begin).</dd>
+			<dt>Decks:</dt><dd>Decks needed for the game (sometimes, more than one deck is used).</dd>
+		</dl>
+		<h3>Piles properties</h3>
+		<dl>
+			<dt>The first card rank:</dt><dd>Rank of the lowest card in the pile, on top of which every other card will be added.</dd>
+			<dt>The first card suit:</dt><dd>Suit of the lowest card in the pile, on top of which every other card will be added.</dd>
+			<dt>Maximum cards per pile:</dt><dd>How many cards can be put in the same pile.</dd>
+			<dt>Sequence rank:</dt><dd>The rank has an importance when building the sequence, can be descending (added cards must be of a lower rank than the card below), ascending (added cards must be of a higher rank than the card below), or descending/ascending continual (goes from ace of heart to king of Heart, then Diamond, Club and Spade).</dd>
+			<dt>Sequence suit:</dt><dd>The suit has an importance when building the sequence, can be same (added cards must be of the same suit), alternating color (can be any symbol as long as the color is different).</dd>
+			<dt>Moving group of cards:</dt><dd>Rules for moving multiples card in one lump out of the pile, can be "yes" (no rule), "any sequence" (only the lowest card of the group is important). If this is not specified, you can only move group of cards of the same suit, following the general sequence rules.</dd>
+			<dt>Deal:</dt><dd>How many cards are dealt per use (stock).</dd>
+			<dt>Redeals:</dt><dd>How many times the stock can be depleted.</dd>
+			<dt>No building:</dt><dd>It's not possible to add cards to the pile.</dd>
+			<dt>Spaces cannot be filled:</dt><dd>The pile is unusable if there's no card in it.</dd>
+			<dt>Move only from/to:</dt><dd>Cards can only be moved from/to the specified structure.</dd>
+		</dl>
+		<h3>Glossary</h3>
+		<dl>
+			<dt>Stock:</dt><dd>A stack of card (usually face-down) that can be picked and moved to the waste.</dd>
+			<dt>Waste:</dt><dd>A "temporary" stack, only cards coming from the stock goes there.</dd>
+			<dt>Cell:</dt><dd>A "temporary" stack, you can usually put any card there for later.</dd>
+			<dt>Foundation:</dt><dd>where the cards from the tableaux must go. Foundations most often have their own sequence rule (you can only add a card to the stack under certain conditions, generally "same suit" and "ascending rank")</dd>
+			<dt>Rank:</dt><dd>The "value" of a card. 1 for Ace (A), 2 through 10, then 11 for Jack (J), 12 for Queen (Q) and 13 for King (K). The value is a parameter independent to the color/suit.</dd>
+			<dt>Suit:</dt><dd>The "symbol" and "color" of a card. S for Spades (always black), C for Clubs (black), H for Hearts (always red), D for Diamonds (red).</dd>
+		</dl>
+	</body>
+</html>

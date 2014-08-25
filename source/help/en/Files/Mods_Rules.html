@@ -1,0 +1,251 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>MODS - Game rules</h1>
+		<p>Rules are simple XML files (standard text files using "extensible markup language" formating) located in the "Rules" folder. You shouldn't edit "standard.xml": create your own file instead as XMSolitaire will parse every XML file located in "Rules" on startup.<p>
+		<h2>XML basic concept</h2>
+		<p>XML files are human-readable text files designed to organize data using tags. Each tag describes a function and can include attributes, which provides further informations as how to process that function. Tags embed elements (tags, or other), which belongs to their parents:</p>
+		<div class='codestart'>
+			&lt;List&gt;
+			<div>
+				&lt;NewElement&gt;<br />
+				<div>
+					&lt;Name name="One" /&gt;<br />
+					&lt;Color chroma="blue" /&gt;<br />
+				</div>
+				&lt;/NewElement&gt;<br />
+			</div><div>
+				&lt;NewElement&gt;<br />
+				<div>
+					&lt;ElementName name="Two" /&gt;<br />
+					&lt;Color chroma="red" /&gt;<br />
+				</div>
+				&lt;/NewElement&gt;<br />
+			</div>
+			&lt;/List&gt;
+		</div>
+		<p>In the above example, &lt;List&gt; and &lt;NewElement&gt; are start-tags, &lt;/List&gt; and &lt;/NewElement&gt; are end-tags. &lt;Name /&gt; and &lt;Color /&gt; are empty-element tags (the tag close itself). Both &lt;NewElement&gt; tags belongs to (are elements of) &lt;List&gt;. Tags &lt;Name&gt; and &lt;Color&gt; are defined for each &lt;NewElement&gt;, both tags belong to their direct parent and so on. "name" is an attribute of &lt;Name&gt; and "chroma" is an attribute of &lt;Color&gt;, these tags (&lt;Name&gt; and &lt;Color&gt;) differentiate even further each &lt;NewElement&gt;.</p>
+		<div class='codestart'>
+			&lt;Paint color="blue"&gt;chair sheets car&lt;/Paint&gt;<br />
+			water air<br />
+			&lt;Paint color="red"&gt;box ashtray shoes&lt;/Paint&gt;<br />
+		</div>
+		<p>In this second example, a list of elements ("chair sheets car", "water air" and "box ashtray shoes") are to be painted. The first list will be paint in "blue", the second list will not be paint at all and the third list will be paint in "red".</p>
+		<p>Even though both examples use random tag names, the concept remain the same: data is structured through the use of tags.</p>
+		<h2>Signature tag</h2>
+		<p>The XML file must be signed properly for XMSolitaire to load it, use &lt;xmsol&gt; and &lt;/xmsol&gt; to encase your game rules.</p>
+		<h3>Tags</h3>
+		<div class='codestart'>
+			&lt;xmsol&gt;<span>Tag content as an XMSol file.</span><br />
+		</div>
+		<h3>Attributes</h3>
+		<p>There is no attribute for this tag.</p>
+		<h3>Elements</h3>
+		<p>&lt;game&gt; is a direct subtag of &lt;xmsol&gt;.</p>
+		<h2>Game tag</h2>
+		<h3>Tags</h3>
+		<p>Encase the rules of a game between &lt;game&gt; and &lt;/game&gt;. There can be more than one &lt;game&gt; tag per file, as long as each &lt;game&gt; is encased between the &lt;xmsol&gt; and &lt;/xmsol&gt; tags.</p>
+		<div class='codestart'>
+			&lt;game&gt;<span>Regroups the rules of a new game and defines the parameters of that game.</span><br />
+		</div>
+		<h3>Attributes</h3>
+		<div class='codestart'>
+			name<span>Name of the game as displayed in the rules list</span><br />
+			<div>
+				[string]<span>Name of the game</span><br />
+			</div><br />
+			decks<span>How many decks this game requires (default: "1")</span><br />
+			<div>
+				[integer]<span>Amount of decks</span><br />
+			</div><br />
+			autoplay<span>Autoplay mode (default: "1")</span><br />
+			<div>
+				0<span>Forbid autoplay</span><br />
+				1<span>Allow autoplay</span><br />
+			</div><br />
+			pair<span>Conditional pairing (default: "0" -- no condition)</span><br />
+			<div>
+				[integer]<span>The value of both cards must add up to [integer]</span><br />
+				suit<span>Both cards belongs to the same suit</span><br />
+				rank<span>Both cards have the same value</span><br />
+				rankcolor<span>Both cards have the same color and value</span><br />
+			</div><br />
+			suit<span>Suit(s) required for this game (default: "schd")</span><br />
+			<div>
+				s<span>Spades cards are required</span><br />
+				c<span>Clubs cards are required</span><br />
+				h<span>Hearts cards are required</span><br />
+				d<span>Diamonds cards are required</span><br />
+			</div><br />
+			rank<span>Value(s) required for this game (default: "a2345678910jqk")</span><br />
+			<div>
+				a<span>Aces required</span><br />
+				2<span>"2" cards required</span><br />
+				3<span>"3" cards required</span><br />
+				4<span>"4" cards required</span><br />
+				5<span>"5" cards required</span><br />
+				6<span>"6" cards required</span><br />
+				7<span>"7" cards required</span><br />
+				8<span>"8" cards required</span><br />
+				9<span>"9" cards required</span><br />
+				10<span>"10" cards required</span><br />
+				j<span>Jacks required</span><br />
+				q<span>Queens required</span><br />
+				k<span>Kings required</span><br />
+			</div>
+		</div>
+		<h3>Elements</h3>
+		<p>&lt;stock&gt;, &lt;reserve&gt;, &lt;tableau&gt;, &lt;waste&gt;, &lt;foundation&gt; and &lt;cell&gt; are direct subtags of &lt;game&gt;.</p>
+		<h2>Item tags</h2>
+		<p>Defines one or more items (placeholders if you will) per tag; the attributes are shared through every item of the same batch.</p>
+		<h3>Tags</h3>
+		<div class='codestart'>
+			&lt;stock&gt;<span>Add one (or more) stock</span><br />
+			&lt;reserve&gt;<span>Add one (or more) reserve</span><br />
+			&lt;tableau&gt;<span>Add one (or more) tableau</span><br />
+			&lt;waste&gt;<span>Add one (or more) waste</span><br />
+			&lt;foundation&gt;<span>Add one (or more) foundation</span><br />
+			&lt;cell&gt;<span>Add one (or more) cell</span><br />
+		</div>
+		<h3>Attributes</h3>
+		<div class='codestart'>
+			x<span>Horizontal position of the first item of the batch.</span><br />
+			<div>
+				[integer]<span>Leftmost coordinate of the first item.</span><br />
+			</div><br />
+			y<span>Vertical position of the first item of the batch.</span><br />
+			<div>
+				[integer]<span>Upmost coordinate of the first item.</span><br />
+			</div><br />
+			w<span>Width of one item on the board.</span><br />
+			<div>
+				[integer]<span>Each item is [integer] units wide.</span><br />
+			</div><br />
+			h<span>Height of one item on the board.</span><br />
+			<div>
+				[integer]<span>Each item is [integer] units tall.</span><br />
+			</div><br />
+			repeat<span>Amount of items in the batch.</span><br />
+			<div>
+				[integer]<span>Create [integer] items in this batch.</span><br />
+			</div><br />
+			lines<span>How many lines are formed through this batch (default: "1")</span><br />
+			<div>
+				[integer]<span>Spread through [integer] lines.</span><br />
+			</div><br />
+			count<span>How many cards are distributed through the whole batch.</span><br />
+			<div>
+				[integer]<span>Distribute [integer] cards through each item in the batch.</span><br />
+			</div><br />
+			max<span>Maximum amount of cards stacked per item</span><br />
+			<div>
+				[integer]<span>Each item can stack up to [integer] cards</span><br />
+			</div><br />
+			autoplay<span>Autoplay mode</span><br />
+			<div>
+				0<span>Always disable autoplay</span><br />
+				1<span>Always enable autoplay</span><br />
+				base<span>User's settings</span><br />
+			</div><br />
+			deal<span>How cards are dealt when the stock/foundation is used (default: "1")</span><br />
+			<div>
+				[integer]<span>Amount of cards to distribute when the stock is used</span><br />
+				fill<span></span><br />
+				gaps<span></span><br />
+				bottomtotop<span></span><br />
+				max<span></span><br />
+				start<span></span><br />
+				start1<span></span><br />
+				start_col<span></span><br />
+			</div><br />
+			fill<span></span><br />
+			<div>
+				[integer]<span></span><br />
+			</div><br />
+			redeal<span>How many times cards can be redealt</span><br />
+			<div>
+				[integer]<span>Cards can be redealt [integer] times</span><br />
+				inf<span>Cards can be redealt infinitely</span><br />
+			</div><br />
+			shuffle<span></span><br />
+			<div>
+				rand<span></span><br />
+			</div><br />
+			dir<span>Defines the direction of the stack</span><br />
+			<div>
+				left<span>Cards are spreading to the left</span><br />
+				right<span>Cards are spreading to the right</span><br />
+				up<span>Cards are spreading upward</span><br />
+				down<span>Cards are spreading downward</span><br />
+				no<span>Cards are properly stacked</span><br />
+			</div><br />
+			spacing<span>Card spacing</span><br />
+			<div>
+				[integer]<span>Space each card in the stack by [integer] units</span><br />
+			</div><br />
+			prev<span></span><br />
+			<div>
+				[integer]<span></span><br />
+				left<span></span><br />
+				right<span></span><br />
+				up<span></span><br />
+				down<span></span><br />
+			</div><br />
+			hide<span>Defines what cards are face down in the same stack</span><br />
+			<div>
+				[integer]<span>[integer] cards are face down (0+: relative to the bottom of the stack, 0-: top of the stack)</span><br />
+				all<span>Turn every card face down</span><br />
+				odd<span>Turn every odd card face down (starts with the highest on the stack)</span><br />
+				even<span>Turn every even card face down (starts with the second highest on the stack)</span><br />
+			</div><br />
+			onhid<span></span><br />
+			<div>
+				any<span></span><br />
+				k<span></span><br />
+			</div><br />
+			shape<span>How cards are distributed through the batch.</span><br />
+			<div>
+				incr<span>Add one more card for each new item</span><br />
+				decr<span>Remove one card for each new item</span><br />
+				incr2<span></span><br />
+				decr2<span></span><br />
+				pyramid<span></span><br />
+				braid<span></span><br />
+				bind<span></span><br />
+				left<span></span><br />
+				right<span></span><br />
+				center<span></span><br />
+				side<span></span><br />
+				first<span></span><br />
+				last<span></span><br />
+			</div><br />
+			under<span></span><br />
+			<div>
+				next<span></span><br />
+				next+1<span></span><br />
+				waste<span></span><br />
+			</div><br />
+			under2<span></span><br />
+			<div>
+				[integer]<span></span><br />
+				next<span></span><br />
+				next+1<span></span><br />
+				waste<span></span><br />
+			</div>
+		</div>
+		<h3>Elements</h3>
+		<p>&lt;out&gt; is a direct subtag of any item-type tag (&lt;stock&gt;, &lt;reserve&gt;, &lt;tableau&gt;, &lt;waste&gt;, &lt;foundation&gt; and &lt;cell&gt;)</p>
+		<p>PLENTY</p>
+		<h2>Out tag</h2>
+		<h3>Tags</h3>
+		<div class='codestart'>
+			&lt;out&gt;<span>Can only be included between item-type tags.</span><br />
+		</div>
+		<h3>Attributes</h3>
+		<p>There are no attributes for theses tags.</p>
+		<h3>Elements</h3>
+		<p>PLENTY</p>
+	</body>
+</html>
