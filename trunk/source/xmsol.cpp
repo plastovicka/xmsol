@@ -65,7 +65,7 @@ corners=15,
  cornersW,
  globalAutoplay=1,
  optionsPage=0,
- halftone=1,
+ halftone=0,
  borderW=15,
  borderH=10,
  flipx=0,
@@ -1466,7 +1466,7 @@ void checkMenus()
 	checkFlipMenu();
 }
 
-static int subId[]={405, 404, 403, 408, 402, 406, 401, 400, 407};
+static int subId[]={405, 404, 408, 403, 402, 406, 401, 400, 407};
 
 void reloadMenu()
 {

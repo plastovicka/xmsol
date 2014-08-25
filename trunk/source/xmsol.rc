@@ -148,8 +148,8 @@ BEGIN
         BEGIN
             MENUITEM ".",                           29999
         END
-        MENUITEM "&Customize toolbar",          ID_TOOLBAR
-        MENUITEM "&Keyboard shortcuts",         ID_KEYS
+        MENUITEM "&Customize toolbar...",          ID_TOOLBAR
+        MENUITEM "&Keyboard shortcuts...",         ID_KEYS
         MENUITEM "&Options...",                 ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Save settings to &INI file",  ID_TOGGLEREGISTERY
@@ -169,10 +169,10 @@ BEGIN
         MENUITEM "Mirror &left/right",          ID_MIRROR_LR
         MENUITEM "Mirror &up/down",             ID_MIRROR_UD
         MENUITEM SEPARATOR
-        MENUITEM "&Increase distance",          ID_INCR_SEQ
-        MENUITEM "&Decrease distance",          ID_DECR_SEQ
+        MENUITEM "&Spread cards",          ID_INCR_SEQ
+        MENUITEM "&Tighten cards",          ID_DECR_SEQ
         MENUITEM SEPARATOR
-        MENUITEM "&Show toolbar",               ID_SHOWTOOLBAR
+        MENUITEM "Show t&oolbar",               ID_SHOWTOOLBAR
         MENUITEM "Show status&bar",             ID_SHOWSTATUSBAR
         MENUITEM "&Refresh",                    ID_REFRESH
     END

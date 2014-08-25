@@ -121,16 +121,31 @@ HBITMAP readBMP(TCHAR *fn, HDC, int *pwidth, int *pheight)
 }
 
 
-static TCHAR *ImgExt[] ={_T(".bmp"), _T(".jpeg"), _T(".png"), _T(".gif"), _T(".jpg")};
+static TCHAR *ImgExt[] ={_T(".bmp"), _T(".jpeg"), _T(".png"), _T(".gif"), _T(".jpg"), _T(".tiff"), _T(".tif")};
 
 bool isImage(TCHAR *file)
 {
 	TCHAR* ext = cutExt(file);
 	if(ext)
 	{
-		for(TCHAR **p = ImgExt; p < endA(ImgExt); p++)
+		static int formats;
+		if(!formats){
+			formats=1;
+			HMODULE lib = LoadLibrary(_T("gdiplus.dll"));
+			if(lib){
+				FreeLibrary(lib);
+				formats=2;
+			}
+		}
+		if(formats==1) //Windows 98/2000
 		{
-			if(!_tcsicmp(ext, *p)) return true;
+			if(!_tcsicmp(ext, _T(".bmp"))) return true;
+		}
+		else{
+			for(TCHAR **p = ImgExt; p < endA(ImgExt); p++)
+			{
+				if(!_tcsicmp(ext, *p)) return true;
+			}
 		}
 	}
 	return false;
