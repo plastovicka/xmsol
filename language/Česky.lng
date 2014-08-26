@@ -139,15 +139,15 @@
 903=neomezeno
 904=Maximální poèet karet
 905=Volné místo nelze zaplnit
-906=Hodnost první karty
+906=Hodnota první karty
 907=Barva první karty
 908=Nelze pøidávat další karty
-909=Hodnost následujících karet:
+909=Hodnota následujících karet:
 910=cyklicky
 911=Barva následujících karet
 912=Pøesun skupiny karet:
 913=Poèet barev
-914=Hodnosti
+914=Hodnoty
 915=Rozdat
 916=Odchozí pravidla
 917=Pøesun jen z
@@ -191,9 +191,9 @@
 1065=klesající liché nebo sudé
 1066=rostoucí liché nebo sudé
 1067=nahoru nebo dolù, liché nebo sudé
-1068=stejná hodnost
+1068=stejná hodnota
 1069=nahoru nebo dolù nebo stejná
-1070=v pøedchozí hromádce je karta se stejnou hodností
+1070=v pøedchozí hromádce je karta se stejnou hodnotou
 1071=Pøedchozí hromádka musí být plná
 1072=vìtší
 1073=menší
@@ -214,8 +214,8 @@
 1104=talón
 1105=odpad
 1120=stejná barva
-1121=stejná hodnost
-1122=hodnost i barva stejná
+1121=stejná hodnota
+1122=hodnota i barva stejná
 
 ;chybové hlášky
 730=Nelze otevøít soubor %s

@@ -16,15 +16,17 @@
 401=&Mouvements
 209=&Défaire
 210=&Refaire
-211=Défaire tout
-212=Refaire tout
+211=Défaire &tout
+212=Refaire t&out
+232=&Avance rapide
 
 406=&Vue
 213=Mirroir &gzuche/droite
 214=Mirroir &haut/bas
 218=&Augmenter distance
 219=&Diminuer distance
-221=&Voir toolbar
+221=Afficher la &barre d'outils
+231=Afficher la barre de &status
 220=&Refresh
 
 402=&Cartes
@@ -32,6 +34,8 @@
 230=&Précédant
 
 408=Cellules
+234=&Suivant
+235=&Précédant
 
 403=Dos de carfes
 222=&Suivant
@@ -106,6 +110,7 @@
 681=Score
 683=Mouvements
 682=Done
+684=Distribution
 
 97=Ctrl+
 98=Shift+
@@ -249,3 +254,4 @@
 1211=Tout refaire
 1206=Options
 1216=Règles
+1232=Avance rapide
