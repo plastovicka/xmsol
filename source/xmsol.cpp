@@ -2403,6 +2403,7 @@ void options()
 LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int i, notif;
+	static bool helpVisible;
 
 	switch(message){
 
@@ -2523,6 +2524,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 
 		case WM_CLOSE:
 			SendMessage(hWin, WM_COMMAND, ID_EXIT, 0);
+			if(helpVisible) HtmlHelp(NULL, NULL, 18, NULL); //HH_CLOSE_ALL
 			break;
 
 		case WM_QUERYENDSESSION:
@@ -2574,10 +2576,9 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					_stprintf(buf2, _T("%s:Zone.Identifier:$DATA"), buf);
 					DeleteFile(buf2); //delete only alternate data stream
 
-					if(!HtmlHelp(0, buf, 0, 0)){
-						if(ShellExecute(0, _T("open"), buf, 0, 0, SW_SHOWNORMAL)==(HINSTANCE)ERROR_FILE_NOT_FOUND){
-							msglng(730, "Cannot open %s", buf);
-						}
+					if(HtmlHelp(0, buf, 0, 0)) helpVisible=true;
+					else if(ShellExecute(0, _T("open"), buf, 0, 0, SW_SHOWNORMAL)==(HINSTANCE)ERROR_FILE_NOT_FOUND){
+						msglng(730, "Cannot open %s", buf);
 					}
 				}
 					break;
