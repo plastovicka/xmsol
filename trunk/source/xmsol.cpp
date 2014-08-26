@@ -984,9 +984,9 @@ void statusSeed()
 }
 
 // Display CARDS IN THE STACK in the status bar
+static int last;
 void statusNcard()
 {
-	static int last;
 	if(currentPile>=0 && currentPile<board.cells.len){
 		int i= board.cells[currentPile].Ncards;
 		if(last!=i){
@@ -1008,7 +1008,7 @@ void updateStatus()
 	statusScore();
 	statusDone();
 	statusMoves();
-	statusNcard();
+	last=-2; statusNcard();
 	statusSeed();
 }
 
@@ -2803,7 +2803,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 
 	// Create status bar
 	statusbar= CreateStatusWindow(WS_CHILD, 0, hWin, 1);
-	static int parts[] ={100, 200, 350, 450, 540, 670, -1};
+	static int parts[] ={100, 200, 350, 450, 540, 675, -1};
 	dc=GetDC(hWin);
 	for(i=0; i<sizeA(parts)-1; i++){
 		parts[i]=parts[i]*GetDeviceCaps(dc, LOGPIXELSX)/96;
