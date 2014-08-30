@@ -5,6 +5,9 @@ Copyright (C) 1998 Jonathan Blandford <jrb@mit.edu>
 Copyright (C) 1998 Markus F.X.J. Oberhumer <markus.oberhumer@jk.uni-linz.ac.at>
 
 
+*** dondorf ***
+http://www.wopc.co.uk/germany/dondorf/
+
 *** dondorf-whist-b ***
 Copyright (C) 2000 T. Kirk <grania@mailcity.com>
 This card set uses the court and Ace images from a deck published
@@ -73,6 +76,10 @@ adapted from Nicu's Playing Cards.
 See http://www.nicubunu.ro/cards/ for Nicu Buculei's other works.
 Copyright (C) 2005 Nicu Buculei.
 Copyright (C) 2007 Skomoroh.
+
+
+*** saks-fifth-avenue ***
+http://www.wopc.co.uk/germany/dondorf/
 
 
 *** seminole-war ***

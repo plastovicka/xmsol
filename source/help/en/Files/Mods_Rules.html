@@ -111,23 +111,23 @@
 		</div>
 		<h3>Attributes</h3>
 		<div class='codestart'>
-			x<span>Horizontal position of the first item of the batch.</span><br />
+			x<span>Horizontal position of the first item of the batch. (default: "0")</span><br />
 			<div>
 				[integer]<span>Leftmost coordinate of the first item.</span><br />
 			</div><br />
-			y<span>Vertical position of the first item of the batch.</span><br />
+			y<span>Vertical position of the first item of the batch. (default: "0")</span><br />
 			<div>
 				[integer]<span>Upmost coordinate of the first item.</span><br />
 			</div><br />
-			w<span>Width of one item on the board.</span><br />
+			w<span>Width of one item on the board. (default: "1000")</span><br />
 			<div>
 				[integer]<span>Each item is [integer] units wide.</span><br />
 			</div><br />
-			h<span>Height of one item on the board.</span><br />
+			h<span>Height of one item on the board. (default: "1000")</span><br />
 			<div>
 				[integer]<span>Each item is [integer] units tall.</span><br />
 			</div><br />
-			repeat<span>Amount of items in the batch.</span><br />
+			repeat<span>Amount of items in the batch. (default: "1")</span><br />
 			<div>
 				[integer]<span>Create [integer] items in this batch.</span><br />
 			</div><br />
@@ -135,11 +135,11 @@
 			<div>
 				[integer]<span>Spread through [integer] lines.</span><br />
 			</div><br />
-			count<span>How many cards are distributed through the whole batch.</span><br />
+			count<span>How many cards are distributed through the whole batch. (default: "0")</span><br />
 			<div>
 				[integer]<span>Distribute [integer] cards through each item in the batch.</span><br />
 			</div><br />
-			max<span>Maximum amount of cards stacked per item</span><br />
+			max<span>Maximum amount of cards stacked per item. (default: "255")</span><br />
 			<div>
 				[integer]<span>Each item can stack up to [integer] cards</span><br />
 			</div><br />
@@ -181,11 +181,11 @@
 				down<span>Cards are spreading downward</span><br />
 				no<span>Cards are properly stacked</span><br />
 			</div><br />
-			spacing<span>Card spacing</span><br />
+			spacing<span>Card spacing (default: 100)</span><br />
 			<div>
 				[integer]<span>Space each card in the stack by [integer] units</span><br />
 			</div><br />
-			prev<span></span><br />
+			prev<span>index or direction of previous cell, used only if prev sub-element exists</span><br />
 			<div>
 				[integer]<span></span><br />
 				left<span></span><br />
@@ -200,10 +200,10 @@
 				odd<span>Turn every odd card face down (starts with the highest on the stack)</span><br />
 				even<span>Turn every even card face down (starts with the second highest on the stack)</span><br />
 			</div><br />
-			onhid<span></span><br />
+			onhid<span>what card can be placed on a hidden card, the card is not turned automatically if this attribute is defined</span><br />
 			<div>
 				any<span></span><br />
-				k<span></span><br />
+				k<span>only king</span><br />
 			</div><br />
 			shape<span>How cards are distributed through the batch.</span><br />
 			<div>
@@ -221,31 +221,117 @@
 				first<span></span><br />
 				last<span></span><br />
 			</div><br />
-			under<span></span><br />
+			under<span>cell is blocked if there is any card on waste or on the next cell</span><br />
 			<div>
 				next<span></span><br />
 				next+1<span></span><br />
 				waste<span></span><br />
 			</div><br />
-			under2<span></span><br />
-			<div>
-				[integer]<span></span><br />
-				next<span></span><br />
-				next+1<span></span><br />
-				waste<span></span><br />
-			</div>
+			under2<span>same meaning as under, use this attribute if this cell is blocked by two cells</span><br />
 		</div>
-		<h3>Elements</h3>
-		<p>&lt;out&gt; is a direct subtag of any item-type tag (&lt;stock&gt;, &lt;reserve&gt;, &lt;tableau&gt;, &lt;waste&gt;, &lt;foundation&gt; and &lt;cell&gt;)</p>
-		<p>PLENTY</p>
-		<h2>Out tag</h2>
-		<h3>Tags</h3>
-		<div class='codestart'>
-			&lt;out&gt;<span>Can only be included between item-type tags.</span><br />
-		</div>
-		<h3>Attributes</h3>
-		<p>There are no attributes for theses tags.</p>
-		<h3>Elements</h3>
-		<p>PLENTY</p>
+
+<h3>Values</h3>
+<p>Inner text contains words separated by spaces.</p>
+<div class='codestart'>
+The first card rank:
+<ul>
+<li>a - ace
+<li>2 - 
+<li>3 - 
+<li>4 - 
+<li>5 - 
+<li>6 - 
+<li>7 - 
+<li>8 - 
+<li>9 - 
+<li>10 - 
+<li>j - jack
+<li>q - queen
+<li>k - king
+<li>no - Spaces cannot be filled
+<li>rand - random base (random rank is designated when new game is started)
+<li>rand+1 - random base + 1
+<li>base - same base (all cells with this rule have same rank)
+<li>anyrank - any rank
+<li>king4 - at first all kings and then any card
+<li>ak - ace or king
+</ul>
+
+The first card suit:
+<ul>
+<li>s - spades
+<li>c - clubs
+<li>h - hearts
+<li>d - diamonds
+<li>red - hearts or diamonds
+<li>black - spades or clubs
+<li>hdcs - hearts, diamonds, clubs, spades (in that order, when repeat=4)
+<li>hsdc - hearts, spades, diamonds, clubs
+<li>cdhs - clubs, diamonds, hearts, spades
+<li>anycolor - any suit
+</ul>
+
+Sequence suit:
+<ul>
+<li>anysuit - any suit
+<li>suit - same suit
+<li>diffsuit - different suit
+<li>color - same color
+<li>alter - alternating color
+</ul>
+
+Sequence rank:
+<ul>
+<li>anyseq - any
+<li>noseq - No building
+<li>rank - same rank
+<li>down - descending
+<li>up - ascending
+<li>updown - up or down
+<li>down2 - descending odd/even
+<li>up2 - ascending odd/even
+<li>updown2 - up or down odd/even
+<li>updownequ - up or down or same
+<li>osmosis - previous pile has a card of the same rank as the moved card
+<li>synch - previous pile is fully completed
+<li>lower - lower
+<li>higher - higher
+<li>upequ - up or same
+<li>downequ - down or same
+<li>cont - continual
+</ul>
+
+Moving group of cards:
+<ul>
+<li>group - yes
+<li>all - all 13 cards
+<li>nogroup - no
+<li>noempty - not all cards
+<li>anygroup - any sequence
+<li>pilegroup - entire pile regardless of sequence
+<li>fillempty - to empty cell
+<li>anygroupfreecell - any sequence when free cells
+</ul>
+
+Move only from:
+<ul>
+<li>stock
+<li>reserve
+<li>tableau
+<li>waste
+<li>foundation
+<li>cell
+</ul>
+</div>
+
+<h3>Elements</h3>
+<div class='codestart'>
+<ul>
+<li>out - rules for moving cards out of this cell
+<li>same - rules for moving cards from cells of the same type
+<li>prev - rules for previous cell (osmosis or synch)
+<li>init - rules for initial deal when new game is started
+</ul>
+</div>
 	</body>
 </html>

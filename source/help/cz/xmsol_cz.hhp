@@ -1,18 +1,25 @@
 [OPTIONS]
 Compatibility=1.1 or later
-Compiled file=..\..\help\cz.chm
+Compiled file=..\..\..\help\cz.chm
+Contents file=Table of Contents.hhc
 Default Window=w1
-Default topic=main_cz.htm
+Default topic=Files\XMSol_HowToPlay.html
 Display compile progress=No
 Language=0x405 Èeština (Èeská republika)
 Title=XM Solitaire
 
 [WINDOWS]
-w1=,,,,,,,,,0x2000,,0x1006,[50,100,650,560],0x1000000,,,,,,0
+w1=,"Table of Contents.hhc",,,,,,,,0x2020,180,0x1006,[50,100,800,650],,,,,,,0
 
 
 [FILES]
-main_cz.htm
+Files\Mods_Rules.html
+Files\Mods_Graphics.html
+Files\Mods_Language.html
+Files\XMSol_History.html
+Files\XMSol_HowToPlay.html
+Files\XMSol_Menus.html
+Files\XMSol_Windows.html
 
 [INFOTYPES]
 
