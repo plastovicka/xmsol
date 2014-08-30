@@ -105,10 +105,10 @@ public:
 	Darray<TundoRec> undoRec;
 	unsigned seed;
 
-	bool dragging;
-	int dragS, dragCell, dragInd, dragCount, dragX, dragY, dragDx, dragDy;
+	bool dragging, revealing;
+	int dragS, dragCell, dragInd, dragCount, dragX, dragY, dragDx, dragDy, revealCell, revealInd;
 
-	Tboard(){ finished=true; dragging=false; }
+	Tboard(){ finished=true; dragging=revealing=false; }
 	unsigned rand(unsigned n);
 	unsigned randUndo(unsigned n);
 	void newSeed();
@@ -123,6 +123,8 @@ public:
 	void mousemove(LPARAM lParam);
 	void lbuttondblclk(LPARAM lParam);
 	void rbuttondown(LPARAM lParam);
+	void mbuttondown(LPARAM lParam);
+	void mbuttonup(LPARAM lParam);
 	int unhide(int cell, int ind);
 	void paintBoard(HDC dc, RECT *rcPaint);
 	int freecell(int dest);
