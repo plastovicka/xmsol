@@ -110,12 +110,13 @@ corners=15,
  RoundRectRgnExtra,
  Ntoolbar,
  gameListX=150, gameListY=90, //game list dialog window size and position 
- gameListW=550, gameListH=490; 
+ gameListW=550, gameListH=490;
 
 bool
 delreg=false,
  mustLoadRules=false,
- configToRegistery;
+ configToRegistery,
+ paused;
 
 unsigned seedGlobal;
 TCHAR gameName[128];
@@ -255,6 +256,19 @@ int dtprintf(Darray<char> &buf, char *fmt, ...)
 	return n;
 }
 
+void pause(bool b)
+{
+	paused=b;
+	invalidate();
+}
+
+void dialogBox(int id, DLGPROC proc)
+{
+	pause(true);
+	DialogBox(inst, MAKEINTRESOURCE(id), hWin, proc);
+	pause(false);
+}
+
 //show message box
 int vmsg(int id, char *text, int btn, va_list v)
 {
@@ -263,16 +277,9 @@ int vmsg(int id, char *text, int btn, va_list v)
 	TCHAR *buf=(TCHAR*)_alloca(2*Mbuf);
 	_vsntprintf(buf, Mbuf, lng(id, text), v);
 	buf[Mbuf-1]=0;
+	pause(true);
 	int result=MessageBox(dlgWin ? dlgWin : hWin, buf, title, btn);
-	return result;
-}
-
-int msglng1(int btn, int id, char *text, ...)
-{
-	va_list ap;
-	va_start(ap, text);
-	int result = vmsg(id, text, btn, ap);
-	va_end(ap);
+	pause(false);
 	return result;
 }
 
@@ -293,6 +300,7 @@ void msg(char *text, ...)
 	va_end(ap);
 }
 
+//display text in the status bar
 void status(int i, TCHAR *txt, ...)
 {
 	TCHAR buf[256];
@@ -319,6 +327,7 @@ void statusPlayer()
 	status(STATUS_MSG, _T("%s"), cutPath(playerFile.name));
 }
 
+//open or create player profile
 void openUser()
 {
 	userOfn.hwndOwner= hWin;
@@ -328,7 +337,10 @@ void openUser()
 	*cutPath(fnDir)=0;
 	userOfn.lpstrInitialDir=fnDir;
 	*userOfn.lpstrFile=0;
-	if(GetOpenFileName(&userOfn)){
+	pause(true);
+	BOOL result= GetOpenFileName(&userOfn);
+	pause(false);
+	if(result){
 		if(GetFileAttributes(userOfn.lpstrFile)==INVALID_FILE_ATTRIBUTES){
 			playerFile.create(userOfn.lpstrFile);
 		}
@@ -370,6 +382,7 @@ int __cdecl strPtrCmp(const void *a, const void *b)
 	return _tcscmp(*(TCHAR**)a, *(TCHAR**)b);
 }
 
+//create menu items from folder content (only images)
 void menuFromDir(TCHAR *mask, int id, Darray<TCHAR*> &array)
 {
 	int i;
@@ -401,7 +414,8 @@ void menuFromDir(TCHAR *mask, int id, Darray<TCHAR*> &array)
 }
 
 //------------------------------------------------------------------
-
+//x,y is relative position from 0 to 1000
+//returns card position (top left corner) in the window client area
 int scaleX(int x)
 {
 	if(flipx) x=1000-x;
@@ -417,9 +431,11 @@ int scaleY(int y)
 	return (height-cardH-borderH*2-panelsH)*y/1000 +borderH+(toolBarVisible ? toolH : 0);
 }
 
+//calculate card size according to the window size and repaint window
 void calcCardW()
 {
 	if(!bmpCardH || !bmpCardW){
+		//file not found
 		cardW=71;
 		cardH=96;
 	}
@@ -429,6 +445,7 @@ void calcCardW()
 		h=96*height/518;
 		h1=w*bmpCardH/bmpCardW;
 		w1=h*bmpCardW/bmpCardH;
+		//preserve aspect ratio
 		if(w>w1){
 			cardW=w1;
 			cardH=h;
@@ -442,8 +459,10 @@ void calcCardW()
 	invalidate();
 }
 
+//resize all images
 void stretchCards(HDC dc)
 {
+	//cards front images
 	if(!dcStretch) dcStretch=CreateCompatibleDC(dc);
 	HBITMAP b=CreateCompatibleBitmap(dc, cardW*13, cardH*4);
 	DeleteObject(SelectObject(dcStretch, b));
@@ -451,6 +470,7 @@ void stretchCards(HDC dc)
 	StretchBlt(dcStretch, 0, 0, cardW*13, cardH*4,
 		dcCards, 0, 0, bmpCardW*13, bmpCardH*4, SRCCOPY);
 
+	//card back
 	if(!dcBackStretch) dcBackStretch=CreateCompatibleDC(dc);
 	b=CreateCompatibleBitmap(dc, cardW, cardH);
 	DeleteObject(SelectObject(dcBackStretch, b));
@@ -458,6 +478,7 @@ void stretchCards(HDC dc)
 	StretchBlt(dcBackStretch, 0, 0, cardW, cardH,
 		dcBack, 0, 0, bmpBackW, bmpBackH, SRCCOPY);
 
+	//empty cells
 	if(!dcCellStretch) dcCellStretch=CreateCompatibleDC(dc);
 	b=CreateCompatibleBitmap(dc, cardW*16, cardH);
 	DeleteObject(SelectObject(dcCellStretch, b));
@@ -469,25 +490,26 @@ void stretchCards(HDC dc)
 	stretchH=cardH;
 }
 
+//get direction and spacing of cards in a pile
 void getDxDy(int &dx, int &dy, int &hdx, int &hdy, Tcell *c)
 {
 	dx=dy=hdx=hdy=0;
 	switch(c->dir){
 		case DIR_DOWN:
-			dy=max(0, sequenceDy);
-			hdy=max(0, seqHiddenDy);
+			dy=max(1, sequenceDy);
+			hdy=max(1, seqHiddenDy);
 			break;
 		case DIR_RIGHT:
-			dx=max(0, sequenceDx);
-			hdx=max(0, seqHiddenDx);
+			dx=max(1, sequenceDx);
+			hdx=max(1, seqHiddenDx);
 			break;
 		case DIR_UP:
-			dy=-max(0, sequenceDy);
-			hdy=-max(0, seqHiddenDy);
+			dy=-max(1, sequenceDy);
+			hdy=-max(1, seqHiddenDy);
 			break;
 		case DIR_LEFT:
-			dx=-max(0, sequenceDx);
-			hdx=-max(0, seqHiddenDx);
+			dx=-max(1, sequenceDx);
+			hdx=-max(1, seqHiddenDx);
 			break;
 	}
 	if(flipx) dx=-dx, hdx=-hdx;
@@ -499,15 +521,18 @@ void getDxDy(int &dx, int &dy, int &hdx, int &hdy, Tcell *c)
 	hdy=hdy*d*cardH/9600;
 }
 
+//display card and then exclude it from current clip region
 void paintCardClip(HDC dc, int x, int y, Tcard card, HRGN rgnCard, HRGN rgnClip)
 {
 	OffsetRgn(rgnCard, x, y);
-	ExtSelectClipRgn(dc, rgnCard, RGN_AND);
+	ExtSelectClipRgn(dc, rgnCard, RGN_AND); //exclude rounded corners
 
 	if(card==0){
+		//back side
 		BitBlt(dc, x, y, cardW, cardH, dcBackStretch, 0, 0, SRCCOPY);
 	}
 	else{
+		//front side
 		BitBlt(dc, x, y, cardW, cardH, dcStretch,
 			(CARD_RANK(card)-1)*stretchW,
 			CARD_SUIT(card)*stretchH, SRCCOPY);
@@ -520,6 +545,7 @@ void paintCardClip(HDC dc, int x, int y, Tcard card, HRGN rgnCard, HRGN rgnClip)
 	OffsetRgn(rgnCard, -x, -y);
 }
 
+//paint the main window or preview below game list
 void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 {
 	int i, j, x, y, x0, y0, dx, dy, hdx, hdy, n;
@@ -528,12 +554,16 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 	HRGN rgn, rgnClip;
 
 	if(stretchW!=cardW || stretchH!=cardH){
+		//resize all images if window size changed
 		stretchCards(dc);
 	}
 	oldB=SelectObject(dc, GetStockObject(NULL_BRUSH));
 	oldP=SelectObject(dc, CreatePen(PS_SOLID, 0, GetPixel(dcCards, cardW/2, 0)));
 	rgn=CreateRoundRectRgn(0, 0, cardW+RoundRectRgnExtra, cardH+RoundRectRgnExtra, cornersW, cornersW);
 	rgnClip=CreateRectRgn(0, 0, width, height);
+	bool hideAll = paused && !finished && this!=&preview;
+
+	//dragged cards
 	if(dragging){
 		x=x0=dragX; y=y0=dragY;
 		getDxDy(dx, dy, hdx, hdy, &cells[dragCell]);
@@ -545,11 +575,14 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 			paintCardClip(dc, x, y, cells[dragCell].cards[dragInd+j], rgn, rgnClip);
 		}
 	}
+
+	//cards
 	for(i=cells.len-1; i>=0; i--){
 		c=&cells[i];
 		n=c->Ncards;
-		if(dragging && i==dragCell) n-=dragCount;
+		if(dragging && i==dragCell) n-=dragCount; //exclude dragged cards
 		if(n<=0) continue;
+		//calculate top card position
 		getDxDy(dx, dy, hdx, hdy, c);
 		x=x0=scaleX(c->x);
 		y=y0=scaleY(c->y);
@@ -561,13 +594,14 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 				x+=dx; y+=dy;
 			}
 		}
+		//paint only cards which are inside clipping region
 		if(!((dx>0 ? (x0>=rcPaint->right || x+cardW<rcPaint->left) :
 				(x>=rcPaint->right || x0+cardW<rcPaint->left)) ||
 				(dy>0 ? (y0>=rcPaint->bottom || y+cardH<rcPaint->top) :
 				(y>=rcPaint->bottom || y0+cardH<rcPaint->top)))){
 			for(;;){
-				paintCardClip(dc, x, y, c->hidden[j] ? (Tcard)0 : c->cards[j], rgn, rgnClip);
-				if(j== (c->dir!=DIR_NO ? 0 : n-1)) break;
+				paintCardClip(dc, x, y, c->hidden[j] || hideAll ? (Tcard)0 : c->cards[j], rgn, rgnClip);
+				if(j== (c->dir!=DIR_NO ? 0 : n-1)) break; //paint only a top card if pile is not tableau
 				j--;
 				if(c->hidden[j]){
 					x-=hdx; y-=hdy;
@@ -582,6 +616,7 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 	DeleteObject(rgn);
 	DeleteObject(SelectObject(dc, oldP));
 
+	//empty cells
 	for(i=cells.len-1; i>=0; i--){
 		c=&cells[i];
 		n=c->Ncards;
@@ -590,7 +625,7 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 		x=x0=scaleX(c->x);
 		y=y0=scaleY(c->y);
 		if(x>=rcPaint->right || x+cardW<rcPaint->left ||
-			y>=rcPaint->bottom || y+cardH<rcPaint->top) continue;
+			y>=rcPaint->bottom || y+cardH<rcPaint->top) continue; //cell is outside painted region
 		/*
 		SelectObject(dc,GetStockObject(LTGRAY_BRUSH));
 		Rectangle(dc,x,y,x+cardW,y+cardH);
@@ -598,6 +633,7 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 		SetTextColor(dc,0x808080);
 		*/
 		if(c->type==CELL_STOCK && c->redealCount < c->redeal){
+			//Redeal button
 			BitBlt(dc, x, y, cardW, cardH, dcCellStretch, cardW*15, 0, SRCCOPY);
 			/*
 			SetTextAlign(dc,TA_CENTER|TA_BASELINE);
@@ -611,6 +647,7 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 			if(j==RANK_SAMEBASE) j=baseRank();
 			if(j==RANK_KING4) j=king4();
 			if(j>0 && j<=13){
+				//cell is restricted to rank
 				BitBlt(dc, x, y, cardW, cardH, dcCellStretch, cardW*(j-1), 0, SRCCOPY);
 				/*
 				TCHAR *c= _T("  A 2 3 4 5 6 7 8 9 10J Q K ") + j*2;
@@ -624,6 +661,7 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 				*/
 			}
 			else if(j==RANK_NO && (!c->sameRule || (c->sameRule&RANK_MASK)>>RANK_ROT==RANK_NO)){
+				//blocked cell
 				BitBlt(dc, x, y, cardW, cardH, dcCellStretch, cardW*14, 0, SRCCOPY);
 				/*
 				int d=cardW/8;
@@ -635,20 +673,28 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 				*/
 			}
 			else{
+				//free cell
 				BitBlt(dc, x, y, cardW, cardH, dcCellStretch, cardW*13, 0, SRCCOPY);
 			}
 		}
 		ExcludeClipRect(dc, x0, y0, x0+cardW, y0+cardH);
 	}
+
+	//background
 	FillRect(dc, rcPaint, bkgndBrush);
 	SelectObject(dc, oldB);
 }
 
 void invalidate()
 {
-	InvalidateRect(hWin, 0, TRUE);
+	RECT rc;
+	GetClientRect(hWin, &rc);
+	if(toolBarVisible) rc.top=toolH;
+	if(statusBarVisible) rc.bottom-=statusH;
+	InvalidateRect(hWin, &rc, TRUE);
 }
 
+//invalidate pile of n cards at position x,y
 void invalidateColumn1(int x, int y, int n, Tcell *cell)
 {
 	int dx, dy, dummy, dir;
@@ -658,6 +704,7 @@ void invalidateColumn1(int x, int y, int n, Tcell *cell)
 	rc.top=y;
 	rc.right=rc.left+cardW+1; //+1 is needed because of wine
 	rc.bottom=rc.top+cardH+1;
+	//we ignore hidden cards because this function is used mainly for animation or dragging
 	getDxDy(dx, dy, dummy, dummy, cell);
 	dir=cell->dir;
 	if(flipx){
@@ -685,6 +732,7 @@ void invalidateColumn1(int x, int y, int n, Tcell *cell)
 	InvalidateRect(hWin, &rc, TRUE);
 }
 
+//position of a card at index "ind" in pile "cell"
 void Tboard::getColumnCoord(int &x, int &y, int cell, int ind)
 {
 	int i, dx, dy, hdx, hdy;
@@ -781,6 +829,7 @@ void Tboard::animate(int dest, int src, int ind, int anim)
 	}
 }
 
+//returns HIWORD= cell index, LOWORD= card index in pile
 int Tboard::hitTest(int mx, int my)
 {
 	int i, j, x, y, dx, dy, hdx, hdy, result, n;
@@ -791,6 +840,8 @@ int Tboard::hitTest(int mx, int my)
 		my+=dragDy+cardH/2;
 	}
 	result=-1;
+
+	//test empty cells
 	for(i=0; i<cells.len; i++){
 		c=&cells[i];
 		if(c->Ncards==0){
@@ -798,10 +849,11 @@ int Tboard::hitTest(int mx, int my)
 			y=scaleY(c->y);
 			if(mx>=x && mx<x+cardW && my>=y && my<y+cardH){
 				result=(i<<16);
-				if(!dragging){ dragDx=x-mx; dragDy=y-my; }
+				if(!dragging){ dragDx=x-mx; dragDy=y-my; } //relative mouse position inside dragged card
 			}
 		}
 	}
+	//test cards
 	for(i=0; i<cells.len; i++){
 		c=&cells[i];
 		x=scaleX(c->x);
@@ -842,6 +894,7 @@ int Tboard::testDrag()
 	return 2;
 }
 
+//hidden top cards are in game Blind Patience
 int Tboard::unhide(int cell, int ind)
 {
 	Tcell *c= &cells[cell];
@@ -855,6 +908,7 @@ int Tboard::unhide(int cell, int ind)
 	return 0;
 }
 
+//left mouse button
 void Tboard::lbuttondown(LPARAM lParam)
 {
 	if(finished) return;
@@ -910,6 +964,7 @@ void Tboard::mousemove(LPARAM lParam)
 		invalidateColumn1(x, y, dragCount, &cells[dragCell]);
 		dragX=x;
 		dragY=y;
+		//change mouse cursor if game rules allow to move cards to target cell
 		if(testMove(i, dragCell, dragInd)){
 			SetCursor(curMove);
 		}
@@ -919,6 +974,7 @@ void Tboard::mousemove(LPARAM lParam)
 	}
 }
 
+//double-click
 void Tboard::lbuttondblclk(LPARAM lParam)
 {
 	if(finished) return;
@@ -926,6 +982,7 @@ void Tboard::lbuttondblclk(LPARAM lParam)
 	autoPlay();
 }
 
+//right mouse button
 void Tboard::rbuttondown(LPARAM lParam)
 {
 	int h, i, j;
@@ -1202,7 +1259,7 @@ void saveBMP(TCHAR *fn, HBITMAP hBmp)
 	HDC winDC= GetDC(0);
 	HDC dcb= CreateCompatibleDC(winDC);
 	ReleaseDC(0, winDC);
-	//vyplò hlavièku bitmapy
+	//initialize bitmap header
 	bmi.biSize = sizeof(BITMAPINFOHEADER);
 	bmi.biWidth = bmp.bmWidth;
 	bmi.biHeight = bmp.bmHeight;
@@ -1212,13 +1269,13 @@ void saveBMP(TCHAR *fn, HBITMAP hBmp)
 	bmi.biSizeImage = (3*(bmp.bmWidth+1)&-4)*bmp.bmHeight;
 	bmi.biClrImportant = 0;
 	bmi.biClrUsed=0;
-	//pøekopíruj bitmapu do pomocného bufferu
+	//copy bitmapu to temporary bufferu
 	bits = new BYTE[bmi.biSizeImage];
 	if(!GetDIBits(dcb, hBmp, 0, bmp.bmHeight, bits, (BITMAPINFO*)&bmi, DIB_RGB_COLORS)){
 		msg("GetDIBits failed");
 	}
 	else{
-		//ulož BMP soubor
+		//save BMP file
 		hf = CreateFile(fn, GENERIC_READ | GENERIC_WRITE, 0, NULL,
 			CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
 		if(hf==INVALID_HANDLE_VALUE){
@@ -1236,7 +1293,7 @@ void saveBMP(TCHAR *fn, HBITMAP hBmp)
 			CloseHandle(hf);
 		}
 	}
-	//smaž bitmapu
+	//delete bitmap
 	delete[] bits;
 	DeleteDC(dcb);
 }
@@ -1496,6 +1553,7 @@ void langChanged()
 
 //------------------------------------------------------------------
 
+//get menu item name
 void getCmdName(TCHAR *buf, int n, int cmd)
 {
 	TCHAR *s, *d;
@@ -1513,8 +1571,8 @@ void getCmdName(TCHAR *buf, int n, int cmd)
 		GetMenuItemInfo(GetMenu(hWin), cmd, FALSE, &mii);
 	}
 	for(s=d=buf; *s; s++){
-		if(*s=='\t') *s=0;
-		if(*s!='&') *d++=*s;
+		if(*s=='\t') *s=0; //remove keyboard shortcut
+		if(*s!='&') *d++=*s; //remove underscores
 	}
 	*d=0;
 }
@@ -1611,7 +1669,7 @@ DWORD getVer()
 	return v->dwFileVersionMS;
 }
 
-LRESULT CALLBACK AboutProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
+INT_PTR CALLBACK AboutProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 {
 	char buf[40];
 	DWORD d;
@@ -1631,6 +1689,7 @@ LRESULT CALLBACK AboutProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 				return TRUE;
 			}
 			if(wParam==123){
+				//start web browser
 				GetDlgItemTextA(hWnd, wParam, buf, sizeA(buf));
 				ShellExecuteA(0, 0, buf, 0, 0, SW_SHOWNORMAL);
 			}
@@ -1639,7 +1698,7 @@ LRESULT CALLBACK AboutProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 	return FALSE;
 }
 //------------------------------------------------------------------
-LRESULT CALLBACK NewGameNumberProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
+INT_PTR CALLBACK NewGameNumberProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 {
 	unsigned i;
 
@@ -1672,6 +1731,7 @@ inline int listLen()
 	return games.len;
 }
 
+//adjust asc/desc image color inside a column header
 void btnColor(HBITMAP bmp)
 {
 	int i, j;
@@ -1719,6 +1779,7 @@ void setCur(int item)
 	setCurIndex(ListView_FindItem(listBox, -1, &lfi));
 }
 
+//incremental search in the games list
 void search(UINT vkey)
 {
 	static TCHAR searchBuf[32];
@@ -1728,16 +1789,16 @@ void search(UINT vkey)
 	DWORD time= GetTickCount();
 	if(time-searchLastKey>1500) searchLen=0;
 	searchLastKey=time;
-	//pøeveï virtualní klávesu na znak
+	//convert virtual key to character
 	BYTE keystate[256];
 	GetKeyboardState(keystate);
 	if(keystate[VK_MENU]) return;
 	char ch[2];
 	if(ToAscii(vkey, 0, keystate, (LPWORD)&ch, 0)!=1) return;
-	//pøidej znak na konec øetìzce
+	//append character to the end of string
 	if(searchLen==sizeof(searchBuf)) return;
 	searchBuf[searchLen++]=ch[0];
-	//najdi položku s hledaným textem
+	//find item which starts with searched text
 	for(int i=0; i<listLen(); i++){
 		if(!_tcsnicmp(games[i]->name, searchBuf, searchLen)){
 			setCur(i);
@@ -1801,6 +1862,7 @@ int CALLBACK sortName(LPARAM ai, LPARAM bi, LPARAM p)
 
 static int initializing=0;
 
+//initialize game list
 void initList()
 {
 	int i, bottom, n, Nitem;
@@ -1812,15 +1874,19 @@ void initList()
 	SendMessage(listBox, WM_SETREDRAW, FALSE, 0);
 	bottom=ListView_GetTopIndex(listBox)+ListView_GetCountPerPage(listBox)-1;
 	amax(bottom, Nitem-1);
-	//insert or delete items
 	n=ListView_GetItemCount(listBox);
+
+	//insert or delete items if total number of games changed
 	if(n!=Nitem){
 		initializing++;
+		//delete rows
 		while(n>Nitem){
 			n--;
 			ListView_DeleteItem(listBox, n);
 		}
+		//allocate memory
 		ListView_SetItemCount(listBox, Nitem);
+		//add rows
 		lvi.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE;
 		lvi.state = 0;
 		lvi.stateMask = 0;
@@ -1832,6 +1898,7 @@ void initList()
 			ListView_InsertItem(listBox, &lvi);
 			n++;
 		}
+		//listbox contains only indexes, data are retrieved by WM_NOTIFY
 		for(i=0; i<Nitem; i++){
 			lvi.iItem = i;
 			lvi.mask = LVIF_PARAM;
@@ -1866,7 +1933,7 @@ void printDate(TCHAR *buf, int n, time_t date)
 }
 
 // The following routine handles the game list.
-LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
+INT_PTR CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 {
 	int i, j, cmd, item, oldW, oldH, oldS, oldT, oldBW, oldBH;
 	static int oldItem;
@@ -2088,8 +2155,8 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 							}
 						}
 					}
-				}
 					break;
+				}
 				case LVN_COLUMNCLICK:
 				{
 					NM_LISTVIEW *pnm= (NM_LISTVIEW *)lP;
@@ -2102,8 +2169,8 @@ LRESULT CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 					}
 					sortChanged();
 					initList();
-				}
 					break;
+				}
 				case LVN_KEYDOWN:
 					search(((LV_KEYDOWN*)lP)->wVKey);
 					break;
@@ -2151,7 +2218,7 @@ LRESULT CALLBACK hotKeyClassProc(HWND hWnd, UINT mesg, WPARAM wP, LPARAM lP)
 }
 
 //------------------------------------------------------------------
-LRESULT CALLBACK KeysDlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
+INT_PTR CALLBACK KeysDlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 {
 	static const int Mbuf=64;
 	TCHAR *buf=(TCHAR*)_alloca(2*Mbuf);
@@ -2288,7 +2355,7 @@ BOOL propPageInit(HWND hWnd, UINT mesg, WPARAM wP, LPARAM lP, int curPage)
 			sheet=GetParent(hWnd);
 			SetWindowLong(sheet, GWL_EXSTYLE, GetWindowLong(sheet, GWL_EXSTYLE)&~WS_EX_CONTEXTHELP);
 			for(ti=intOpts; ti<endA(intOpts); ti++){
-				if(ti->dlgId==curPage) SetDlgItemInt(hWnd, ti->id, *ti->value, FALSE);
+				if(ti->dlgId==curPage) SetDlgItemInt(hWnd, ti->id, *ti->value, TRUE);
 			}
 			for(tb=boolOpts; tb<endA(boolOpts); tb++){
 				if(tb->dlgId==curPage) CheckDlgButton(hWnd, tb->id, *tb->value ? BST_CHECKED : BST_UNCHECKED);
@@ -2303,7 +2370,7 @@ BOOL propPageInit(HWND hWnd, UINT mesg, WPARAM wP, LPARAM lP, int curPage)
 			switch(((NMHDR*)lP)->code){
 				case PSN_APPLY:
 					for(ti=intOpts; ti<endA(intOpts); ti++){
-						if(ti->dlgId==curPage) *ti->value= GetDlgItemInt(hWnd, ti->id, NULL, FALSE);
+						if(ti->dlgId==curPage) *ti->value= GetDlgItemInt(hWnd, ti->id, NULL, TRUE);
 					}
 					for(tb=boolOpts; tb<endA(boolOpts); tb++){
 						if(tb->dlgId==curPage) *tb->value= IsDlgButtonChecked(hWnd, tb->id);
@@ -2396,7 +2463,9 @@ void options()
 	psh.nPages = sizeA(psp);
 	psh.nStartPage = optionsPage;
 	psh.ppsp = psp;
+	pause(true);
 	PropertySheet(&psh);
+	pause(false);
 }
 
 //------------------------------------------------------------------
@@ -2412,8 +2481,8 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			LPMINMAXINFO lpmm = (LPMINMAXINFO)lParam;
 			lpmm->ptMinTrackSize.x = 300;
 			lpmm->ptMinTrackSize.y = 200+toolH+statusH;
-		}
 			break;
+		}
 
 		case WM_PAINT:
 		{
@@ -2421,11 +2490,11 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			BeginPaint(hWnd, &ps);
 			board.paintBoard(ps.hdc, &ps.rcPaint);
 			EndPaint(hWnd, &ps);
-		}
 			break;
+		}
 
 		case WM_TIMER:
-			if(!IsIconic(hWin)){
+			if(!paused && !IsIconic(hWin)){
 				if(suspendTime>0) suspendTime--;
 				else board.playtime++;
 				statusTime();
@@ -2493,8 +2562,8 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					SendMessage(toolbar, TB_ADDBUTTONS, Ntool, (LPARAM)tbb);
 					break;
 			}
-		}
 			break;
+		}
 
 		case WM_LBUTTONDOWN:
 			board.lbuttondown(lParam);
@@ -2524,7 +2593,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 
 		case WM_CLOSE:
 			SendMessage(hWin, WM_COMMAND, ID_EXIT, 0);
-			if(helpVisible) HtmlHelp(NULL, NULL, 18, NULL); //HH_CLOSE_ALL
+			if(helpVisible) HtmlHelp(0, NULL, 18, 0); //HH_CLOSE_ALL
 			break;
 
 		case WM_QUERYENDSESSION:
@@ -2561,10 +2630,10 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			}
 			switch(wParam){
 				case ID_LIST:
-					if(games.len) DialogBox(inst, MAKEINTRESOURCE(IDD_GAMELIST), hWnd, (DLGPROC)GameListProc);
+					if(games.len) dialogBox(IDD_GAMELIST, GameListProc);
 					break;
 				case ID_ABOUT:
-					DialogBox(inst, MAKEINTRESOURCE(IDD_ABOUT), hWnd, (DLGPROC)AboutProc);
+					dialogBox(IDD_ABOUT, AboutProc);
 					break;
 				case ID_HELP_CONTENT:
 				{
@@ -2580,8 +2649,8 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					else if(ShellExecute(0, _T("open"), buf, 0, 0, SW_SHOWNORMAL)==(HINSTANCE)ERROR_FILE_NOT_FOUND){
 						msglng(730, "Cannot open %s", buf);
 					}
-				}
 					break;
+				}
 				case ID_HELP_RULES:
 					ShowWindow(rulesWnd, SW_SHOW);
 					break;
@@ -2608,7 +2677,7 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					}
 					break;
 				case ID_GAME_NUMBER:
-					DialogBox(inst, MAKEINTRESOURCE(IDD_NUMBER), hWnd, (DLGPROC)NewGameNumberProc);
+					dialogBox(IDD_NUMBER, NewGameNumberProc);
 					break;
 				case ID_LASTGAME:
 					loadRules();
@@ -2626,11 +2695,13 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					refresh();
 					break;
 				case ID_TOOLBAR:
+					pause(true);
 					SendMessage(toolbar, TB_CUSTOMIZE, 0, 0);
+					pause(false);
 					writeini();
 					break;
 				case ID_KEYS:
-					DialogBox(inst, MAKEINTRESOURCE(IDD_KEYS), hWin, (DLGPROC)KeysDlgProc);
+					dialogBox(IDD_KEYS, KeysDlgProc);
 					break;
 				case ID_OPTIONS:
 					options();
@@ -2664,11 +2735,13 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					invalidate();
 					break;
 				case ID_DECR_SEQ:
-					sequenceDx--;
-					seqHiddenDx--;
-					sequenceDy--;
-					seqHiddenDy--;
-					invalidate();
+					if(sequenceDx > 0 && sequenceDy > 0){
+						sequenceDx--;
+						seqHiddenDx--;
+						sequenceDy--;
+						seqHiddenDy--;
+						invalidate();
+					}
 					break;
 				case ID_MIRROR_LR:
 					flipx=!flipx;
@@ -2739,6 +2812,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	MSG mesg;
 	RECT rc;
 
+	//detect Linux Wine
 	HRGN rgn=CreateRoundRectRgn(0, 0, 10, 10, 1, 1);
 	RoundRectRgnExtra = PtInRegion(rgn, 5, 9) ? 0 : 1;
 	DeleteObject(rgn);
@@ -2760,6 +2834,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 #else
 	InitCommonControls();
 #endif
+
 	// create the main window
 	WNDCLASS wc;
 	ZeroMemory(&wc, sizeof(wc));
@@ -2795,11 +2870,12 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 
 	isHungAppWindow = (pIsHungAppWindow)GetProcAddress(GetModuleHandle(_T("user32.dll")), "IsHungAppWindow");
 
+	//create window for game rules
 	HMODULE richLib=LoadLibrary(_T("riched32.dll"));
 	rulesWnd=CreateDialog(inst, MAKEINTRESOURCE(IDD_RULES), hWin, (DLGPROC)rulesProc);
 	SetWindowPos(rulesWnd, 0, scrW-550, mainTop+30, 0, 0, SWP_NOZORDER|SWP_NOSIZE);
 
-	// Initialize custom language
+	// Initialize custom languages
 	initLang();
 
 	// Create status bar
@@ -2824,7 +2900,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 		WS_CHILD|TBSTYLE_TOOLTIPS|0x800, 2, i,
 		inst, IDB_TOOLBAR, tbb, Ntool,
 		16, 16, 16, 16, sizeof(TBBUTTON));
-	//restore toolbar
+	//restore customized toolbar
 	if(configToRegistery)
 	{
 		TBSAVEPARAMS sp;
@@ -2872,7 +2948,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	//read player profile from installation folder
 	else if(GetFileAttributes(playerFile.name)==INVALID_FILE_ATTRIBUTES){
 		getExeDir(fnTmp, cutPath(playerFile.name));
-		if(GetFileAttributes(fnTmp)!=INVALID_FILE_ATTRIBUTES) 
+		if(GetFileAttributes(fnTmp)!=INVALID_FILE_ATTRIBUTES)
 			_tcscpy(playerFile.name, fnTmp);
 	}
 	statusPlayer();
@@ -2886,6 +2962,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	if(!board.number)
 		PostMessage(hWin, WM_COMMAND, ID_LIST, 0);		// No game loaded, let's list some
 
+	//show window
 	curMove=LoadCursor(inst, MAKEINTRESOURCE(IDC_CURSORMOVE));
 	ShowWindow(hWin, maximized && cmdShow==SW_SHOWNORMAL ? SW_SHOWMAXIMIZED : cmdShow);
 	UpdateWindow(hWin);
