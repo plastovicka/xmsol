@@ -148,8 +148,8 @@ BEGIN
         BEGIN
             MENUITEM ".",                           29999
         END
-        MENUITEM "&Customize toolbar...",          ID_TOOLBAR
-        MENUITEM "&Keyboard shortcuts...",         ID_KEYS
+        MENUITEM "&Customize toolbar...",       ID_TOOLBAR
+        MENUITEM "&Keyboard shortcuts...",      ID_KEYS
         MENUITEM "&Options...",                 ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Save settings to &INI file",  ID_TOGGLEREGISTERY
@@ -169,8 +169,8 @@ BEGIN
         MENUITEM "Mirror &left/right",          ID_MIRROR_LR
         MENUITEM "Mirror &up/down",             ID_MIRROR_UD
         MENUITEM SEPARATOR
-        MENUITEM "&Spread cards",          ID_INCR_SEQ
-        MENUITEM "&Tighten cards",          ID_DECR_SEQ
+        MENUITEM "&Spread cards",               ID_INCR_SEQ
+        MENUITEM "&Tighten cards",              ID_DECR_SEQ
         MENUITEM SEPARATOR
         MENUITEM "Show t&oolbar",               ID_SHOWTOOLBAR
         MENUITEM "Show status&bar",             ID_SHOWSTATUSBAR
@@ -190,14 +190,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM ".",                           ID_BACK
     END
-		POPUP "C&ell"
-		BEGIN
-			MENUITEM "&Next", ID_NEXT_CELL
-			MENUITEM "&Previous", ID_PREV_CELL
-			MENUITEM SEPARATOR
-			MENUITEM ".", ID_CELL
-		END
-		POPUP "&Background"
+    POPUP "C&ell"
+    BEGIN
+        MENUITEM "&Next",                       ID_NEXT_CELL
+        MENUITEM "&Previous",                   ID_PREV_CELL
+        MENUITEM SEPARATOR
+        MENUITEM ".",                           ID_CELL
+    END
+    POPUP "&Background"
     BEGIN
         MENUITEM "&Next",                       ID_NEXT_BKGND
         MENUITEM "&Previous",                   ID_PREV_BKGND
@@ -237,7 +237,7 @@ CAPTION "About"
 FONT 11, "MS Shell Dlg"
 BEGIN
     CTEXT           "(C) 2005-2014  Petr Lastovicka",510,4,57,105,10
-    CTEXT           "Version",511,30,23,30,9
+    RTEXT           "Version",511,30,23,30,9
     CTEXT           "XM Solitaire",IDC_STATIC,23,5,65,11,SS_CENTERIMAGE | 
                     SS_SUNKEN
     ICON            IDI_MAINICON,IDC_STATIC,15,20,20,20
