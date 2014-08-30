@@ -576,6 +576,12 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 		}
 	}
 
+	//card viewed by middle mouse button
+	if(revealing){
+		getColumnCoord(x, y, revealCell, revealInd);
+		paintCardClip(dc, x, y, cells[revealCell].cards[revealInd], rgn, rgnClip);
+	}
+
 	//cards
 	for(i=cells.len-1; i>=0; i--){
 		c=&cells[i];
@@ -996,6 +1002,31 @@ void Tboard::rbuttondown(LPARAM lParam)
 			if(rightclkMove(i, j)) autoPlay();
 			else calcDone();
 		}
+	}
+}
+
+//middle mouse button
+void Tboard::mbuttondown(LPARAM lParam)
+{
+	int t=hitTest(lParam);
+	if(t>=0){
+		revealCell=t>>16;
+		revealInd=t&0xffff;
+		Tcell *c= &cells[revealCell];
+		if(revealInd<c->Ncards && !c->hidden[revealInd]){
+			revealing=true;
+			invalidateColumn(revealCell, revealInd, 1);
+			SetCapture(hWin);
+		}
+	}
+}
+
+void Tboard::mbuttonup(LPARAM)
+{
+	if(revealing){
+		ReleaseCapture();
+		revealing=false;
+		invalidateColumn(revealCell, revealInd, 1);
 	}
 }
 
@@ -2584,6 +2615,14 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		case WM_RBUTTONDOWN:
 		case WM_RBUTTONDBLCLK:
 			board.rbuttondown(lParam);
+			break;
+
+		case WM_MBUTTONDOWN:
+			board.mbuttondown(lParam);
+			break;
+
+		case WM_MBUTTONUP:
+			board.mbuttonup(lParam);
 			break;
 
 		case WM_DISPLAYCHANGE:
