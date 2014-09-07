@@ -1560,10 +1560,10 @@ void Tboard::autoPlay(int once)	// ACC, added "once"
 		for(i=0; i<cells.len; i++){
 			c=&cells[i];
 			if(c->fill){
-				f= max(0, c->Ncards-c->fill);
 				destType=chooseDest(i);
 				moved1=false;
 				for(j=0; j<cells.len && c->Ncards>0; j++){
+					f= max(0, c->Ncards-c->fill);
 					t=&cells[j];
 					if(t->Ncards==0 && (destType&(1<<t->type)) &&
 						(t->type!=CELL_FOUNDATION ||
