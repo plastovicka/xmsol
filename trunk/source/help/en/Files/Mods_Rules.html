@@ -34,7 +34,8 @@
 		</div>
 		<p>In this second example, a list of elements ("chair sheets car", "water air" and "box ashtray shoes") are to be painted. The first list will be paint in "blue", the second list will not be paint at all and the third list will be paint in "red".</p>
 		<p>Even though both examples use random tag names, the concept remain the same: data is structured through the use of tags.</p>
-		<h2>Signature tag</h2>
+		
+<h2>Signature tag</h2>
 		<p>The XML file must be signed properly for XMSolitaire to load it, use &lt;xmsol&gt; and &lt;/xmsol&gt; to encase your game rules.</p>
 		<h3>Tags</h3>
 		<div class='codestart'>
@@ -44,11 +45,11 @@
 		<p>There is no attribute for this tag.</p>
 		<h3>Elements</h3>
 		<p>&lt;game&gt; is a direct subtag of &lt;xmsol&gt;.</p>
-		<h2>Game tag</h2>
+<h2>Game tag</h2>
 		<h3>Tags</h3>
 		<p>Encase the rules of a game between &lt;game&gt; and &lt;/game&gt;. There can be more than one &lt;game&gt; tag per file, as long as each &lt;game&gt; is encased between the &lt;xmsol&gt; and &lt;/xmsol&gt; tags.</p>
 		<div class='codestart'>
-			&lt;game&gt;<span>Regroups the rules of a new game and defines the parameters of that game.</span><br />
+			&lt;game&gt;<span>Defines parameters and rules of game.</span><br />
 		</div>
 		<h3>Attributes</h3>
 		<div class='codestart'>
@@ -98,7 +99,7 @@
 		</div>
 		<h3>Elements</h3>
 		<p>&lt;stock&gt;, &lt;reserve&gt;, &lt;tableau&gt;, &lt;waste&gt;, &lt;foundation&gt; and &lt;cell&gt; are direct subtags of &lt;game&gt;.</p>
-		<h2>Item tags</h2>
+<h2>Item tags</h2>
 		<p>Defines one or more items (placeholders if you will) per tag; the attributes are shared through every item of the same batch.</p>
 		<h3>Tags</h3>
 		<div class='codestart'>
@@ -111,29 +112,29 @@
 		</div>
 		<h3>Attributes</h3>
 		<div class='codestart'>
-			x<span>Horizontal position of the first item of the batch. (default: "0")</span><br />
-			<div>
-				[integer]<span>Leftmost coordinate of the first item.</span><br />
-			</div><br />
-			y<span>Vertical position of the first item of the batch. (default: "0")</span><br />
-			<div>
-				[integer]<span>Upmost coordinate of the first item.</span><br />
-			</div><br />
-			w<span>Width of one item on the board. (default: "1000")</span><br />
-			<div>
-				[integer]<span>Each item is [integer] units wide.</span><br />
-			</div><br />
-			h<span>Height of one item on the board. (default: "1000")</span><br />
-			<div>
-				[integer]<span>Each item is [integer] units tall.</span><br />
-			</div><br />
 			repeat<span>Amount of items in the batch. (default: "1")</span><br />
 			<div>
-				[integer]<span>Create [integer] items in this batch.</span><br />
+				[integer]<span>Create [integer] piles.</span><br />
 			</div><br />
 			lines<span>How many lines are formed through this batch (default: "1")</span><br />
 			<div>
-				[integer]<span>Spread through [integer] lines.</span><br />
+				[integer from 1 to repeat]<span>Spread through [integer] lines.</span><br />
+			</div><br />
+			x<span>Horizontal position of the first item of the batch. (default: "0")</span><br />
+			<div>
+				[integer from 0 to 1000]<span>Leftmost coordinate of the first item.</span><br />
+			</div><br />
+			y<span>Vertical position of the first item of the batch. (default: "0", default for tableau: "320")</span><br />
+			<div>
+				[integer from 0 to 1000]<span>Upmost coordinate of the first item.</span><br />
+			</div><br />
+			w<span>Width of one item on the board. (default: "1000")</span><br />
+			<div>
+				[integer from 0 to 1000]<span>Each item is [integer] units wide.</span><br />
+			</div><br />
+			h<span>Height of one item on the board. (default: "1000")</span><br />
+			<div>
+				[integer from 0 to 1000]<span>Each item is [integer] units tall.</span><br />
 			</div><br />
 			count<span>How many cards are distributed through the whole batch. (default: "0")</span><br />
 			<div>
@@ -146,23 +147,23 @@
 			autoplay<span>Autoplay mode</span><br />
 			<div>
 				0<span>Always disable autoplay</span><br />
-				1<span>Always enable autoplay</span><br />
-				base<span>User's settings</span><br />
+				1<span>User's setting</span><br />
+				base<span>Last card can be removed from cell only if there is not a card in another cell which can be placed on this card. Rule must be rank, up or down.</span><br />
 			</div><br />
 			deal<span>How cards are dealt when the stock/foundation is used (default: "1")</span><br />
 			<div>
 				[integer]<span>Amount of cards to distribute when the stock is used</span><br />
-				fill<span></span><br />
-				gaps<span></span><br />
-				bottomtotop<span></span><br />
-				max<span></span><br />
-				start<span></span><br />
-				start1<span></span><br />
-				start_col<span></span><br />
+				fill<span>Cards are automatically moved from the stock to free cells</span><br />
+				gaps<span>All cards except finished sequences are redealt so that there is one free cell after every sequence</span><br />
+				bottomtotop<span>Bottom card is moved to top on every pile</span><br />
+				max<span>Cards from the stock are moved to piles so that piles are full (number of cards is equal to "max" attribute).</span><br />
+				start<span>Any suitable card is placed on this pile during initial deal when a new game starts</span><br />
+				start1<span>Similar to "start", but no more than one card can be placed on any pile.</span><br />
+				start_col<span>Similar to "start", but destination pile must be in the same column as pile where the card would be placed.</span><br />
 			</div><br />
-			fill<span></span><br />
+			fill<span>Cards are automatically moved from this pile to free cells</span><br />
 			<div>
-				[integer]<span></span><br />
+				[integer]<span>number of moved cards (usually "1")</span><br />
 			</div><br />
 			redeal<span>How many times cards can be redealt</span><br />
 			<div>
@@ -171,61 +172,62 @@
 			</div><br />
 			shuffle<span></span><br />
 			<div>
-				rand<span></span><br />
+				rand<span>Randomly shuffle cards during deal.</span><br />
 			</div><br />
-			dir<span>Defines the direction of the stack</span><br />
+			dir<span>Defines the direction of the stack (default: "no", default for tableau: "down")</span><br />
 			<div>
 				left<span>Cards are spreading to the left</span><br />
 				right<span>Cards are spreading to the right</span><br />
 				up<span>Cards are spreading upward</span><br />
 				down<span>Cards are spreading downward</span><br />
-				no<span>Cards are properly stacked</span><br />
+				no<span>Cards are properly stacked. Only top card is visible.</span><br />
 			</div><br />
 			spacing<span>Card spacing (default: 100)</span><br />
 			<div>
 				[integer]<span>Space each card in the stack by [integer] units</span><br />
 			</div><br />
-			prev<span>index or direction of previous cell, used only if prev sub-element exists</span><br />
+			prev<span>index or direction of previous cell, used only if &lt;prev&gt; sub-element exists (default: "left")</span><br />
 			<div>
-				[integer]<span></span><br />
+				[integer]<span>cell index</span><br />
 				left<span></span><br />
 				right<span></span><br />
 				up<span></span><br />
 				down<span></span><br />
 			</div><br />
-			hide<span>Defines what cards are face down in the same stack</span><br />
+			hide<span>Defines what cards are face down in the same stack (default: "0", default for stock: "all")</span><br />
 			<div>
-				[integer]<span>[integer] cards are face down (0+: relative to the bottom of the stack, 0-: top of the stack)</span><br />
+				[positive integer]<span>[integer] cards are face down at the bottom of the stack</span><br />
+				[negative integer]<span>[-integer] cards are face up at the top of the stack</span><br />
 				all<span>Turn every card face down</span><br />
 				odd<span>Turn every odd card face down (starts with the highest on the stack)</span><br />
 				even<span>Turn every even card face down (starts with the second highest on the stack)</span><br />
 			</div><br />
-			onhid<span>what card can be placed on a hidden card, the card is not turned automatically if this attribute is defined</span><br />
+			onhid<span>what card can be placed on a hidden (face down) card, the card is not turned automatically if this attribute is defined</span><br />
 			<div>
-				any<span></span><br />
+				any<span>any card</span><br />
 				k<span>only king</span><br />
 			</div><br />
-			shape<span>How cards are distributed through the batch.</span><br />
+			shape<span>How cards are distributed through the batch. (default: "left")</span><br />
 			<div>
 				incr<span>Add one more card for each new item</span><br />
 				decr<span>Remove one card for each new item</span><br />
-				incr2<span></span><br />
-				decr2<span></span><br />
-				pyramid<span></span><br />
-				braid<span></span><br />
-				bind<span></span><br />
-				left<span></span><br />
-				right<span></span><br />
-				center<span></span><br />
-				side<span></span><br />
-				first<span></span><br />
-				last<span></span><br />
+				incr2<span>Add two more cards for each new item</span><br />
+				decr2<span>Remove two cards for each new item</span><br />
+				pyramid<span>Each row has one more cell than previous row. Rows overlap. Every card (except bottom row) is blocked by 2 cards.</span><br />
+				braid<span>Odd rows have 1 card. Even rows have 2 cards. Rows overlap.</span><br />
+				bind<span>Even rows are shifted half card size rights. Rows overlap.</span><br />
+				left<span>All cells have same number of cards. Extra cards are distributed from left if total number of cards is not divisible by number of stacks.</span><br />
+				right<span>Extra cards are distributed from right.</span><br />
+				center<span>Extra cards are in the center.</span><br />
+				side<span>Extra cards are at both sides.</span><br />
+				first<span>The first stack can have less cards than other stacks.</span><br />
+				last<span>The last stack can have less cards than other stacks.</span><br />
 			</div><br />
 			under<span>cell is blocked if there is any card on waste or on the next cell</span><br />
 			<div>
-				next<span></span><br />
-				next+1<span></span><br />
-				waste<span></span><br />
+				next<span>The first cell in the next batch.</span><br />
+				next+1<span>The second cell in the next batch.</span><br />
+				waste<span>waste</span><br />
 			</div><br />
 			under2<span>same meaning as under, use this attribute if this cell is blocked by two cells</span><br />
 		</div>
@@ -322,6 +324,17 @@ Move only from:
 <li>foundation
 <li>cell
 </ul>
+
+Default rules:
+<ul>
+<li>foundation - a up suit
+<li>tableau - down
+<li>reserve - no noseq
+<li>stock - no noseq
+<li>waste - stock
+<li>cell - no
+</ul>
+
 </div>
 
 <h3>Elements</h3>

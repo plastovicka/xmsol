@@ -4,8 +4,8 @@
 	</head>
 	<body>
 		<h1>Pravidla her</h1>
-		<p>Pravidla všech her jsou popsána v souboru XML (extensible markup language) ve složce "rules". Proto si můžete vytvořit a přidat další hry. Stačí vám k tomu libovolný textový editor. Nikdy ale neměňte soubor standard.xml. Vytvořte si nový XML soubor, který bude obsahovat jen vaše hry. Složka rules může obsahovat libovolný počet souborů.</p>
-		<p>Kořenový element musí být xmsol (to znamená, že soubor začíná tagem &lt;xmsol&gt; a končí tagem &lt;/xmsol&gt;). Každá hra je reprezentována elementem game.
+		<p>Pravidla všech her jsou popsána v souboru XML (extensible markup language) ve složce "rules". Můžete si vytvořit a přidat další hry. Stačí vám k tomu libovolný textový editor. Nikdy ale neměňte soubor standard.xml. Vytvořte si nový XML soubor, který bude obsahovat jen vaše hry. Složka rules může obsahovat libovolný počet souborů.</p>
+		<p>Kořenový element XML souboru musí být xmsol (to znamená, že soubor začíná tagem &lt;xmsol&gt; a končí tagem &lt;/xmsol&gt;). Každá hra je reprezentována elementem game.
 
 <h3>Atributy elementu game</h3>
 <ul>
@@ -13,44 +13,76 @@
 <li>decks - počet balíčků karet, výchozí hodnota je 1
 <li>autoplay - povolení automatického přesunu na cílové hromádky, výchozí hodnota je 1
 <li>pair - Pokud je hodnota číslo, hráč musí párovat dvojice karet z daným součtem. Další možné hodnoty jsou "suit", "rank", "rankcolor".
-<li>suit - omezení balíčku karet jen na určité barvy, hodnota obsahuje znaky s,c,h,d (piky, kříže, srdce, káry)
+<li>suit - omezení balíčku karet jen na určité barvy, hodnota atributu obsahuje znaky s,c,h,d (piky, kříže, srdce, káry)
 <li>rank - omezení balíčku karet jen na určité hodnoty, hodnota atributu obsahuje znaky a,2,3,4,5,6,7,8,9,10,j,q,k
 </ul>
 
 <p>Uvnitř elementu game jsou elementy foundation, tableau, cell, stock, reserve, waste. Každý z nich reprezentuje určitý typ hromádky. </p>
 <h3>Atributy elementů foundation, tableau, cell, stock, reserve, waste</h3>
 <ul>
-<li>x - vodorovná pozice první hromádky, číslo od 0 do 1000, výchozí hodnota je 0 (vlevo)
-<li>y - svislá pozice první hromádky, číslo od 0 do 1000, výchozí hodnota je 0 (nahoře)
-<li>w - šířka skupiny hromádek, číslo od 0 do 1000, výchozí hodnota je 1000 (šířka celého okna)
-<li>h - výška skupiny hromádek, číslo od 0 do 1000, výchozí hodnota je 1000 (výška celého okna)
 <li>repeat - počet hromádek, výchozí hodnota je 1
 <li>lines - počet řad, číslo od 1 do repeat, výchozí hodnota je 1
-<li>count - počet rozdaných karet, výchozí hodnota je 0
+<li>x - vodorovná pozice první hromádky, číslo od 0 do 1000, výchozí hodnota je 0 (vlevo)
+<li>y - svislá pozice první hromádky, číslo od 0 do 1000, výchozí hodnota je 0 (nahoře), tableau má výchozí hodnotu 320
+<li>w - šířka skupiny hromádek (pokud je repeat>1), číslo od 0 do 1000, výchozí hodnota je 1000 (šířka celého okna)
+<li>h - výška skupiny hromádek (pokud je repeat>1), číslo od 0 do 1000, výchozí hodnota je 1000 (výška celého okna)
+<li>count - počet rozdaných karet, výchozí hodnota je 0, zbylé karty se rozdají na scénu nebo zůstanou v talónu
 <li>max - nejvyšší povolený počet karet na jedné hromádce, výchozí hodnota je 255 (neomezeně)
-<li>autoplay - povolení automatického přesunu karet z této hromádky, hodnoty jsou 0, 1, base
-<li>deal - jak jsou karty rozmístěny při redeal, výchozí hodnota je 1
-<ul>
-<li>číslo
-<li>fill
-<li>gaps
-<li>bottomtotop
-<li>max
-<li>start
-<li>start1
-<li>start_col
-</ul>
-<li>fill
+<li>autoplay - automatický přesunu karet z této hromádky, výchozí hodnota je 1
+	<ul>
+	<li>0 - zakázán
+	<li>1 - povolen (ale lze zakázat v možnostech)
+	<li>base - poslední karta nebude z hromádky odebrána, dokud na ní lze umístit kartu z libovolné jiné hromádky, pravidlo pro hodnotu následujících karet musí být rank, up nebo down
+	</ul>
+<li>deal - jak jsou karty rozmístěny při kliknutí na talón, výchozí hodnota je 1
+	<ul>
+	<li>číslo - počet karet, které se odeberou z talónu a rozdají
+	<li>fill - karty se automaticky přesouvají z talónu na volná pole
+	<li>gaps - všechny karty kromě hotových řad se znovu rozdají, aby za každou hotovou řadou bylo jedno volné pole
+	<li>bottomtotop - na každé hromádce se přesune nejspodnější karta navrch hromádky
+	<li>max - z talónu se na každou hromádku doplní tolik karet, aby hromádka byla plná (aby se počet karet rovnal hodnotě atributu max)
+	<li>start - na začátku hry během rozdávání dává karty na toto pole, pokud to pravidla umožňují (atribut deal není u talónu, ale u cílového pole)
+	<li>start1 - podobné jako start, ale na každou cílovou hromádku umístí nejvýše 1 kartu
+	<li>start_col - podobné jako start, ale cílové hromádka musí být ve stejném sloupci jako hromádka, kam by se karta rozdala
+	</ul>
+<li>fill - automatický přesun karet z této hromádky na prázdná pole, hodnota je počet přesouvaných karet
 <li>redeal - kolikrát je povolen redeal (nové rozložení karet z talónu), hodnota inf znamená neomezeně
 <li>shuffle - může být jen u elementu stock, pokud je hodnota rand, zamíchá karty během redeal
 <li>dir - směr rozložení hromádky, hodnoty jsou left, right, up, down, no, výchozí hodnota pro element tableau je down, pro ostatní elementy je no
 <li>spacing - relativní vzdálenost mezi hromádkami, výchozí hodnota je 100
-<li>prev - index nebo směr předchozí hromádky, pokud tento element obsahuje element prev, hodnota je buď číslo nebo left,right,up,down
-<li>hide - kladné číslo znamená počet obrácených karet na hromádce, záporné číslo znamená počet viditelných karet (zbylé jsou obrácené), další povolené hodnoty jsou all, odd, even, výchozí hodnota je 0
-<li>onhid - jaké karty lze přesunout na otočenou (skrytou) kartu, hodnota je buď any (jakákoli) nebo k (král). Pokud atribut není definován, karta se automaticky otočí vrchní stranou nahoru.
-<li>shape - jakým způsobem jsou karty rozdány
-<li>under - hromádka je zablokovaná, pokud na jiné hromádnce jsou nějaké karty, hodnoty jsou next, next+1, waste
-<li>under2 - stejný význam jako under, pokud potřebujete zadat dvě hodnoty
+<li>prev - index nebo směr předchozí hromádky, tento element zároveň musí obsahovat element prev, hodnota je buď číslo nebo left,right,up,down, výchozí hodnota je left
+<li>hide - některé karty jsou otočeny, že je vidět rub (zadní strana) karty, výchozí hodnota je 0, talón má výchozí hodnotu all
+	<ul>
+	<li>kladné číslo - počet obrácených karet vespod každé hromádky
+	<li>záporné číslo - počet viditelných karet navrchu každé hromádky, ostatní karty jsou obrácené
+	<li>all - všechny karty jsou obrácené
+	<li>odd - na každé hromádce se střídají viditelné a obrácené karty, nejspodnější je obrácená
+	<li>even - na každé hromádce se střídají viditelné a obrácené karty, nejspodnější je viditelná
+	</ul>
+<li>onhid - jaké karty lze přesunout na otočenou (skrytou) kartu, hodnota je buď any (jakákoli) nebo k (král). Pokud atribut není definován, karta se automaticky otočí vrchní stranou nahoru (kromě talónu).
+<li>shape - jakým způsobem jsou karty rozdány nebo jak jsou hromádky rozmístěny, výchozí hodnota je left
+	<ul>
+	<li>incr - každá další hromádka obsahuje o 1 kartu více
+	<li>decr - každá další hromádka obsahuje o 1 kartu méně
+	<li>incr2 - každá další hromádka obsahuje o 2 karty více
+	<li>decr2 - každá další hromádka obsahuje o 2 karty méně
+	<li>pyramid - hromádky jsou uspořádány ve tvaru pyramidy, každý řádek obsahuje o 1 hromádku více než předchozí řádek, řádky se překrývají a proto je každá karta blokována dvěma kartami z následujícího řádku, karty se proto musejí odebírat od posledního řádku směrem nahoru
+	<li>braid - hromádky jsou uspořádány ve tvaru copu, na lichých řádcích je 1 karta, na sudých řádcích jsou 2 karty, řádky se překrývají
+	<li>bind - sudé řádky jsou posunuty o půl karty doprava, řádky se překrývají
+	<li>left - na všech hromádkách je stejný počet karet, na hromádkách směrem zleva může být o 1 kartu více (pokud celkový počet karet není dělitelný počtem hromádek)
+	<li>right - stejný počet karet, směrem zprava může být o kartu více
+	<li>center - stejný počet karet, uprostřed může být o kartu více
+	<li>side - stejný počet karet, po obou stranách může být o kartu více
+	<li>first - stejný počet karet kromě první hromádky, na které může být méně karet
+	<li>last - stejný počet karet kromě poslední hromádky, na které může být méně karet
+	</ul>
+<li>under - hromádka je zablokovaná (nelze z ní odebrat kartu), pokud na jiné hromádce jsou nějaké karty
+	<ul>
+		<li>waste - odpad musí být prázdný
+		<li>next - první hromádka z následujícího elementu musí být volná
+		<li>next+1 - druhá hromádka z následujícího elementu musí být volná
+	</ul>
+<li>under2 - stejný význam jako under; používá se v případě, že potřebujete zadat dvě hodnoty
 </ul>
 
 <h3>Text uvnitř elementů foundation, tableau, cell, stock, reserve, waste</h3>
@@ -145,6 +177,17 @@ Přesun jen z:
 <li>foundation - cílové pole
 <li>cell - pole
 </ul>
+
+Výchozí pravidla:
+<ul>
+<li>foundation - a up suit
+<li>tableau - down
+<li>reserve - no noseq
+<li>stock - no noseq
+<li>waste - stock
+<li>cell - no
+</ul>
+
 
 <h3>Elementy</h3>
 <ul>

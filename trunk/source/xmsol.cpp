@@ -2022,6 +2022,7 @@ INT_PTR CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 			lvi.mask=LVIF_PARAM;
 			ListView_GetItem(listBox, &lvi);
 			preview.newGame(games[(int)lvi.lParam]);
+			generRules(preview.game);
 			lvi.mask=LVIF_STATE;
 			lvi.state=lvi.stateMask=LVIS_SELECTED|LVIS_FOCUSED;
 			SendMessage(listBox, LVM_SETITEMSTATE, i, (LPARAM)&lvi);
