@@ -1477,6 +1477,7 @@ int Tboard::totalCards()
 	return n;
 }
 
+//cell has attribute autoplay="base"
 int Tboard::autoBase(Tcell *t)
 {
 	int i, k, r, r1, rule;
@@ -1485,6 +1486,7 @@ int Tboard::autoBase(Tcell *t)
 	if(t->Ncards==1){
 		rule=(t->inRule&SEQ_MASK)>>SEQ_ROT;
 		r=CARD_RANK(t->cards[0]);
+		//look for card which can be placed on one card in cell "t"
 		for(i=0; i<cells.len; i++){
 			c=&cells[i];
 			if(c->type==CELL_FOUNDATION || c==t) continue;
@@ -1511,7 +1513,7 @@ int Tboard::autoBase(Tcell *t)
 //
 // This is the autoplay function, this routine "forces" every card to their right place
 //
-void Tboard::autoPlay(int once)	// ACC, added "once"
+void Tboard::autoPlay(int once)	// once is true if "fast forward" function is used
 {
 	int i, j, k, n, destType, f;
 	int	globalAutoplayCopy;
@@ -1521,11 +1523,14 @@ void Tboard::autoPlay(int once)	// ACC, added "once"
 	TundoRec *u;
 
 	if(!game || finished) return;
+
+	//disable autoplay if undo function was used to move card back from foundation
 	disabled=false;
 	if(undoPos>0){
 		u=&undoRec[undoPos-1];
 		if(cells[u->src].type==CELL_FOUNDATION && cells[u->dest].type!=CELL_FOUNDATION) disabled=true;
 	}
+
 	n=0;
 
 	globalAutoplayCopy = globalAutoplay;
@@ -1535,15 +1540,15 @@ void Tboard::autoPlay(int once)	// ACC, added "once"
 	{
 		moved=false;
 		for(i=0; i<cells.len; i++){
-			c=&cells[i];
+			c=&cells[i]; //destination
 			if(c->type==CELL_FOUNDATION && game->autoplay && globalAutoplay && !disabled){
 				for(j=0; j<cells.len; j++){
-					t=&cells[j];
+					t=&cells[j]; //source
 					if((t->type!=CELL_FOUNDATION || (cells[i].inRule&SEQ_MASK)==SEQ_RANK<<SEQ_ROT) &&
-						t->autoplay && (t->autoplay!=AUTO_BASE || autoBase(t)) &&
+						t->autoplay!=AUTO_NO && (t->autoplay!=AUTO_BASE || autoBase(t)) &&
 						(c->Ncards>0 || (!isSameBase(c) || baseRank()) &&
 						(c->inRule&RANK_MASK))){
-						for(k=0; k<t->Ncards; k++){
+						for(k=0; k<t->Ncards; k++){ //try to move group if possible
 							if(animMove(i, j, k, ANIM_AUTOPLAY)){
 								calcDone();
 								n++;
@@ -1557,6 +1562,7 @@ void Tboard::autoPlay(int once)	// ACC, added "once"
 			}
 		}
 	lf:
+		//"fill" attribute, (it can't be disabled in options)
 		for(i=0; i<cells.len; i++){
 			c=&cells[i];
 			if(c->fill){
@@ -1570,6 +1576,7 @@ void Tboard::autoPlay(int once)	// ACC, added "once"
 						colorTest(t->inRule, c->cards[f]) &&
 						rankTest(t->inRule, c->cards[f]))){
 						if(!moved1){
+							//moves counter will not be incremented
 							if(moves>0) moves--;
 							moved1=true;
 						}
@@ -1583,6 +1590,7 @@ void Tboard::autoPlay(int once)	// ACC, added "once"
 			}
 		}
 	} while(moved);
+
 	speedAccel=1;
 	globalAutoplay=globalAutoplayCopy;
 	finished=(this->*(game->checkFinish))();
