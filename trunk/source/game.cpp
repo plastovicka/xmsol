@@ -1310,7 +1310,8 @@ void Tboard::dblclkMove(int src)
 	}
 }
 
-int evalMove(Tcell *c, Tcell *srcCell)
+//0 is the best, 7 is the worst
+int evalMove(Tcell *c, Tcell *srcCell, Tcard srcCard)
 {
 	if(c->Ncards>0 && !c->hidden[c->Ncards-1]){
 		if((c->inRule&SEQ_MASK)==0) return 3;
@@ -1318,7 +1319,10 @@ int evalMove(Tcell *c, Tcell *srcCell)
 			if(srcCell->type==c->type) return 2;
 			return 0;
 		}
-		if(srcCell->type!=c->type) return 2;
+		if((c->outRule&SUIT_MASK) == (SUIT_SAME<<SUIT_ROT)){ //Spider
+			if(((srcCard ^ c->cards[c->Ncards-1])&CARD_SUIT_MASK)) return 2; //not same suit
+		}
+		else if(srcCell->type!=c->type) return 2;
 		return 1;
 	}
 	if(c->type==CELL_FOUNDATION && (c->inRule&RANK_MASK)==0) return 7;
@@ -1330,17 +1334,20 @@ int evalMove(Tcell *c, Tcell *srcCell)
 int Tboard::rightclkMove(int src, int ind)
 {
 	int i, k;
+	Tcard srcCard;
 	Tcell *c;
 
 	if(src<0) return 0;
 	c=&cells[src];
 	if(c->Ncards==0) return 0;
 	if(c->type==CELL_STOCK) return stockClick(src);
+	srcCard=c->cards[ind];
+
 	for(k=0; k<8; k++){
 		for(i=src+1;; i++){
 			if(i==cells.len) i=0;
 			if(i==src) break;
-			if(evalMove(&cells[i], c)==k){
+			if(evalMove(&cells[i], c, srcCard)==k){
 				if(animMove(i, src, ind, ANIM_RIGHTCLICK)) return 1;
 			}
 		}
