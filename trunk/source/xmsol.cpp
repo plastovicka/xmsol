@@ -2872,14 +2872,15 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	GetObject(GetStockObject(SYSTEM_FONT), sizeof(LOGFONT), &font);
 	readini();
 	//load common controls
-#if _WIN32_IE >= 0x0300
-	INITCOMMONCONTROLSEX iccs;
-	iccs.dwSize= sizeof(INITCOMMONCONTROLSEX);
-	iccs.dwICC= ICC_LISTVIEW_CLASSES|ICC_BAR_CLASSES;
-	InitCommonControlsEx(&iccs);
-#else
-	InitCommonControls();
-#endif
+	if(GetProcAddress(GetModuleHandle(_T("comctl32.dll")), "DllGetVersion")){
+		INITCOMMONCONTROLSEX iccs;
+		iccs.dwSize= sizeof(INITCOMMONCONTROLSEX);
+		iccs.dwICC= ICC_LISTVIEW_CLASSES|ICC_BAR_CLASSES;
+		InitCommonControlsEx(&iccs);
+	}
+	else{
+		InitCommonControls();
+	}
 
 	// create the main window
 	WNDCLASS wc;
