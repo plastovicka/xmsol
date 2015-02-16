@@ -2858,6 +2858,12 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 	DeleteObject(rgn);
 
 	inst = hInstance;
+
+	//DPIAware
+	typedef BOOL(WINAPI *TGetProcAddress)();
+	TGetProcAddress getProcAddress = (TGetProcAddress)GetProcAddress(GetModuleHandle(_T("user32")), "SetProcessDPIAware");
+	if(getProcAddress) getProcAddress();
+
 	setlocale(LC_ALL, "");
 	_tcscpy(fnCards, _T("cards\\standard.bmp"));
 	_tcscpy(fnBack, _T("back\\blue.bmp"));
