@@ -56,7 +56,7 @@ void TplayerFile::readNames()
 	delete[] a;
 }
 
-BYTE *TplayerFile::findPosition(BYTE *a, TCHAR *gameName, DWORD num)
+BYTE *TplayerFile::findPosition(BYTE *a, TCHAR *game_name, DWORD num)
 {
 	int i, id;
 	BYTE *p, *e, *q;
@@ -64,7 +64,7 @@ BYTE *TplayerFile::findPosition(BYTE *a, TCHAR *gameName, DWORD num)
 	TgameStatRec *g;
 	BYTE *result=0;
 
-	id=getNameId(gameName);
+	id=getNameId(game_name);
 	if(id>=0){
 		p=a;
 		e=a+pfh.saveLen;
@@ -91,7 +91,7 @@ BYTE *TplayerFile::findPosition(BYTE *a, TCHAR *gameName, DWORD num)
 	return result;
 }
 
-void TplayerFile::readPosition(Tboard *b, TCHAR *gameName, DWORD num)
+void TplayerFile::readPosition(Tboard *b, TCHAR *game_name, DWORD num)
 {
 	int i, n, m;
 	BYTE *a, *p;
@@ -102,14 +102,14 @@ void TplayerFile::readPosition(Tboard *b, TCHAR *gameName, DWORD num)
 	if(open()){
 		if(pfh.saveLen<MAXMEM){
 			a=new BYTE[pfh.saveLen];
-			p=findPosition(a, gameName, num);
+			p=findPosition(a, game_name, num);
 			if(p){
 				n=*(DWORD*)(p-4);
 				g=(TgameStatRec*)(p-4-pfh.logStruct);
 				assert(g->seed==num);
 				close();
 				b->seed= g->seed;
-				b->newGame(gameName);
+				b->newGame(game_name);
 				if(b->game){
 					b->finished= g->won!=0;
 					b->scoreWrongMove= g->wrongMove;
@@ -381,7 +381,7 @@ void TplayerFile::saveGameStat(Tboard *b)
 	}
 }
 
-void TplayerFile::deletePosition(TCHAR *gameName, DWORD num)
+void TplayerFile::deletePosition(TCHAR *game_name, DWORD num)
 {
 	BYTE *a, *p;
 	DWORD n;
@@ -390,7 +390,7 @@ void TplayerFile::deletePosition(TCHAR *gameName, DWORD num)
 	if(open()){
 		if(pfh.saveLen<MAXMEM){
 			a=new BYTE[pfh.saveLen];
-			p=findPosition(a, gameName, num);
+			p=findPosition(a, game_name, num);
 			if(p){
 				p-=4;
 				n= *(DWORD*)p;

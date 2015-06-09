@@ -152,7 +152,7 @@ public:
 	int totalCards();
 	void autoPlay(int once=0);
 	bool deal(Tcell *c, bool *bitmask, int total);
-	void newGame(Tgame *game);
+	void newGame(Tgame *_game);
 	void newGame(TCHAR *name);
 	bool undo1();
 	bool redo1();
@@ -173,7 +173,7 @@ struct Tgame : public TxmlElem {
 
 	Tgame();
 	~Tgame();
-	void addAttr(TCHAR *name, TCHAR *value);
+	void addAttr(TCHAR *attr, TCHAR *value);
 	void addChild(TxmlElem *elem);
 	bool check();
 	int Nsuit();
@@ -230,16 +230,16 @@ public:
 	void seek(HANDLE h, DWORD pos);
 	void close();
 	int getNameId(TCHAR *s);
-	BYTE *findPosition(BYTE *a, TCHAR *gameName, DWORD num);
+	BYTE *findPosition(BYTE *a, TCHAR *game_name, DWORD num);
 	void readNames();
 	void deleteNames();
 	bool readStat(int action);
 	bool readGameStat();
-	void readPosition(Tboard *b, TCHAR *s, DWORD num);
+	void readPosition(Tboard *b, TCHAR *game_name, DWORD num);
 	int saveName(TCHAR *s);
 	void saveGameStat(Tboard *b);
 	void savePosition(Tboard *b);
-	void deletePosition(TCHAR *gameName, DWORD num);
+	void deletePosition(TCHAR *game_name, DWORD num);
 	void addRecord(int section, void *ptr, DWORD len);
 	void statistics();
 	void bestScores(int whichGame);

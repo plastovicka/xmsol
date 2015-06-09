@@ -148,19 +148,19 @@ Tgame::~Tgame()
 	deleteDarray(cells);
 }
 
-void Tgame::addAttr(TCHAR *name, TCHAR *value)
+void Tgame::addAttr(TCHAR *attr, TCHAR *value)
 {
 	int i=_ttoi(value);
-	if(!_tcscmp(name, _T("name"))) this->name=_tcsdup(value);
-	else if(!_tcscmp(name, _T("decks"))) decks=i;
-	else if(!_tcscmp(name, _T("autoplay"))) autoplay=i;
-	else if(!_tcscmp(name, _T("pair"))){
+	if(!_tcscmp(attr, _T("name"))) this->name=_tcsdup(value);
+	else if(!_tcscmp(attr, _T("decks"))) decks=i;
+	else if(!_tcscmp(attr, _T("autoplay"))) autoplay=i;
+	else if(!_tcscmp(attr, _T("pair"))){
 		pair=i;
 		if(!_tcscmp(value, _T("suit"))) pair=PAIR_SUIT;
 		if(!_tcscmp(value, _T("rank"))) pair=PAIR_RANK;
 		if(!_tcscmp(value, _T("rankcolor"))) pair=PAIR_RANKCOLOR;
 	}
-	else if(!_tcscmp(name, _T("suit"))){
+	else if(!_tcscmp(attr, _T("suit"))){
 		suit=0;
 		for(TCHAR *s=value; *s; s++){
 			i=0;
@@ -171,7 +171,7 @@ void Tgame::addAttr(TCHAR *name, TCHAR *value)
 			suit|=i;
 		}
 	}
-	else if(!_tcscmp(name, _T("rank"))){
+	else if(!_tcscmp(attr, _T("rank"))){
 		rank=0;
 		for(TCHAR *s=value; *s; s++){
 			i=0;
@@ -1659,7 +1659,7 @@ bool Tboard::deal(Tcell *c, bool *bitmask, int total)
 	return true;
 }
 
-void Tboard::newGame(Tgame *game)
+void Tboard::newGame(Tgame *_game)
 {
 	int i, j, k, n, total, row, col, Ncolumn, m, sc, d, r, f;
 	Tcell *c, *c0;
@@ -1667,18 +1667,18 @@ void Tboard::newGame(Tgame *game)
 	bool *bitmask;
 	Tcard card, card1;
 
-	if(!game) return;
+	if(!_game) return;
 	if(!finished && (moves || redoPos)){
 		playerFile.saveGameStat(this);
 	}
 	cells.reset();
-	this->game=game;
+	this->game=_game;
 	if(this==&board){
-		_tcscpy(gameName, game->name);
+		_tcscpy(gameName, _game->name);
 		if(mustLoadRules){
 			loadRules();
-			game=this->game;
-			if(!game) return;
+			_game=this->game;
+			if(!_game) return;
 		}
 	}
 	number= seed;
@@ -1686,12 +1686,12 @@ void Tboard::newGame(Tgame *game)
 	randomRank= rand(13)+1;
 	waste=-1;
 	//initialize bitmask according to game suit and rank
-	n=total=game->decks*13*4;
+	n=total=_game->decks*13*4;
 	bitmask= new bool[total];
 	memset(bitmask, 0, total*sizeof(bool));
 	for(i=0; i<4; i++){
-		if((game->suit & (1<<i))==0){
-			for(j=0; j<game->decks; j++){
+		if((_game->suit & (1<<i))==0){
+			for(j=0; j<_game->decks; j++){
 				for(k=0; k<13; k++){
 					bitmask[(j*4+i)*13+k]=true;
 					n--;
@@ -1700,8 +1700,8 @@ void Tboard::newGame(Tgame *game)
 		}
 	}
 	for(k=0; k<13; k++){
-		if((game->rank & (1<<k))==0){
-			for(j=0; j<4*game->decks; j++){
+		if((_game->rank & (1<<k))==0){
+			for(j=0; j<4*_game->decks; j++){
 				bool &b=bitmask[j*13+k];
 				if(!b){
 					b=true;
@@ -1710,8 +1710,8 @@ void Tboard::newGame(Tgame *game)
 			}
 		}
 	}
-	for(i=0; i<game->cells.len; i++){
-		c1=game->cells[i];
+	for(i=0; i<_game->cells.len; i++){
+		c1=_game->cells[i];
 		Ncolumn= (c1->repeat-1)/c1->lines+1;
 		if(c1->shape==SHAPE_PYRAMID){
 			Ncolumn+= (c1->lines+1)/2-1;
@@ -1841,7 +1841,7 @@ void Tboard::newGame(Tgame *game)
 				if(r>=1 && r<=13){
 					d=(j%4)*13+(r-1);
 					if(testStart(c, d, 0)){
-						for(k=0; k<game->decks; k++){
+						for(k=0; k<_game->decks; k++){
 							if(!bitmask[d]){
 								bitmask[d]=true;
 								c->cards[0]= MAKECARD(r, j);
@@ -1870,10 +1870,10 @@ void Tboard::newGame(Tgame *game)
 		if(c->type==CELL_FOUNDATION){
 			f++;
 			if((c->inRule&SEQ_MASK)==(SEQ_RANK<<SEQ_ROT)){
-				amax(c->maxCount, game->Nsuit()*game->decks);
+				amax(c->maxCount, _game->Nsuit()*_game->decks);
 			}
 			if((c->inRule&SUIT_MASK)==(SUIT_SAME<<SUIT_ROT)){
-				amax(c->maxCount, game->Nrank()*game->decks);
+				amax(c->maxCount, _game->Nrank()*_game->decks);
 			}
 			n+=c->maxCount;
 		}
@@ -1922,12 +1922,12 @@ void Tboard::newGame(Tgame *game)
 		}
 	}
 	//set checkFinish
-	game->checkFinish= &Tboard::finishFoundation;
-	i=game->cards-n;
+	_game->checkFinish= &Tboard::finishFoundation;
+	i=_game->cards-n;
 	if(i>0){
-		game->checkFinish= &Tboard::finishFullFoundation;
+		_game->checkFinish= &Tboard::finishFullFoundation;
 		if(n==0 || i>8){
-			game->checkFinish= &Tboard::finishFan;
+			_game->checkFinish= &Tboard::finishFan;
 		}
 	}
 	delete[] bitmask;
@@ -1976,7 +1976,7 @@ void Tboard::newGame(Tgame *game)
 		statusTime();
 		invalidate();
 		static TCHAR buf[64];
-		_sntprintf(buf, sizeA(buf)-1, _T("XM Solitaire - %s"), game->name);	// ACC, moved the seed to the status bar.
+		_sntprintf(buf, sizeA(buf)-1, _T("XM Solitaire - %s"), _game->name);	// ACC, moved the seed to the status bar.
 		SetWindowText(hWin, buf);
 		SetTimer(hWin, 128, 1000, 0);
 		statusSeed();	// ACC, the seed is no longer displayed in the window's title
