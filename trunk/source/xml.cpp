@@ -204,7 +204,7 @@ int TxmlParser::readTag(Darray<TCHAR> &buf)
 		else if(buf[0]=='!'){
 			int h=0;
 			while(!eof() && h>=0){
-				int c=get();
+				c=get();
 				if(c=='>') h--;
 				if(c=='<') h++;
 			}

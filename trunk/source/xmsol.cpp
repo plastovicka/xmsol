@@ -2549,7 +2549,6 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		case WM_NOTIFY:
 		{
 			NMTOOLBAR *nmtool;
-			TOOLTIPTEXT *ttt;
 			switch(((NMHDR*)lParam)->code){
 				case TBN_QUERYDELETE:
 				case TBN_QUERYINSERT:
@@ -2564,14 +2563,16 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 					}
 					break;
 				case TTN_NEEDTEXT:
-					ttt= (LPTOOLTIPTEXT)lParam;
-					for(i=0; i<sizeA(tbb); i++){
-						if(tbb[i].idCommand==(int)ttt->hdr.idFrom){
+				{
+					TOOLTIPTEXT *ttt= (LPTOOLTIPTEXT)lParam;
+					for(i=0; i<sizeA(tbb); i++) {
+						if(tbb[i].idCommand==(int)ttt->hdr.idFrom) {
 							ttt->hinst= NULL;
 							ttt->lpszText= lng(ttt->hdr.idFrom+1000, toolNames[i]);
 						}
 					}
 					break;
+				}
 
 #ifndef UNICODE
 					//Linux
@@ -2585,8 +2586,8 @@ LRESULT CALLBACK WndMainProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 							ttt->szText[sizeA(ttt->szText)-1]=0;
 						}
 					}
-				}
 					break;
+				}
 #endif
 
 				case TBN_RESET:

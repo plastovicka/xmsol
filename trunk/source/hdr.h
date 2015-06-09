@@ -3,6 +3,9 @@
 #ifndef _WIN32_IE
 #define _WIN32_IE 0x0400
 #endif
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT 0x500
+#endif
 #define _USE_32BIT_TIME_T
 #include <windows.h>
 #include <stdlib.h>
