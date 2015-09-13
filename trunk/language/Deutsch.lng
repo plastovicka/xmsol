@@ -1,0 +1,259 @@
+;menu
+400=&Spiel
+203=Spiel aus&wählen...
+202=&Neues Spiel
+226=Neues Spiel N&ummer...
+227=&Zufälliges Spiel
+207=Spieler&profil wechseln...
+228=Statisti&ken...
+407=&Sprache
+204=&Toolbar anpassen...
+205=Tastenk&ürzel...
+206=&Optionen...
+233=Einstellungen in &INI-Datei sichern
+208=Einstellungen &löschen
+201=Schließe&n
+
+401=&Züge
+209=Zur&ück
+210=&Wiederholen
+211=&Alle zurück
+212=A&lle wiederholen
+232=&Schnellvorlauf
+
+406=&Ansicht
+213=Spiegeln &links/rechts
+214=Spiegeln &oben/unten
+218=Karten &weiter
+219=Karten &dichter
+221=&Toolbar anzeigen
+231=&Statuszeile anzeigen
+220=&Aktualisieren
+
+402=&Karten
+229=&Nächste
+230=&Vorige
+
+408=F&elder
+234=&Nächste
+235=&Vorige
+
+403=Kartenrüc&kseiten
+222=&Nächste
+223=&Vorige
+
+404=&Hintergrund
+224=&Nächster
+225=&Voriger
+
+405=&Hilfe
+215=&Hilfe
+216=&Regeln
+217=&Über...
+
+;dialog boxes
+19=Tastenkürzel
+512=Kommando:
+513=Taste:
+
+11=Über
+511=Version
+524=Anzahl Spiele:
+1=OK
+2=Abbrechen
+
+12=Liste der Spiele
+515=&Regeln
+537=Beste &Punktergebnisse
+528=&Auf einen Stapel bewegen:
+529=&Umgedrehte Karte aufdecken:
+539=&Bonus für Sieg:
+525=Zur&ück:
+526=&Falscher Zug per Rechts-Klick:
+527=&Neu geben:
+535=&Zeit:
+
+22=Neues Spiel
+536=Zahl von 1 bis 4294967295:
+
+;options
+14=Animation
+514=Autoplay &einschalten
+530=Animation bei &Autoplay
+531=Animation bei Zur&ück-Wiederholen
+532=Animation bei &Rechtsklick
+533=Animation beim &Geben vom Stapel
+15=Anzeigen
+534=Abge&rundete Kartenecken:
+540=Hal&bton-Verfahren beim Strecken der Karten-Bitmaps
+516=Fensterrahmen
+517=&links/rechts
+518=&oben/unten
+519=Kartenzwischenraum
+522=Vorderseite
+523=Rückseiten
+520=&vertikal
+521=&horizontal
+16=Punkte
+
+;statistics
+960=Spiele gespielt
+961=Spiele gewonnen
+962=Spiele verloren
+963=Siegquote
+964=Gesamtspielzeit in Stunden
+965=Spielzeit pro Spiel
+966=Gesamtzahl Züge
+967=Züge pro Spiel
+
+;status bar
+680=Zeit
+681=Punkte
+683=Züge
+682=Fertig
+684=Mischen
+685=Stapel
+
+97=Strg+
+98=Umschalt+
+99=Alt+
+21=Regeln
+501=Spieler (*.xol)\0*.xol\0Alle Dateien\0*.*\0
+20=Optionen
+538=Punkte\tZeit\tDatum
+735=Fehler beim Schreiben in die Windows-Registry
+733=Fehler beim Erzeugen der Datei %s
+730=Fehler beim Öffnen der Datei %s
+731=Formatfehler in Datei %s
+734=Fehler beim Schreiben in Datei %s
+755=Fehler in %s\nZeile %d
+756=Fehler in %s\nNachricht Nummer %d ist zu groß
+757=Fehler in %s\nDoppelte Nummer %d
+753=Datei %s ist zu lang
+754=Fehler beim Lesen von Datei %s
+
+;games listbox columns
+650=Name des Spiels
+651=Gespielt
+652=Gewonnen
+653=Prozent
+654=Punkte
+655=Zeit
+656=Züge
+657=Karten
+658=Stapel
+659=Folgenregel
+660=Farbenregel
+661=Paar
+662=Name des Spiels
+663=Letztes Spiel
+664=Punkte gewonnen
+665=Zeit gewonnen
+666=Züge gewonnen
+667=Verloren
+668=Gruppenzüge
+
+;rules
+900=Paare
+901=Stapel
+913=Farben
+914=Rang
+915=Geben
+902=Erneut geben
+903=unbegrenzt
+904=Maximum Karten pro Stapel
+921=Abwurfstapel muss leer sein
+916=Ablegeregeln
+919=Regeln für Züge zwischen Felder gleichen Typs
+920=Regeln für eine voriges Feld
+905=Felder können nicht belegt werden
+906=Rang der ersten Karte
+907=Farbe der ersten Karte
+908=Kein Bauen
+909=Rangfolge:
+910=laufend
+911=Farb-Rangfolge
+912=Züge von Kartengruppen:
+917=Ziehen nur von
+918=Ziehen nur nach
+
+1000=alle
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=nein
+1015=Zufallsbasis
+1016=Zufallsbasis + 1
+1017=gleiche Basis
+1018=erst Könige dann andere Karten
+1019=A oder K
+
+1031=Herz
+1032=Karo
+1033=Kreuz
+1034=Pik
+1035=Rot
+1036=Schwarz
+
+1051=gleich
+1052=verschieden
+1053=gleiche Farbe
+1054=wechslende Farbe
+
+1061=nein
+1062=absteigend
+1063=aufsteigend
+1064=oben oder unten
+1065=absteigend gerade/ungerade
+1066=aufsteigen gerade/ungerade
+1067=oben oder unten gerade/ungerade
+1068=gleicher Rang
+1069=oben oder unten oder gleich
+1070=voriger Stapel hat Karte gleichen Ranges wie die gezogene Karte
+1071=voriger Stapel is vollständig
+1072=höher
+1073=niedriger
+1074=oben or gleich
+1075=unten or gleich
+
+1080=Ja
+1081=Nein
+1082=nicht alle Karten
+1083=jede Reihenfolge
+1084=alle 13 Karten
+1085=auf ein leeres Feld
+1086=jede Reihenfolge bei freien Feldern
+1087=ganzer Stapel beliebiger Reihenfolge
+
+1100=Feld
+1101=Basis
+1102=Tableau
+1103=Handkarten
+1104=Stapel
+1105=Abwurfstapel
+
+1120=gleiche Farbe
+1121=gleicher Rang
+1122=gleiche Farbe und Rang
+
+;toolbar buttons
+1203=Spiel wählen
+1202=Neues Spiel
+1207=Spieler wechseln
+1212=Alle zurück
+1209=Zurück
+1210=Wieder
+1211=Alle wieder
+1206=Optionen
+1216=Regeln
+1232=Schnellvorlauf
