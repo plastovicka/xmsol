@@ -1,5 +1,5 @@
 /*
-	(C) 2004-2014  Petr Lastovicka
+	(C) 2004-2016  Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -45,6 +45,7 @@ static TCHAR *langFile;     //file content (\n are replaced by \0)
 static TCHAR *lngstr[MAXLNGSTR];//pointers to lines in the langFile
 static TCHAR *lngNames[MAXLANG+1];//names of all found languages
 static TCHAR *recycl[MAXLNG_PARALLEL]; //temporary buffers for Unicode strings
+bool isWin9X;
 //-------------------------------------------------------------------------
 
 TCHAR *lng(int i, char *s)
@@ -166,7 +167,9 @@ static int *subPtr;
 static void fillPopup(HMENU h)
 {
 	int i, id, j;
-	TCHAR *s;
+	TCHAR *s,*name;
+	WCHAR w[16];
+	UINT f;
 	HMENU sub;
 	ACCEL *a;
 	MENUITEMINFO mii;
@@ -174,11 +177,17 @@ static void fillPopup(HMENU h)
 
 	for(i=GetMenuItemCount(h)-1; i>=0; i--){
 		id=GetMenuItemID(h, i);
-		if(id==29999){
-			for(j=0; lngNames[j]; j++){
-				InsertMenu(h, 0xFFFFFFFF,
-					MF_BYPOSITION|(lstrcmpi(lngNames[j], lang) ? 0 : MF_CHECKED),
-					30000+j, lngNames[j]);
+		if(id==29999){ //Language submenu
+			for(j=0; (name=lngNames[j])!=0; j++){
+				f = MF_BYPOSITION | (lstrcmpi(lngNames[j], lang) ? 0 : MF_CHECKED);
+				w[0] = 0;
+				if(!isWin9X){
+					// L"\x10c" does not compile correctly in Microsoft Visual C++ 6.0
+					if(!lstrcmpi(name + 1, _T("esky"))){ wcscpy(w, L"0esky"); w[0] = 0x10c; }
+					if(!lstrcmpi(name, _T("Espanol"))){ wcscpy(w, L"Espa0ol"); w[4] = 0xF1; }
+				}
+				if(w[0]) InsertMenuW(h, 0xFFFFFFFF, f, 30000 + j, w);
+				else InsertMenu(h, 0xFFFFFFFF, f, 30000 + j, name);
 			}
 			DeleteMenu(h, 0, MF_BYPOSITION);
 		}
@@ -377,6 +386,11 @@ int setLang(int cmd)
 //---------------------------------------------------------------------------
 void initLang()
 {
+	OSVERSIONINFO v;
+	v.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+	GetVersionEx(&v);
+	isWin9X = v.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS;
+
 	scanLangDir();
 	if(!lang[0]){
 		//language detection
@@ -386,6 +400,7 @@ void initLang()
 			case LANG_CATALAN: s=_T("Catalan"); break;
 			case LANG_CZECH: s=_T("Èesky"); break;
 			case LANG_GERMAN: s=_T("Deutsch"); break;
+			case LANG_SPANISH: s=_T("Espanol"); break;
 			case LANG_FRENCH: s=_T("French"); break;
 			case LANG_ITALIAN: s=_T("Italiano"); break;
 			case LANG_POLISH: s=_T("Polski"); break;
