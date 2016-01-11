@@ -1,0 +1,259 @@
+;menus
+400=&Juego
+203=&Seleccionar juego...
+202=&Nuevo juego
+226=Nuevo juego n&úmero...
+227=Juego &aleatorio
+207=Cambiar de &jugador...
+228=Es&tadisticas...
+407=&Lenguaje
+204=&Personalizar la barra de herramientas
+205=&Atajos de teclado
+206=&Opciones...
+233=Guardar la configuración como un fichero &INI
+208=Borrar configuración
+201=&Ordenar
+
+401=&Movimiento
+209=&Deshacer
+210=&Rehacer
+211=Deshacer &todo
+212=Rehacer t&odo
+232=&Avance rápido
+
+406=&Vista
+213=Espejar &izquierda/derecha
+214=Espejar &arriba/abajo
+218=&Incrementar distancia vertical entre cartas
+219=&decrementar distancia vertical entre cartas
+221=&Mostrar la barra de herramientas
+231=Mostrar la barra de &estado
+220=&Refrescar
+
+402=&Baraja
+229=&Siguiente
+230=&Anterior
+
+408=C&eldas para las pilas
+234=&Siguiente
+235=&Anterior
+
+403=Reverso de la ba&raja
+222=&Siguiente
+223=&Anterior
+
+404=&Tapete
+224=&Siguiente
+225=&Anterior
+
+405=&Ayuda
+215=A&yuda
+216=&Reglas
+217=Acerca &de...
+
+;cajas de diálogo
+19=atajos de teclado
+512=Comandos:
+513=Teclas:
+
+11=Acerca de
+511=Versión
+524=Contador de juegos:
+1=OK
+2=Cancelar
+
+12=Lista de juegos
+515=&Reglas
+537=&Mejor puntuación
+528=&Mover a una fundación:
+529=Mostrar una carta girada:
+539=&Bonus por una victoria:
+525=&Deshacer:
+526=&Mal movimiento del botón derecho:
+527=&Barajar de nuevo:
+535=&Tiempo:
+
+22=Nuevo juego
+536=Número del 1 a 4294967295:
+
+;opciones
+14=Animación
+514=&Activar el auto-jugar
+530=Animación del &Auto-jugar 
+531=Animación &Deshacer, rehacer 
+532=&animación del botón derecho
+533=Animación de &barajar de un mazo 
+15=Mostrar
+534=&Redondeo esquinas baraja:
+540=Usar el modo hal&ftone para estirar el bitmap de las cartas
+516=Bordes de las ventanas
+517=&izquierda/derecha
+518=&arriba/abajo
+519=Distancia entre las cartas en el tablero
+522=Cuando están de frente
+523=Cuando están del revés
+520=&vertical
+521=&horitzontal
+16=puntuación
+
+;estadistiques
+960=Partidas jugadas
+961=Partidas ganadas
+962=Partidas perdidas
+963=Porcentaje de victorias
+964=Total de tiempo en horas
+965=Tiempo por juego
+966=Total de movimentos
+967=Movimentos por Juego
+
+;barra de estado
+680=Hora
+681=Puntuación
+683=Movimentos
+682=Completado
+684=Barajar
+685=Pila
+
+97=Ctrl+
+98=Shift+
+99=Alt+
+21=Reglas
+501=Jugador (*.xol)\0*.xol\0Todos los ficheros\0*.*\0
+20=Opciones
+538=puntuación\tTiempo\tDatos
+735=No se puede escribir en el registro de Windows
+733=No se puede crear el fichero %s
+730=No se puede abrir el fichero %s
+731=Formato erróneo de fichero %s
+734=Error al escribir el fichero %s
+755=Error en la %s\nLínea %d
+756=Error en %s\nMensaje número %d es demásiado grande
+757=Error en %s\nnúmero duplicado %d
+753=El fichero es demasiado largo
+754=Error leyendo el fichero %s
+
+;Columnas de la lista de juegos
+650=Nombre del juego
+651=Jugados
+652=Ganados
+653=Tanto por ciento
+654=Puntuación
+655=Tiempo
+656=Movimentos
+657=Cartas
+658=Pilas
+659=Secuencia de reglas
+660=Regla del juego
+661=Pareja
+662=Nombre del juego
+663=Última jugada
+664=Puntuación máxima
+665=Tiempo máximo
+666=Movimientos máximos
+667=Perdidos
+668=Movimenots de grupo
+
+;Reglas
+900=Parejas
+901=baraja
+913=Palos
+914=número de la carta
+915=Barajar
+902=Barajar de nuevo
+903=sin límite
+904=Máximo num cartas por pila
+921=La papelera debe estar vacía
+916=Reglas barajar
+919=Reglas para mover entre dlas celdas del mismo tipo
+920=Reglas para ir a la celda anterior
+905=Los espacios no se pueden rellenar
+906=La primera fila de cartas
+907=La primera carta
+908=No contruir
+909=secuencia del rango:
+910=continuar
+911=Secuencia del palo
+912=Mover un grupo de cartass:
+917=Mover sólo desde
+918=Mover sólo a
+
+1000=cualquiera
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=no
+1015=base aleatoria
+1016=base aleatoria + 1
+1017=la misma base
+1018=empezar con todos los reyes y después el resto de cartas
+1019=A o K
+
+1031=corazone
+1032=diamantes
+1033=tréboles
+1034=picas
+1035=rojas
+1036=negras
+
+1051=igual
+1052=diferente
+1053=el mismo color
+1054=alternar color
+
+1061=no
+1062=descendente
+1063=ascendente
+1064=arriba o abajo
+1065=descendente pares/impares
+1066=ascendente pares/impares
+1067=arriba o abajo pares/impares
+1068=el mismo número de la carta
+1069=arriba, abajo o igual
+1070=La pila anterior tiene una carta del mismo número de la carta que el de la carta movida
+1071=La pila anterior está completada
+1072=Más alto
+1073=Más bajo
+1074=Arriba o igual
+1075=Abajo o igual
+
+1080=si
+1081=no
+1082=no todas las cartas
+1083=en cualquier secuencia
+1084=todas las trece cartas
+1085=a la celda vacía
+1086=cualquier secuencia con las celdas libres
+1087=la pila entera independiente de la secuencia
+
+1100=celda
+1101=foundación
+1102=tapete
+1103=reserva
+1104=pila
+1105=descartaes
+
+1120=el mismo palo
+1121=el mismo número
+1122=el mismo número y color
+
+;botones de la barra de herramientas
+1203=Seleccionar juego
+1202=Juego nuevo
+1207=Cambiar jugador
+1212=Deshacer todo
+1209=Deshacer
+1210=Rehacer
+1211=Rehacer todo
+1206=Opciones
+1216=Reglas
+1232=Avance rápido
