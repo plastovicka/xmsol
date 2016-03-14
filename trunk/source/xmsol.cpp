@@ -205,8 +205,8 @@ struct Tregb { char *s; void *i; DWORD n; } regValB[]={
 };
 
 OPENFILENAME userOfn={
-	sizeof(OPENFILENAME), 0, 0, 0, 0, 0, 1,
-	fnTmp, sizeof(fnTmp),
+	OPENFILENAME_SIZE_VERSION_400, 0, 0, 0, 0, 0, 1,
+	fnTmp, sizeA(fnTmp),
 	0, 0, 0, 0, 0, 0, 0, _T("XOL"), 0, 0, 0
 };
 
