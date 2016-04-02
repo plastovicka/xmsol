@@ -1,0 +1,261 @@
+
+
+;menu
+400=&Igra
+203=&Izaberi igru...
+202=&Nova igra
+226=Broj nove i&gre...
+227=&Sluèajni izbor igre
+207=Promjena profila igraèa...
+228=Stastistike...
+407=&Jezik
+204=&Prilagoðavanje alatne trake
+205=&Preèice na tastaturi
+206=&Opcije...
+233=Saèuvaj podešenja u &INI fijl-u
+208=Izbriši podešavanja
+201=I&zlaz
+
+401=&Potezi
+209=&Potez unazad
+210=&Potez unaprijed
+211=Unazad &sve
+212=Napred&sve
+232=&Brzo napred
+
+406=&Pogled
+213=Ogledalo &levo/desno
+214=Ogledalo &gore/dole
+218=&Raširi karte
+219=&Skupi karte
+221=Prikaži &alatnu traku
+231=Prikaži &statusnu traku
+220=&Osveži
+
+402=&Karte
+229=&Sledeæe
+230=&Prethodno
+
+408=P&olja
+234=&Sledeæe
+235=&Prethodno
+
+403=Pozadina karat&a
+222=&Sledeæe
+223=&Prethodno
+
+404=&Pozadina
+224=&Sledeæa
+225=&Prethodno
+
+405=&Pomoæ
+215=&Pomoæ
+216=&Pravila
+217=&O programu...
+
+;prozori za dialog
+19=Preèice na tastaturi
+512=Komanda:
+513=Tipka:
+
+11=Informacije
+511=Verzija
+524=Brojaè igara:
+1=U redu
+2=Odustani
+
+12=Spisak igara
+515=&Pravila
+537=&Najbolji rezultati
+528=&Prelazak na dno:
+529=Otkrij podignutu kartu:
+539=&Bonus za pobedu:
+525=&Unazad:
+526=&Pogrešnih poteza,desni klik:
+527=&Ponovna djeljenja:
+535=&Vreme:
+
+22=Nova igra
+536=Broj od 1 do 4294967295:
+
+;opcije
+14=Animacija
+514=&Omoguæiti automatsku reprodukciju
+530=&Automatski prikaz animacije
+531=&Animiranje nazad,napred
+532=&Desni klik animacija
+533=&Poèetno djeljenje - animacija
+15=Pregled
+534=&Zaobljeni uglovi karata:
+540=Koristi polu-ton mod za uveæanje bitmap-a karata
+516=Ivice prozora
+517=&levo/desno
+518=&gore/dole
+519=Razmak izmeðu karata u gomili
+522=Prednja strana
+523=Zadnja strana
+520=&vertikalno
+521=&horizontalno
+16=Rezultat
+
+;statistike
+960=Odigrano igara
+961=Dobijene igre
+962=Izgubljene igre
+963=Pobjede procentualno
+964=Ukupno vrijeme u satima
+965=Vrijeme po igri
+966=Ukupno pokreta
+967=pokreti po igri
+
+;statusna traka
+680=Vreme
+681=Rezultat
+683=Pokreti
+682=Završeno
+684=Djeljenje
+685=Gomila
+
+97=Ctrl+
+98=Shift+
+99=Alt+
+21=Pravila
+501=Igraè (*.xol)\0*.xol\0All files\0*.*\0
+20=Opcije
+538=Rezultat\tVreme\tDatum
+735=Neuspješno upisivanje u Windows registar
+733=Neuspješno kreiranje datoteke %s
+730=Neuspješno otvaranje datoteke %s
+731=Pogrešan format datoteke %s
+734=Greška pri upisivanju datoteke %s
+755=Greška u %s\nLinija %d
+756=Greška u %s\nBroj poruke %d je prevelik
+757=Greška u %s\nDupli broj %d
+753=Datoteka %s je prevelika
+754=Greška pri èitanju datoteke %s
+
+;kolumne liste igara
+650=Ime igre
+651=Igrana
+652=Pobjeda
+653=Procenti
+654=Rezultat
+655=Vreme
+656=Pokreti
+657=Karte
+658=Akcije
+659=Pravila slaganja
+660=Pravila boje
+661=Parovi
+662=Ime igre
+663=Zadnji put igrano
+664=Rezultat pobjede
+665=Dobijeno vreme
+666=Dobijeni potezi
+667=Izgubljeno
+668=Grupni potezi
+
+;Pravila
+900=Parovi
+901=Špilovi
+913=Boje
+914=Vrednost
+915=Djeljenje
+902=Ponovno djeljenje
+903=neogranièeno
+904=Maximum karata u gomili
+921=Korpa mora biti prazna
+916=Pravila za pražnjenje
+919=Pravila za kretanje izmeðu polja istog tipa
+920=Pravila za prethodno polje
+905=Prostori se nemogu popuniti
+906=Vrednost prve karte
+907=Boja prve karte
+908=Nema slaganja
+909=Redosled:
+910=Neprekidan
+911=Redosled boja
+912=Premještanje grupe karata
+917=Premjesti samo iz
+918=Premjesti samo u
+
+1000=bilo koja
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=ne
+1015=sluèajni uzorak
+1016=sluèajni uzorak +1
+1017=ista osnova
+1018=prvo svi kraljevi a potom ostale karte
+1019=A ili K 
+
+1031=herc (srce)
+1032=karo (kocka)
+1033=tref (detelina)
+1034=pik (list)
+1035=crvena
+1036=crna
+
+1051=ista
+1052=razlièita
+1053=ista boja
+1054=naizmjenièna boja
+
+1061=ne
+1062=ka manjoj
+1063=ka višoj
+1064=gore ili dolje
+1065=ka manjoj par/nepar
+1066=ka višoj par/nepar
+1067=gore ili dolje par/nepar
+1068=ista vrednost
+1069=gore ili dolje ili isto
+1070=Prethodna gomila ima kartu iste vrednosti kao premještena karta
+1071=Prethodna gomila je kompletirana
+1072=više
+1073=manje
+1074=gore ili isto
+1075=dolje ili isto
+
+1080=da
+1081=ne
+1082=ne sve kartice
+1083-bilo koji redosled
+1084=svih 13 karata
+1085=u przno polje
+1086=bilo koji redosled dok ima praznih polja
+1087=Cela gomila bez obzira na redosled
+
+1100=polje(æelija)
+1101=osnova
+1102=sto
+1103=rezerva(zadržano)
+1104=zaliha
+1105=korpa
+
+1120=ista boja
+1121=isti rang
+1122=ista boja i rang
+
+;Alatna traka dugmad
+1203=Izaberi igru
+1202=Nova igra
+1207=Promjeni igraèa
+1212=Vrati unazad sve
+1209=unazad
+1210=Napred
+1211=Napred sve
+1206=Opcije
+1216=Pravila
+1232=Ubrzano
