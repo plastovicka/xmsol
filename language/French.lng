@@ -1,90 +1,91 @@
-;menu
+;Menu
 400=&Jeu
 203=&Choisir un jeu...
 202=&Nouveau
 226=Nouveau numéro...
 227=&Jeu au hasard
-207=Changer joueur...
-228=Statistics...
+207=Changer de joueur...
+228=Statistiques...
 407=&Langue
-204=&Customiser toolbar
-205=&Raccourcis clavier
+204=&Adapter la barre d'outils
+205=&Raccourcis du clavier
 206=&Options...
-208=Supprimer settings
-201=Exit
+233=Enregistrer les réglages dans un fichier .INI
+208=Supprimer les réglages
+201=Quitter
 
 401=&Mouvements
 209=&Défaire
 210=&Refaire
-211=Défaire &tout
-212=Refaire t&out
+211=Tout défaire
+212=Tout refaire
 232=&Avance rapide
 
 406=&Vue
-213=Mirroir &gzuche/droite
-214=Mirroir &haut/bas
-218=&Augmenter distance
-219=&Diminuer distance
+213=Miroir &droite/gauche
+214=Miroir &haut/bas
+218=&Augmenter la distance
+219=&Diminuer la distance
 221=Afficher la &barre d'outils
-231=Afficher la barre de &status
-220=&Refresh
+231=Afficher la barre de &statut
+220=&Rafraîchir
 
 402=&Cartes
 229=&Suivant
-230=&Précédant
+230=&Précédent
 
 408=Cellules
 234=&Suivant
 235=&Précédant
 
-403=Dos de carfes
+403=Dos des cartes
 222=&Suivant
-223=&Précédant
+223=&Précédent
 
 404=&Fond
 224=&Suivant
-225=&Précédant
+225=&Précédent
 
 405=&Aide
 215=&Aide
 216=&Règles
-217=&A propos...
+217=&À propos...
 
-;dialog boxes
-19=Keyboard accelerators
-512=Commande:
-513=Touche:
+;Boîtes de dialogue
+19=Accélerateurs de clavier
+512=Commande :
+513=Touche :
 
-11=A propos
+11=À propos
 511=Version
-524=Games count:
+524=Compteur de jeux :
 1=OK
 2=Annuler
 
 12=Liste de jeux
 515=&Règles
 537=&Meilleurs scores
-528=&Déplacer sur une fondation:
-529=Montrer une carte retournée:
-539=&Bonus pour victoire:
-525=&Défaire:
-526=&Mauvais click droit mouvement:
-527=&Redistribuer:
-535=&Temps:
+528=&Déplacer sur une fondation :
+529=Montrer une carte retournée :
+539=&Bonus pour victoire :
+525=&Défaire :
+526=&Mauvais mouvement du clic droit :
+527=&Redistribuer :
+535=&Temps :
 
 22=Nouveau jeu
-536=Nombre de 1 à 4294967295:
+536=Nombre de 1 à 4 294 967 295 :
 
-;options
+;Options
 14=Animation
-514=&Permettre autoplay
-530=&Autoplay animation
-531=&Défaire, Refaire animation
-532=&Animation click droit
+514=&Permettre l'automatisation
+530=&Animation automatique
+531=&Défaire/refaire l'animation
+532=&Animation sur clic droit
 533=&Animation de distribution d'un stock
 15=Affichage
-534=&Coins de carte arrondis:
-540=Utiliser le mode demi-teinte pour tendre le bitmap des cartes
+534=&Coins de cartes arrondis :
+540=Utiliser le mode demi-teinte pour rendre le bitmap des cartes
 516=bords de fenêtre
 517=&gauche/droite
 518=&haut/bas
@@ -95,42 +96,43 @@
 521=&horizontal
 16=Score
 
-;statistics
+;Statistiques
 960=Jeux joués
 961=Jeux gagnés
 962=Jeux perdus
-963=Pourcentage gagné
+963=Pourcentage de gagnés
 964=Temps total en heures
 965=Temps par jeu
-966=Total mouvements
+966=Total des mouvements
 967=Mouvements par jeu
 
-;status bar
+;Barre d'état
 680=Temps
 681=Score
 683=Mouvements
-682=Done
+682=Donne
 684=Distribution
+685=Empilage
 
 97=Ctrl+
-98=Shift+
+98=Maj+
 99=Alt+
 21=Règles
 501=Joueur (*.xol)\0*.xol\0All files\0*.*\0
 20=Options
 538=Score\tTime\tDate
 735=Impossible d'écrire dans la fenêtre registre
-733=Impossible de créer fichier %s
-730=Impossible d'ouvrir fichier %s
+733=Impossible de créer le fichier %s
+730=Impossible d'ouvrir le fichier %s
 731=Mauvais format du fichier %s
 734=Erreur d'écriture du fichier %s
 755=Erreur dans %s\nLine %d
 756=Erreur dans %s\nMessage number %d est trop gros
 757=Erreur dans %s\nDuplicated number %d
 753=Le fichier %s est trop long
-754=Erreur de lecture fichier %s
+754=Erreur de lecture du fichier %s
 
-;Colone de liste de jeux
+;Colonne de la liste des jeux
 650=Nom du jeu
 651=Joué
 652=Gagné
@@ -142,18 +144,18 @@
 658=Stocks
 659=Règles d'ordre
 660=Règles de couleur
-661=Pairs
-662=Nomdu jeu
+661=Paires
+662=Nom du jeu
 663=Dernier joué
-664=Scoresgagnés
+664=Scores gagnés
 665=Temps gagnés
 666=Mouvements gagnés
 667=Perdu
-668=Déplacer groupe
+668=Déplacer un groupe
 
-;règle
+;Règles
 900=Pairs
-901=Decks
+901=Piles
 913=Couleur
 914=Rang
 915=Distribution
@@ -164,7 +166,7 @@
 916=Règles de décharge
 919=Règles pout les mouvements entre cellules du même type
 920=Règles pour une cellule précédente
-905=Lespace ne peut pas être rempli
+905=L'espace ne peut pas être rempli
 906=Rang de la première carte
 907=Couleur de la première carte
 908=Pas de construction
@@ -175,8 +177,8 @@
 917=Déplacement seulement venant de 
 918=Déplacement seulement vers
 
-1000=peu importe
-1001=A
+1000=n'importe quelle carte
+1001=As
 1002=2
 1003=3
 1004=4
@@ -186,17 +188,17 @@
 1008=8
 1009=9
 1010=10
-1011=J
-1012=Q
-1013=K
+1011=Valet
+1012=Dame
+1013=Roi
 1014=non
 1015=base aléatoire
-1016=base aléatoire +1
+1016=base aléatoire + 1
 1017=même base
-1018=en premier tous les rois et après les autres cartes
-1019=A ou 
+1018=les rois en premier, les autres cartes ensuite
+1019=As ou roi
 
-1031=coeurs
+1031=cœurs
 1032=carreaux
 1033=trèfles
 1034=piques
@@ -204,20 +206,20 @@
 1036=noirs
 
 1051=identique
-1052=different
+1052=différent
 1053=même couleur
-1054=alterner couleur
+1054=alterner la couleur
 
 1061=non
 1062=descendant
 1063=ascendant
 1064=haut ou bas
 1065=descendant pairs/impairs
-1066=ascendants pairs/impairs
+1066=ascendant pairs/impairs
 1067=haut ou bas pairs/impairs
-1068=même ran
+1068=même rang
 1069=haut ou bas ou identique
-1070=L pile précédente a une carte identique à celle déplacée
+1070=La pile précédant une carte identique à celle déplacée
 1071=La pile précédente est complétée
 1072=plus haut
 1073=plus bas
@@ -230,8 +232,8 @@
 1083-n'importe quel ordre
 1084=toutes les 13 cartes
 1085=vers une cellule vide
-1086=n'importe quel ordre quand cellule vide
-1087=Pile entière indépendamment de lordre
+1086=n'importe quel ordre quand la cellule est vide
+1087=Pile entière indépendamment de l'ordre
 
 1100=cellule
 1101=fondation
@@ -242,12 +244,12 @@
 
 1120=même couleur
 1121=même rang
-1122=même couleur et rang
+1122=mêmes couleur et rang
 
-;boutons toolbar
+;Boutons de la barre d'outils
 1203=Choisir un jeu
 1202=Nouveau jeu
-1207=Changer joueur
+1207=Changer de joueur
 1212=Tout défaire
 1209=Défaire
 1210=Refaire
