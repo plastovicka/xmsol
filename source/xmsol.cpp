@@ -1,5 +1,5 @@
 /*
-	(C) 2005-2014  Petr Lastovicka
+	(C) 2005-2018  Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -3012,7 +3012,7 @@ int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int cmdShow)
 
 	//show window
 	curMove=LoadCursor(inst, MAKEINTRESOURCE(IDC_CURSORMOVE));
-	ShowWindow(hWin, maximized && cmdShow==SW_SHOWNORMAL ? SW_SHOWMAXIMIZED : cmdShow);
+	ShowWindow(hWin, maximized && cmdShow!=SW_SHOWMINNOACTIVE ? SW_SHOWMAXIMIZED : cmdShow);
 	UpdateWindow(hWin);
 
 	while(GetMessage(&mesg, NULL, 0, 0)==TRUE){
