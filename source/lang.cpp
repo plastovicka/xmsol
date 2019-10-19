@@ -405,6 +405,7 @@ void initLang()
 			case LANG_ITALIAN: s=_T("Italiano"); break;
 			case LANG_POLISH: s=_T("Polski"); break;
 			case LANG_SERBIAN: s=_T("Srpski"); break;
+			case LANG_SWEDISH: s=_T("Swedish"); break;
 			default: s=_T("English"); break;
 		}
 		lstrcpy(lang, s);
