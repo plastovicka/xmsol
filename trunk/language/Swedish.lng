@@ -1,0 +1,261 @@
+13=en.chm
+
+;menu
+400=Spel
+203=Välj spel...
+202=Nytt spel
+226=Nytt spelnummer...
+227=Slumpmässigt spel
+207=Byt spelarens profil...
+228=Statistik...
+407=Språk
+204=Anpassa verktygsfältet...
+205=Tangentbordsgenvägar...
+206=alternativ...
+233=Spara inställningarna till INI-fil
+208=Radera inställningar
+201=Avsluta
+
+401=Flytta
+209=Ångra
+210=Gör om
+211=Ångra allt
+212=Gör om allt
+232=Snabbt fram
+
+406=Visa
+213=Vänd vänster/höger
+214=Vänd upp/ner
+218=Sprid ut kort
+219=Dra åt kort
+221=Visa verktygsfältet
+231=Visa statusbar
+220=Uppdatera
+
+402=Kort
+229=Nästa
+230=Förgående
+
+408=Cell
+234=Nästa
+235=Förgående
+
+403=Kortbaksidan
+222=Nästa
+223=Förgående
+
+404=Bakgrund
+224=Nästa
+225=Förgående
+
+405=Hjälp
+215=Hjälp
+216=Regler
+217=Om...
+
+;dialog boxes
+19=Tangentbordsacceleratorer
+512=Kommando:
+513=Tangent:
+
+11=Om
+511=Version
+524=Spelräkning:
+1=OK
+2=Avbryt
+
+12=Spellista
+515=Regler
+537=Poängrekord
+528=Flytta till underlag:
+529=Ta fram och vänd kort:
+539=Vinstbonus:
+525=Ångra:
+526=Fel högerklicks-steg:
+527=Omdela:
+535=Tid:
+
+22=Nytt spel
+536=Nummer från 1 till 4294967295:
+
+;options
+14=Animation
+514=Aktivera autospel
+530=Autospelanimation
+531=Ångra, gör om animation
+532=Högerklicksanimation
+533=Dela kort från lageranimation
+15=Visa
+534=Rundade korthörn:
+540=Använd halvton-läge för att sträcka kortbitmappen
+516=Fönsterkanter
+517=vänster/höger
+518=upp/ner
+519=Avstånd mellan kort i en tablå
+522=framsida
+523=baksida
+520=vertikal
+521=horisontell
+16=Poängrekord
+
+;statistics
+960=Spel spelade
+961=Spel vunna
+962=Spel förlorade
+963=Vinnande procent
+964=Total tid i timmar
+965=Tid per spel
+966=Totala drag
+967=Drag per spel
+
+;status bar
+680=Tid
+681=Poängrekord
+683=Drag
+682=Klar
+684=Blanda
+685=Lägg upp
+
+97=Ctrl+
+98=Shift+
+99=Alt+
+21=Regler
+501=Spelare (*.xol)\0*.xol\0All files\0*.*\0
+20=Alternativ
+538=Poängrekord\tTid\tDatum
+735=Det går inte att skriva till Windows-registret
+733=Kan inte skapa fil %s
+730=Kan inte öppna fil %s
+731=Fel format av fil %s
+734=Fel vid skrivning av fil %s
+755=Fel i %s\nLine %d
+756=Fel i %s\nMessage number %d is too big
+757=Fel i %s\nDuplicated number %d
+753=Fil %s är för lång
+754=Fel vid inläsning av fil %s
+
+;games listbox columns
+650=Spelnamn
+651=Spelade
+652=Vunna
+653=Procent
+654=Poängrekord
+655=Tid
+656=Drag
+657=Kort
+658=Lager
+659=Sekvensregel
+660=Uppsättningsregel
+661=Par
+662=Spelnamn
+663=Senast spelat
+664=Poängrekord vunna
+665=Tid vunnit
+666=Drag vunna
+667=Förlorade
+668=Gruppdrag
+
+;rules
+900=Par
+901=Deck
+913=Uppsättning
+914=Rankning
+915=Delning
+902=Omdelning
+903=obegränsat
+904=Maximal kort per hög
+921=Avfallet måste vara tomt
+916=Utgående regler
+919=Regler för rörelser mellan celler av samma typ
+920=Regler för en tidigare cell
+905=Utrymmen kan inte fyllas
+906=Det första kortet rankas
+907=Rang för det första kortet
+908=Ingen byggnad
+909=Sekvensrankning:
+910=kontinuerlig
+911=Sekvensragn
+912=Flytta grupp av kort:
+917=Flytta endast från
+918=Flytta endast till
+
+1000=vilken som
+1001=A
+1002=2
+1003=3
+1004=4
+1005=5
+1006=6
+1007=7
+1008=8
+1009=9
+1010=10
+1011=J
+1012=Q
+1013=K
+1014=nej
+1015=slumpmässig bas
+1016=slumpmässig bas + 1
+1017=samma bas
+1018=först alla kungar och sedan alla kort
+1019=A eller K
+
+1031=hjärter
+1032=ruter
+1033=klöver
+1034=spader
+1035=röd
+1036=svart
+
+1051=samma
+1052=olika
+1053=samma färg
+1054=växlande färg
+
+1061=nej
+1062=nedåtgående
+1063=stigande
+1064=upp eller ner
+1065=fallande udda/jämnt
+1066=stigande udda/jämnt
+1067=upp eller ner udda/jämnt
+1068=samma rankning
+1069=upp eller ner eller samma
+1070=föregående hög har ett kort av samma rang som det flyttade kortet
+1071=föregående hög är fullständigt slutförd
+1072=högre
+1073=lägre
+1074=upp eller samma
+1075=ner eller samma
+
+1080=ja
+1081=nej
+1082=inte alla kort
+1083=vilken sekvens som helst
+1084=alla 13 kort
+1085=till tömning av cellen
+1086=vilken sekvens som helst vid fria celler
+1087=hela högen oavsett sekvens
+
+1100=cell
+1101=fundament
+1102=tablå
+1103=reservera
+1104=lager
+1105=svinn
+
+1120=samma färg
+1121=samma rankning
+1122=samma färg eller rankning
+
+;toolbar buttons
+1203=Välj spel
+1202=Nytt spel
+1207=Byt spelare
+1212=Ångra allt
+1209=Ångra
+1210=Gör om
+1211=Gör om allt
+1206=Alternativ
+1216=Regler
+1232=Snabbt fram
