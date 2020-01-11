@@ -1,5 +1,5 @@
 /*
-	(C) 2004-2016  Petr Lastovicka
+	(C) 2004-2020  Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -404,6 +404,7 @@ void initLang()
 			case LANG_FRENCH: s=_T("French"); break;
 			case LANG_ITALIAN: s=_T("Italiano"); break;
 			case LANG_POLISH: s=_T("Polski"); break;
+			case LANG_RUSSIAN: s = _T("Russian"); break;
 			case LANG_SERBIAN: s=_T("Srpski"); break;
 			case LANG_SWEDISH: s=_T("Swedish"); break;
 			default: s=_T("English"); break;

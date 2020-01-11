@@ -73,9 +73,9 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", " \0"
             VALUE "FileDescription", "XM Solitaire\0"
-            VALUE "FileVersion", "1, 6, 0, 7\0"
+            VALUE "FileVersion", "1, 6, 0, 8\0"
             VALUE "InternalName", "\0"
-            VALUE "LegalCopyright", "© 2005-2019 Petr Lastovicka\0"
+            VALUE "LegalCopyright", "© 2005-2020 Petr Lastovicka\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "xmsol.exe\0"
             VALUE "PrivateBuild", "\0"
@@ -236,7 +236,7 @@ STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "About"
 FONT 11, "MS Shell Dlg"
 BEGIN
-    CTEXT           "(C) 2005-2016  Petr Lastovicka",510,4,57,105,10
+    CTEXT           "(C) 2005-2020  Petr Lastovicka",510,4,57,105,10
     RTEXT           "Version",511,30,23,30,9
     CTEXT           "XM Solitaire",IDC_STATIC,23,5,65,11,SS_CENTERIMAGE | 
                     SS_SUNKEN
