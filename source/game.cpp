@@ -1,5 +1,5 @@
 /*
-	(C) 2005-2014  Petr Lastovicka
+	(C) 2005-2022  Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -1001,7 +1001,7 @@ void Tboard::move2(int dest, int src, int ind)
 	}
 	if(src!=dest){
 		//unhide exposed card
-		if(ind>0 && srcCell->onhid==ONHID_AUTO){
+		if(ind>0 && (srcCell->onhid==ONHID_AUTO || srcCell->onhid==ONHID_BLOCKED && srcCell->hideStyle==-1)){
 			if(srcCell->hidden[ind-1]){
 				srcCell->hidden[ind-1]=false;
 				if(!undoing){
