@@ -9,4 +9,4 @@
 
 You can **download** released binaries (EXE file) for Windows from [sourceforge.net](https://sourceforge.net/projects/xmsol/).
 
-![XM Solitaire screenshot](http://petr.lastovicka.sweb.cz/img/xmsol.png)
+![XM Solitaire screenshot](https://plastovicka.github.io/img/xmsol.png)
