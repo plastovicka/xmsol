@@ -1702,7 +1702,7 @@ DWORD getVer()
 
 INT_PTR CALLBACK AboutProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 {
-	char buf[40];
+	char buf[48];
 	DWORD d;
 
 	switch(message){
@@ -1722,6 +1722,7 @@ INT_PTR CALLBACK AboutProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 			if(wParam==123){
 				//start web browser
 				GetDlgItemTextA(hWnd, wParam, buf, sizeA(buf));
+				if(!strcmp(lang, "Èesky")) strcat(buf, "/indexCS.html");
 				ShellExecuteA(0, 0, buf, 0, 0, SW_SHOWNORMAL);
 			}
 			break;
