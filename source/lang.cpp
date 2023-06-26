@@ -1,5 +1,5 @@
 /*
-	(C) 2004-2020  Petr Lastovicka
+	(C) Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -397,6 +397,7 @@ void initLang()
 		const TCHAR* s;
 		switch(PRIMARYLANGID(GetUserDefaultLangID()))
 		{
+			case LANG_BELARUSIAN: s=_T("Belarusian"); break;
 			case LANG_CATALAN: s=_T("Catalan"); break;
 			case LANG_CZECH: s=_T("Èesky"); break;
 			case LANG_GERMAN: s=_T("Deutsch"); break;
