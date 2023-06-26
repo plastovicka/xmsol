@@ -1,0 +1,25 @@
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.aps
+*.ncb
+*.opt
+*.user
+*.tlog
+/.vs
+/Debug
+/Release
+/source/Debug
+/source/Debug Unicode
+/source/Release
+/source/Release Unicode
+/WapProjTemplate1/xmsol
+/WapProjTemplate1/obj
+/WapProjTemplate1/bin
+/WapProjTemplate1/AppPackages
+/*.xol
+/WapProjTemplate1/*.cache
+/*.ini
+/help/*.chw
+/help/*.chm

@@ -1,5 +1,5 @@
 /*
-	(C) 2005-2018  Petr Lastovicka
+	(C) Petr Lastovicka
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License.
@@ -1722,7 +1722,7 @@ INT_PTR CALLBACK AboutProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM)
 			if(wParam==123){
 				//start web browser
 				GetDlgItemTextA(hWnd, wParam, buf, sizeA(buf));
-				if(!strcmp(lang, "Èesky")) strcat(buf, "/indexCS.html");
+				if(!_tcscmp(lang, _T("Èesky"))) strcat(buf, "/indexCS.html");
 				ShellExecuteA(0, 0, buf, 0, 0, SW_SHOWNORMAL);
 			}
 			break;
