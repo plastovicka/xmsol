@@ -110,7 +110,7 @@ corners=15,
  RoundRectRgnExtra,
  Ntoolbar,
  gameListX=150, gameListY=90, //game list dialog window size and position 
- gameListW=550, gameListH=490;
+ gameListW, gameListH;
 
 bool
 delreg=false,
@@ -1978,6 +1978,7 @@ INT_PTR CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 	LV_ITEM lvi;
 	LVFINDINFO lfi;
 	RECT rc;
+	HDC dc;
 
 	switch(message){
 		case WM_INITDIALOG:
@@ -2002,6 +2003,12 @@ INT_PTR CALLBACK GameListProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP)
 				ListView_InsertColumn(listBox, i, &lvc);
 			}
 			//restore window position and size
+			if(!gameListW) {
+				dc = GetDC(hWnd);
+				gameListW= 650*GetDeviceCaps(dc, LOGPIXELSX)/96;
+				gameListH= 500*GetDeviceCaps(dc, LOGPIXELSY)/96;
+				ReleaseDC(hWnd, dc);
+			}
 			MoveWindow(hWnd, gameListX, gameListY, gameListW, gameListH, FALSE);
 			//read statistics from player's file
 			for(j=0; j<games.len; j++){
