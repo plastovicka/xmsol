@@ -120,7 +120,9 @@
 21=Reglas
 501=Jugador (*.xol)\0*.xol\0Todos los ficheros\0*.*\0
 20=Opciones
-538=puntuación\tTiempo\tDatos
+538=Puntuac.\tTiempo\tDatos\t\t\tVictoria/Pérdida
+541=victoria
+542=pérdida
 735=No se puede escribir en el registro de Windows
 733=No se puede crear el fichero %s
 730=No se puede abrir el fichero %s

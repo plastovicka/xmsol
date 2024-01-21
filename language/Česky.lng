@@ -1,4 +1,4 @@
-510=(C) 2005-2022  Petr Laštovièka
+510=(C) 2005-2024  Petr Laštovièka
 511=Verze
 13=cz.chm
 
@@ -100,9 +100,11 @@
 535=&È&as:
 536=Èíslo od 1 do 4294967295:
 537=&Nejlepší skóre
-538=Skóre\tÈas\tDatum
+538=Skóre\tÈas\tDatum\t\t\tVýhra/Prohra
 539=&Bonus za dokonèení hry:
 540=Karty zvìtšovat metodou &halftone
+541=výhra
+542=prohra
 
 ;sloupce v seznamu her
 650=Název hry

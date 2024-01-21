@@ -277,9 +277,10 @@ int vmsg(int id, char *text, int btn, va_list v)
 	TCHAR *buf=(TCHAR*)_alloca(2*Mbuf);
 	_vsntprintf(buf, Mbuf, lng(id, text), v);
 	buf[Mbuf-1]=0;
+	bool b=paused;
 	pause(true);
 	int result=MessageBox(dlgWin ? dlgWin : hWin, buf, title, btn);
-	pause(false);
+	pause(b);
 	return result;
 }
 
@@ -511,6 +512,8 @@ void getDxDy(int &dx, int &dy, int &hdx, int &hdy, Tcell *c)
 			dx=-max(1, sequenceDx);
 			hdx=-max(1, seqHiddenDx);
 			break;
+		default:
+			return;
 	}
 	if(flipx) dx=-dx, hdx=-hdx;
 	if(flipy) dy=-dy, hdy=-hdy;

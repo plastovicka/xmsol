@@ -268,14 +268,15 @@ bool TplayerFile::readStat(int whichGame)
 				result=true;
 				if(whichId>=0){
 					dtprintf(t, _T("%s\r\n\n%s"), games[whichGame]->name,
-						lng(538, "Score\tTime\tDate"));
+						lng(538, "Score\tTime\tDate\t\t\tWin/Loss"));
 					for(i=0; i<Mbest; i++){
 						b=&best[i];
 						if(!b->rec) break;
 						TCHAR buf[64];
 						printDate(buf, sizeA(buf), b->rec->date);
 						k= b->rec->time;
-						dtprintf(t, _T("\r\n%d\t%u:%02u\t%s"), b->score, k/60, k%60, buf);
+						dtprintf(t, _T("\r\n%d\t%u:%02u\t%-20s\t%s"), b->score, k/60, k%60, buf, 
+							b->rec->won ? lng(541, "win") : lng(542, "loss"));
 					}
 					delete[] best;
 					msg("%s", (TCHAR*)t);

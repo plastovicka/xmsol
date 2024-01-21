@@ -108,6 +108,11 @@
 966=Total moves
 967=Moves per game
 
+;best scores
+538=Score\tTime\tDate\t\t\tWin/Loss
+541=win
+542=loss
+
 ;status bar
 680=Time
 681=Score
@@ -122,7 +127,6 @@
 21=Rules
 501=Player (*.xol)\0*.xol\0All files\0*.*\0
 20=Options
-538=Score\tTime\tDate
 735=Cannot write to Windows registry
 733=Cannot create file %s
 730=Cannot open file %s
