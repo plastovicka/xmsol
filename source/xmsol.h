@@ -54,7 +54,7 @@ typedef int (CALLBACK *TsortFunc)(LPARAM, LPARAM, LPARAM);
 struct Tgame;
 
 struct Tcell0 {
-	int type, x, y, dir, spacing, fill, hideStyle, deal, redeal, shuffle, redealCount, startCount, shape, maxCount, blockedBy[2], prevDir, autoplay, onhid;
+	int type, x, y, dir, spacing, fill, hideStyle, deal, redeal, shuffle, redealCount, startCount, shape, maxCount, maxShow, blockedBy[2], prevDir, autoplay, onhid;
 	int inRule, outRule, sameRule, prevRule, startRule;
 };
 
@@ -113,6 +113,7 @@ public:
 	unsigned randUndo(unsigned n);
 	void newSeed();
 	void getColumnCoord(int &x, int &y, int cell, int ind);
+	int getColumnStart(Tcell *c);
 	void invalidateColumn(int cell, int ind, int n);
 	void animate(int dest, int src, int ind, int anim);
 	int hitTest(int mx, int my);

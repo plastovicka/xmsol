@@ -266,7 +266,7 @@ TcellElem::TcellElem(int type) :TxmlElem(0x100+type)
 	dir=DIR_NO;
 	spacing=100;
 	prevDir=PREV_LEFT;
-	maxCount=255;
+	maxCount=maxShow=255;
 	w=h=1000;
 	repeat=lines=1;
 	switch(type){
@@ -385,6 +385,7 @@ void TcellElem::addAttr(TCHAR *name, TCHAR *value)
 		if(!_tcscmp(value, _T("next+1"))) *b=UNDER_NEXT1;
 		if(!_tcscmp(value, _T("waste"))) *b=UNDER_WASTE;
 	}
+	else if(!_tcscmp(name, _T("show"))) maxShow=i;
 	else parser->error("Unknown attribute");
 }
 

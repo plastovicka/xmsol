@@ -551,7 +551,7 @@ void paintCardClip(HDC dc, int x, int y, Tcard card, HRGN rgnCard, HRGN rgnClip)
 //paint the main window or preview below game list
 void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 {
-	int i, j, x, y, x0, y0, dx, dy, hdx, hdy, n;
+	int i, j, j0, x, y, x0, y0, dx, dy, hdx, hdy, n;
 	Tcell *c;
 	HGDIOBJ oldB, oldP;
 	HRGN rgn, rgnClip;
@@ -595,7 +595,8 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 		getDxDy(dx, dy, hdx, hdy, c);
 		x=x0=scaleX(c->x);
 		y=y0=scaleY(c->y);
-		for(j=0; j<n-1; j++){
+		j0=getColumnStart(c);
+		for(j=j0; j<n-1; j++){
 			if(c->hidden[j]){
 				x+=hdx; y+=hdy;
 			}
@@ -610,7 +611,7 @@ void Tboard::paintBoard(HDC dc, RECT *rcPaint)
 				(y>=rcPaint->bottom || y0+cardH<rcPaint->top)))){
 			for(;;){
 				paintCardClip(dc, x, y, c->hidden[j] || hideAll ? (Tcard)0 : c->cards[j], rgn, rgnClip);
-				if(j== (c->dir!=DIR_NO ? 0 : n-1)) break; //paint only a top card if pile is not tableau
+				if(c->dir==DIR_NO || j==j0) break; //paint only a top card if pile is not tableau
 				j--;
 				if(c->hidden[j]){
 					x-=hdx; y-=hdy;
@@ -750,7 +751,7 @@ void Tboard::getColumnCoord(int &x, int &y, int cell, int ind)
 	getDxDy(dx, dy, hdx, hdy, c);
 	x=scaleX(c->x);
 	y=scaleY(c->y);
-	for(i=0; i<ind; i++){
+	for(i=getColumnStart(c); i<ind; i++){
 		if(c->hidden[i]){
 			x+=hdx; y+=hdy;
 		}
@@ -760,12 +761,19 @@ void Tboard::getColumnCoord(int &x, int &y, int cell, int ind)
 	}
 }
 
+int Tboard::getColumnStart(Tcell *c)
+{
+	return max(0, c->Ncards - c->maxShow);
+}
+
 void Tboard::invalidateColumn(int cell, int ind, int n)
 {
 	int x, y;
 
+	Tcell *c= &cells[cell];
+	if(c->maxShow<255) { n+=min(ind,c->maxShow); ind=0; }
 	getColumnCoord(x, y, cell, ind);
-	invalidateColumn1(x, y, n-1, &cells[cell]);
+	invalidateColumn1(x, y, n-1, c);
 }
 
 void Sleep2(int ms)
@@ -870,7 +878,7 @@ int Tboard::hitTest(int mx, int my)
 		getDxDy(dx, dy, hdx, hdy, c);
 		n=c->Ncards;
 		if(n>0){
-			for(j=0; j<n; j++){
+			for(j=getColumnStart(c); j<n; j++){
 				if(mx>=x && mx<x+cardW && my>=y && my<y+cardH){
 					result=j|(i<<16);
 					if(!dragging){ dragDx=x-mx; dragDy=y-my; }

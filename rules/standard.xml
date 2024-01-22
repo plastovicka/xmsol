@@ -317,7 +317,7 @@
 <game name="Klondike 3">
 <foundation x="500" repeat="4"/>
 <tableau repeat="7" shape="incr" count="28" hide="-1">k group alter</tableau>
-<stock redeal="inf" deal="3"/><waste x="120"/>
+<stock redeal="inf" deal="3"/><waste x="120" dir="right" show="3"/>
 </game>
 
 <game name="Limited" decks="2">
