@@ -814,11 +814,9 @@ void Tboard::animate(int dest, int src, int ind, int anim)
 	}
 	else{
 		tick=10;
-		MSG mesg;
-		if(isHungAppWindow && isHungAppWindow(hWin) &&
-			(PeekMessage(&mesg, NULL, WM_LBUTTONDOWN, WM_LBUTTONDOWN, PM_NOREMOVE)
-			|| PeekMessage(&mesg, NULL, WM_NCLBUTTONDOWN, WM_NCLBUTTONDOWN, PM_NOREMOVE))){
+		if(isHungAppWindow && isHungAppWindow(hWin)){
 			k=1;
+			tick=0;
 		}
 		else{
 			k/=tick;
