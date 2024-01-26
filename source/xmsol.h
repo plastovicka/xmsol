@@ -342,8 +342,8 @@ TCHAR *cutExt(TCHAR *fn);
 TCHAR *dupStr(TCHAR *s);
 
 //bitmap.cpp
-HBITMAP loadBMP(TCHAR *fn);
-HBITMAP readBMP(TCHAR *fn, HDC, int *pwidth, int *pheight);
+HBITMAP loadBMP(TCHAR *fn, int resource);
+HBITMAP readBMP(TCHAR *fn, int resource, HDC, int *pwidth, int *pheight);
 bool isImage(TCHAR *file);
 
 #endif

@@ -7,6 +7,10 @@
 #define IDR_MENU                        4
 #define IDD_KEYS                        7
 #define IDB_TOOLBAR                     10
+#define IDB_BACK                        11
+#define IDB_BKGND                       12
+#define IDB_CARDS                       13
+#define IDB_CELL                        14
 #define IDC_STATIC      (-1)
 #define IDC_KEYCMD                      101
 #define IDC_MENUDROP                    102

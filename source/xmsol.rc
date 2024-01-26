@@ -380,6 +380,11 @@ IDI_MAINICON            ICON    DISCARDABLE     "xmsol.ico"
 IDB_TOOLBAR             BITMAP  MOVEABLE PURE   "soltool.bmp"
 IDB_ASCDESC             BITMAP  MOVEABLE PURE   "ascdesc.bmp"
 
+IDB_BACK RCDATA "back.png"
+IDB_BKGND RCDATA "bkgnd.png"
+IDB_CARDS RCDATA "cards.png"
+IDB_CELL RCDATA "cell.png"
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Cursor

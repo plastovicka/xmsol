@@ -62,21 +62,46 @@ extern "C"
 	typedef VOID(WINAPI *pGdiplusShutdown)(ULONG_PTR token);
 	typedef GpStatus(WINGDIPAPI *pGdipDisposeImage)(GpImage *image);
 	typedef GpStatus(WINGDIPAPI *pGdipCreateBitmapFromFile)(GDIPCONST WCHAR* filename, GpBitmap **bitmap);
+	typedef GpStatus(WINGDIPAPI *GdipCreateBitmapFromStream)(IStream* stream, GpBitmap **bitmap);
 	typedef GpStatus(WINGDIPAPI *pGdipCreateHBITMAPFromBitmap)(GpBitmap* bitmap, HBITMAP* hbmReturn, ARGB background);
 }
 //------------------------------------------------------------------
 
-HBITMAP loadImage(TCHAR *file)
+HBITMAP loadImage(TCHAR *file, int resource)
 {
 	HBITMAP hBitmap=0;
 	HMODULE lib = LoadLibrary(_T("gdiplus.dll"));
 	if(lib){
 		GdiplusStartupInput gdiplusStartupInput;
 		ULONG_PTR gdiplusToken;
-		if(((pGdiplusStartup)GetProcAddress(lib, "GdiplusStartup"))(&gdiplusToken, &gdiplusStartupInput, NULL) == Ok){
+		if(((pGdiplusStartup)GetProcAddress(lib, "GdiplusStartup"))(&gdiplusToken, &gdiplusStartupInput, NULL) == Ok)
+		{
 			GpBitmap* bitmap;
 			convertT2W(file, w);
-			if(((pGdipCreateBitmapFromFile)GetProcAddress(lib, "GdipCreateBitmapFromFile"))(w, &bitmap) == Ok){
+			GpStatus status = ((pGdipCreateBitmapFromFile)GetProcAddress(lib, "GdipCreateBitmapFromFile"))(w, &bitmap);
+			if (status!=Ok && resource)
+			{
+				//load fallback image from EXE file
+				HRSRC r=FindResource(0, MAKEINTRESOURCE(resource), RT_RCDATA);
+				HGLOBAL h=LoadResource(0, r);
+				void *p=LockResource(h);
+				if(p) {
+					size_t sz=SizeofResource(0, r);
+					HGLOBAL h2=GlobalAlloc(GMEM_MOVEABLE, sz);
+					LPVOID p2=GlobalLock(h2);
+					if(p2) {
+						memcpy(p2, p, sz);
+						GlobalUnlock(h2);
+						LPSTREAM s;
+						if(!(CreateStreamOnHGlobal(h2, FALSE, &s))) {
+							status = ((GdipCreateBitmapFromStream)GetProcAddress(lib, "GdipCreateBitmapFromStream"))(s, &bitmap);
+							GlobalFree(h2);
+						}
+					}
+				}
+			}
+			if (status==Ok)
+			{
 				HBITMAP hbmp;
 				if(((pGdipCreateHBITMAPFromBitmap)GetProcAddress(lib, "GdipCreateHBITMAPFromBitmap"))(bitmap, &hbmp, 0) == Ok)
 					hBitmap = hbmp;
@@ -96,7 +121,7 @@ bool isRelativePath(TCHAR* fn)
 	return fn[0] && fn[1]!=':' && fn[0]!='\\' && (fn[0]!='.' || fn[1]!='.' && fn[1]!='\\');
 }
 
-HBITMAP loadBMP(TCHAR *fn)
+HBITMAP loadBMP(TCHAR *fn, int resource)
 {
 	TfileName path;
 	if(isRelativePath(fn))
@@ -105,12 +130,12 @@ HBITMAP loadBMP(TCHAR *fn)
 		getExeDir(path, fn);
 		fn = path;
 	}
-	return loadImage(fn);
+	return loadImage(fn, resource);
 }
 
-HBITMAP readBMP(TCHAR *fn, HDC, int *pwidth, int *pheight)
+HBITMAP readBMP(TCHAR *fn, int resource, HDC, int *pwidth, int *pheight)
 {
-	HBITMAP fbmp= loadBMP(fn);
+	HBITMAP fbmp= loadBMP(fn, resource);
 	if(fbmp){
 		BITMAP info;
 		GetObject(fbmp, sizeof(BITMAP), &info);

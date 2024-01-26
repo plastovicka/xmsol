@@ -14,6 +14,7 @@
 #pragma comment(lib, "version.lib")
 #pragma comment(lib, "comctl32.lib")
 #pragma comment(lib, "htmlhelp.lib")
+#pragma comment(lib, "ole32.lib")
 
 //------------------------------------------------------------------
 
@@ -1138,7 +1139,7 @@ void readCardsFromFiles(TCHAR *path)
 			fn[1]=(TCHAR)((r+1)%10+'0');
 			fn[2]="hdcs"[s];
 			//fn[1]="a234567891jqk"[r];
-			b=readBMP(path, dc, &w1, &h1);
+			b=readBMP(path, 0, dc, &w1, &h1);
 			if(r==0 && s==0){
 				w=w1; h=h1;
 				setBmpCards(CreateCompatibleBitmap(dc, w*13, h*4), dc, w, h);
@@ -1224,7 +1225,7 @@ void loadCards()
 {
 	int w, h;
 	HDC dc=GetDC(hWin);
-	HBITMAP b= readBMP(fnCards, dc, &w, &h);
+	HBITMAP b= readBMP(fnCards, IDB_CARDS, dc, &w, &h);
 	if(b){
 		setBmpCards(b, dc, w/13, h/4);
 		calcCardW();
@@ -1236,7 +1237,7 @@ void loadCards()
 
 void loadBkgnd()
 {
-	HBITMAP b= loadBMP(fnBkgnd);
+	HBITMAP b= loadBMP(fnBkgnd, IDB_BKGND);
 	if(b){
 		DeleteObject(bkgndBrush);
 		DeleteObject(bmpBkgnd);
@@ -1248,7 +1249,7 @@ void loadBkgnd()
 void loadBack()
 {
 	HDC dc=GetDC(hWin);
-	HBITMAP b= readBMP(fnBack, dc, &bmpBackW, &bmpBackH);
+	HBITMAP b= readBMP(fnBack, IDB_BACK, dc, &bmpBackW, &bmpBackH);
 	if(b){
 		if(!dcBack) dcBack=CreateCompatibleDC(dc);
 		SelectObject(dcBack, b);
@@ -1263,7 +1264,7 @@ void loadBack()
 void loadCell()
 {
 	HDC dc=GetDC(hWin);
-	HBITMAP b= readBMP(fnCell, dc, &bmpCellW, &bmpCellH);
+	HBITMAP b= readBMP(fnCell, IDB_CELL, dc, &bmpCellW, &bmpCellH);
 	if(b){
 		if(!dcCell) dcCell=CreateCompatibleDC(dc);
 		SelectObject(dcCell, b);
